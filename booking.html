@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Cita - Centro Médico Universal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="booking-system.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" style="color: white; text-decoration: none;">
+                        <h2>Centro Médico Universal</h2>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html#inicio" class="nav-link">Inicio</a>
+                    <a href="index.html#servicios" class="nav-link">Servicios</a>
+                    <a href="index.html#doctores" class="nav-link">Doctores</a>
+                    <a href="index.html#contacto" class="nav-link">Contacto</a>
+                    <a href="booking.html" class="nav-link cita-btn active">
+                        <i class="fas fa-calendar-check"></i> Reservar Cita
+                    </a>
+                </div>
+                <div class="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="booking-main">
+        <div class="booking-container">
+            <!-- Header Section -->
+            <div class="booking-header">
+                <h1><i class="fas fa-calendar-plus"></i> Reservar Cita</h1>
+                <p>Complete los siguientes pasos para programar su consulta médica</p>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-circle">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <span>Doctor</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-circle">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <span>Fecha y Hora</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-circle">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span>Información</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Confirmación</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Form Steps -->
+            <div class="booking-form">
+                
+                <!-- Step 1: Doctor Selection -->
+                <div class="booking-step active" id="step-1">
+                    <div class="step-header">
+                        <h2>Seleccione el Doctor</h2>
+                        <p>Elija el especialista según su necesidad médica</p>
+                    </div>
+                    
+                    <div class="doctors-selection" id="doctors-list">
+                        <!-- Doctors will be loaded via JavaScript -->
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Cargando doctores disponibles...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                            <i class="fas fa-arrow-left"></i> Volver al Inicio
+                        </button>
+                        <button type="button" class="btn btn-primary" id="next-to-step-2" disabled>
+                            Siguiente <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Date and Time Selection -->
+                <div class="booking-step" id="step-2">
+                    <div class="step-header">
+                        <h2>Seleccione Fecha y Hora</h2>
+                        <p>Escoja el día y horario que mejor le convenga</p>
+                    </div>
+                    
+                    <div class="datetime-selection">
+                        <div class="calendar-section">
+                            <h3>Seleccionar Fecha</h3>
+                            <div class="calendar-container">
+                                <div class="calendar-header">
+                                    <button type="button" id="prev-month" class="calendar-nav">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <h4 id="calendar-title"></h4>
+                                    <button type="button" id="next-month" class="calendar-nav">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="calendar-grid" id="calendar-grid">
+                                    <!-- Calendar will be generated via JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="time-section">
+                            <h3>Horarios Disponibles</h3>
+                            <div id="available-times">
+                                <p class="select-date-first">Primero seleccione una fecha</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="appointment-summary" id="appointment-summary" style="display: none;">
+                        <h3>Resumen de la Cita</h3>
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <i class="fas fa-user-md"></i>
+                                <span id="summary-doctor"></span>
+                            </div>
+                            <div class="summary-item">
+                                <i class="fas fa-calendar"></i>
+                                <span id="summary-date"></span>
+                            </div>
+                            <div class="summary-item">
+                                <i class="fas fa-clock"></i>
+                                <span id="summary-time"></span>
+                            </div>
+                            <div class="summary-item">
+                                <i class="fas fa-money-bill"></i>
+                                <span id="summary-price"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-navigation">
+                        <button type="button" class="btn btn-secondary" id="back-to-step-1">
+                            <i class="fas fa-arrow-left"></i> Anterior
+                        </button>
+                        <button type="button" class="btn btn-primary" id="next-to-step-3" disabled>
+                            Siguiente <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Patient Information -->
+                <div class="booking-step" id="step-3">
+                    <div class="step-header">
+                        <h2>Información del Paciente</h2>
+                        <p>Complete sus datos para confirmar la cita</p>
+                    </div>
+                    
+                    <form id="patient-form" class="patient-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">Nombre *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Apellido *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Teléfono *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="(809) 555-0123">
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Fecha de Nacimiento</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Género</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Seleccionar</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="Other">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="address">Dirección</label>
+                                <textarea id="address" name="address" rows="2" placeholder="Dirección completa"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="emergencyName">Contacto de Emergencia</label>
+                                <input type="text" id="emergencyName" name="emergencyName" placeholder="Nombre del contacto">
+                            </div>
+                            <div class="form-group">
+                                <label for="emergencyPhone">Teléfono de Emergencia</label>
+                                <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="(809) 555-0123">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="medicalNotes">Notas Médicas</label>
+                                <textarea id="medicalNotes" name="medicalNotes" rows="3" placeholder="Motivo de la consulta, síntomas, medicamentos actuales, alergias, etc."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-terms">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="termsAccept" required>
+                                <span class="checkmark"></span>
+                                Acepto los términos y condiciones del servicio médico
+                            </label>
+                        </div>
+                    </form>
+                    
+                    <div class="step-navigation">
+                        <button type="button" class="btn btn-secondary" id="back-to-step-2">
+                            <i class="fas fa-arrow-left"></i> Anterior
+                        </button>
+                        <button type="button" class="btn btn-primary" id="next-to-step-4" disabled>
+                            Confirmar Cita <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirmation -->
+                <div class="booking-step" id="step-4">
+                    <div class="confirmation-content">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>¡Cita Confirmada!</h2>
+                        <p>Su cita ha sido programada exitosamente</p>
+                        
+                        <div class="confirmation-details" id="confirmation-details">
+                            <!-- Confirmation details will be populated via JavaScript -->
+                        </div>
+                        
+                        <div class="confirmation-actions">
+                            <button type="button" class="btn btn-primary" onclick="window.print()">
+                                <i class="fas fa-print"></i> Imprimir Confirmación
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+                                <i class="fas fa-home"></i> Volver al Inicio
+                            </button>
+                        </div>
+                        
+                        <div class="next-steps">
+                            <h3>Próximos Pasos</h3>
+                            <ul>
+                                <li><i class="fas fa-envelope"></i> Recibirá un correo de confirmación</li>
+                                <li><i class="fas fa-bell"></i> Le enviaremos recordatorios antes de su cita</li>
+                                <li><i class="fas fa-id-card"></i> Traiga su cédula y seguro médico</li>
+                                <li><i class="fas fa-clock"></i> Llegue 15 minutos antes de su cita</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Procesando su cita...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script src="booking-system.js"></script>
+</body>
+</html>

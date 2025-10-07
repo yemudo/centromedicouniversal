@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Médico Universal - Recepción</title>
+    <link rel="stylesheet" href="css/reception-calendar.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="icon" href="/images/favicon.ico">
+</head>
+<body>
+    <!-- TOP NAVIGATION BAR (like eClinicalWorks) -->
+    <nav class="top-nav">
+        <div class="logo">
+            <img src="../images/logo/cmu-logo-new.png" alt="CMU Logo" class="logo-img">
+            <span class="system-name">Centro Médico Universal</span>
+        </div>
+        
+        <div class="toolbar">
+            <select class="view-selector" id="view-selector">
+                <option value="day">1 Día</option>
+                <option value="week">Semana</option>
+                <option value="month">Mes</option>
+            </select>
+            
+            <select class="interval-selector" id="interval-selector">
+                <option value="15">15 min</option>
+                <option value="30">30 min</option>
+                <option value="60">60 min</option>
+            </select>
+            
+            <button class="toolbar-btn" id="refresh-btn" title="Actualizar">
+                🔄
+            </button>
+            
+            <button class="toolbar-btn" id="calendar-btn" title="Calendario">
+                📅
+            </button>
+            
+            <button class="toolbar-btn" id="print-btn" title="Imprimir">
+                🖨️
+            </button>
+            
+            <button class="toolbar-btn" id="settings-btn" title="Configuración">
+                ⚙️
+            </button>
+            
+            <select class="facility-selector" id="facility-selector">
+                <option value="all">📍 Todas las facilidades</option>
+                <option value="main">Centro Principal</option>
+            </select>
+        </div>
+        
+        <div class="user-info">
+            <span class="user-greeting">Usuario: <strong id="current-user">Recepción</strong></span>
+            <button class="logout-btn" id="logout-btn">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <!-- Navigation Icons (like ECW) -->
+            <div class="nav-icons">
+                <button class="nav-icon active" data-section="calendar" title="Calendario">
+                    ⭐
+                    <span class="nav-label">Favoritos</span>
+                </button>
+                <button class="nav-icon" data-section="menu" title="Menú">
+                    ☰
+                    <span class="nav-label">Menú</span>
+                </button>
+                <button class="nav-icon" data-section="practice" title="Práctica">
+                    🏥
+                    <span class="nav-label">Práctica</span>
+                </button>
+                <button class="nav-icon" data-section="patients" title="Pacientes">
+                    👥
+                    <span class="nav-label">Pacientes</span>
+                </button>
+                <button class="nav-icon" data-section="referrals" title="Referencias">
+                    🔄
+                    <span class="nav-label">Referencias</span>
+                </button>
+                <button class="nav-icon" data-section="messages" title="Mensajes">
+                    ✉️
+                    <span class="nav-label">Mensajes</span>
+                </button>
+                <button class="nav-icon" data-section="registry" title="Registro">
+                    📋
+                    <span class="nav-label">Registro</span>
+                </button>
+                <button class="nav-icon" data-section="reports" title="Reportes">
+                    📊
+                    <span class="nav-label">Reportes</span>
+                </button>
+                <button class="nav-icon" data-section="alerts" title="Alertas">
+                    🔔
+                    <span class="nav-label">Alertas</span>
+                </button>
+                <button class="nav-icon" data-section="admin" title="Administración">
+                    ⚙️
+                    <span class="nav-label">Admin</span>
+                </button>
+                <button class="nav-icon" data-section="insights" title="Estadísticas">
+                    📈
+                    <span class="nav-label">Estadísticas</span>
+                </button>
+                <button class="nav-icon" data-section="quality" title="Calidad">
+                    ✓
+                    <span class="nav-label">Calidad</span>
+                </button>
+            </div>
+
+            <!-- MY PROVIDERS SECTION -->
+            <div class="filter-section providers-section">
+                <h3 class="section-title">
+                    <span class="section-icon">📍</span> Mis Doctores
+                </h3>
+                <div class="search-box">
+                    <input type="search" placeholder="Buscar doctor..." id="provider-search" class="search-input">
+                </div>
+                <div class="filter-list" id="provider-list">
+                    <label class="filter-item select-all">
+                        <input type="checkbox" id="select-all-providers" checked>
+                        <span class="filter-label"><strong>Todos</strong></span>
+                    </label>
+                    <!-- Doctors will be loaded dynamically by JavaScript -->
+                </div>
+            </div>
+
+            <!-- MY RESOURCES SECTION (SPECIALTIES) -->
+            <div class="filter-section resources-section">
+                <h3 class="section-title">
+                    <span class="section-icon">📚</span> Especialidades
+                </h3>
+                <div class="search-box">
+                    <input type="search" placeholder="Buscar especialidad..." id="specialty-search" class="search-input">
+                </div>
+                <div class="filter-list" id="specialty-list">
+                    <label class="filter-item select-all">
+                        <input type="checkbox" id="select-all-specialties" checked>
+                        <span class="filter-label"><strong>Todas</strong></span>
+                    </label>
+                    <!-- Specialties will be loaded dynamically by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CALENDAR VIEW -->
+        <main class="calendar-main">
+            <!-- Date Navigation Bar -->
+            <div class="date-nav">
+                <button class="nav-arrow" id="prev-date">◀</button>
+                <h2 class="current-date" id="current-date">Domingo, 6 de Octubre 2025</h2>
+                <button class="nav-arrow" id="next-date">▶</button>
+                <button class="today-btn" id="today-btn">Hoy</button>
+            </div>
+
+            <!-- Mini Calendar (collapsed by default, expandable) -->
+            <div class="mini-calendar" id="mini-calendar" style="display: none;">
+                <div class="month-nav">
+                    <button class="month-arrow" id="prev-month">◀</button>
+                    <span class="month-label" id="current-month">Octubre 2025</span>
+                    <button class="month-arrow" id="next-month">▶</button>
+                </div>
+                <div class="calendar-grid-mini" id="mini-calendar-grid">
+                    <!-- Mini calendar will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Multi-Doctor Calendar Grid (Main View) -->
+            <div class="calendar-container">
+                <div class="calendar-header" id="calendar-header">
+                    <!-- Doctor column headers will be generated here -->
+                </div>
+                
+                <div class="calendar-scroll-wrapper">
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Time slots and appointments will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading-overlay" id="loading-overlay" style="display: none;">
+                <div class="spinner"></div>
+                <p>Cargando calendario...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- APPOINTMENT MODAL (for clicking appointments) -->
+    <div class="modal" id="appointment-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalles de Cita</h3>
+                <button class="modal-close" id="modal-close">✖</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Appointment details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-appointment">Cancelar Cita</button>
+                <button class="btn btn-primary" id="edit-appointment">Editar</button>
+                <button class="btn btn-success" id="check-in-patient">Check-In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW APPOINTMENT MODAL -->
+    <div class="modal" id="new-appointment-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nueva Cita</h3>
+                <button class="modal-close" id="new-modal-close">✖</button>
+            </div>
+            <div class="modal-body">
+                <form id="new-appointment-form">
+                    <div class="form-group">
+                        <label>Doctor:</label>
+                        <select id="doctor-select" required>
+                            <!-- Options loaded dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha:</label>
+                        <input type="date" id="appointment-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora:</label>
+                        <input type="time" id="appointment-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Paciente:</label>
+                        <input type="text" id="patient-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono:</label>
+                        <input type="tel" id="patient-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Notas:</label>
+                        <textarea id="appointment-notes" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-new-appointment">Cancelar</button>
+                <button class="btn btn-success" id="save-new-appointment">Guardar Cita</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/doctor-filter.js"></script>
+    <script src="js/specialty-filter.js"></script>
+    <script src="js/reception-calendar.js"></script>
+    <script src="js/appointment-manager.js"></script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Empleados ORACLE - Centro Médico Universal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .oracle-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-top: 0.25rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #388E3C;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-header h2 {
+            color: #388E3C;
+            margin-bottom: 0.5rem;
+        }
+
+        .oracle-info {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s;
+            border-left: 5px solid #ff6b35;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-info h3 {
+            font-size: 2rem;
+            color: #388E3C;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .oracle-label {
+            font-size: 0.7rem;
+            color: #ff6b35;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: #69BBA8;
+            opacity: 0.3;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .module-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-card h3 {
+            color: #388E3C;
+            margin-bottom: 1rem;
+        }
+
+        .module-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .module-btn {
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .module-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(56, 142, 60, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .header-right {
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="images/logo/cmu-logo-new.png" alt="CMU Logo" class="logo">
+            <div class="header-title">
+                <h1>Centro Médico Universal - Portal ORACLE</h1>
+                <div class="oracle-badge">🔶 CONECTADO A ORACLE DATABASE</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <p><strong>Bienvenido, <span id="userName">Cargando...</span></strong></p>
+                <p style="font-size: 0.9rem; opacity: 0.8;"><span id="userRole">...</span></p>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h2>Panel de Control ORACLE</h2>
+            <p>Sistema de Gestión Médica Integrado</p>
+            <div class="oracle-info">
+                🔶 DATOS EN TIEMPO REAL DE ORACLE MYSQL DATABASE
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3 id="statToday">0</h3>
+                    <p>Pacientes Hoy</p>
+                    <div class="oracle-label">ORACLE</div>
+                </div>
+                <div class="stat-icon">
+                    <i class="fas fa-user-injured"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3 id="statPending">0</h3>
+                    <p>Citas Pendientes</p>
+                    <div class="oracle-label">ORACLE</div>
+                </div>
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3 id="statDoctors">0</h3>
+                    <p>Doctores Activos</p>
+                    <div class="oracle-label">ORACLE</div>
+                </div>
+                <div class="stat-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-icon">👥</div>
+                <h3>Gestión de Pacientes</h3>
+                <p>Registrar nuevos pacientes, buscar historiales médicos y actualizar información en ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('patients')">Acceder</button>
+            </div>
+
+            <div class="module-card">
+                <div class="module-icon">📅</div>
+                <h3>Citas Médicas</h3>
+                <p>Ver calendario de citas, agendar nuevas consultas y gestionar horarios en ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('appointments')">Acceder</button>
+            </div>
+
+            <div class="module-card">
+                <div class="module-icon">🗓️</div>
+                <h3>Gestión de Horarios ORACLE</h3>
+                <p>Administrar horarios médicos, permisos y coberturas directamente en ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('schedules')">Acceder</button>
+            </div>
+
+            <div class="module-card">
+                <div class="module-icon">👨‍⚕️</div>
+                <h3>Personal Médico ORACLE</h3>
+                <p>Directorio de doctores, horarios de trabajo y especialidades desde ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('staff')">Acceder</button>
+            </div>
+
+            <div class="module-card">
+                <div class="module-icon">📊</div>
+                <h3>Reportes ORACLE</h3>
+                <p>Generar informes estadísticos y análisis de operaciones desde ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('reports')">Acceder</button>
+            </div>
+
+            <div class="module-card">
+                <div class="module-icon">🔔</div>
+                <h3>Notificaciones</h3>
+                <p>Centro de mensajes y alertas del sistema ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('notifications')">Acceder</button>
+            </div>
+
+            <div class="module-card">
+                <div class="module-icon">⚙️</div>
+                <h3>Configuración ORACLE</h3>
+                <p>Ajustes del sistema y preferencias de usuario en ORACLE.</p>
+                <button class="module-btn" onclick="goToModule('settings')">Acceder</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api';
+
+        async function checkAuth() {
+            try {
+                const response = await fetch(`${API_URL}/oracle-auth.php`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    window.location.href = 'login-oracle.html';
+                    return;
+                }
+
+                // Update user info from ORACLE
+                document.getElementById('userName').textContent = data.data.full_name;
+                document.getElementById('userRole').textContent = getRoleDisplay(data.data.role);
+
+                // Load statistics from ORACLE
+                loadOracleStatistics();
+
+            } catch (error) {
+                console.error('ORACLE Auth check failed:', error);
+                window.location.href = 'login-oracle.html';
+            }
+        }
+
+        async function loadOracleStatistics() {
+            try {
+                const response = await fetch(`${API_URL}/oracle-stats.php`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const stats = data.data;
+                    document.getElementById('statToday').textContent = stats.appointments_today_oracle || 0;
+                    document.getElementById('statPending').textContent = stats.pending_appointments_oracle || 0;
+                    document.getElementById('statDoctors').textContent = stats.total_doctors_oracle || 0;
+                    
+                    console.log('✅ ORACLE Statistics loaded:', stats);
+                }
+            } catch (error) {
+                console.error('Failed to load ORACLE statistics:', error);
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch(`${API_URL}/oracle-auth.php`, { method: 'DELETE' });
+                alert('Sesión cerrada en ORACLE');
+                window.location.href = 'login-oracle.html';
+            } catch (error) {
+                console.error('ORACLE Logout failed:', error);
+                window.location.href = 'login-oracle.html';
+            }
+        }
+
+        function goToModule(module) {
+            const modulePages = {
+                'patients': 'patients-oracle.html',
+                'appointments': 'appointments-oracle.html',
+                'schedules': 'schedules-oracle.html',
+                'staff': 'staff-oracle.html',
+                'reports': 'reports-oracle.html',
+                'notifications': 'notifications-oracle.html',
+                'settings': 'settings-oracle.html'
+            };
+
+            if (modulePages[module]) {
+                window.location.href = modulePages[module];
+            } else {
+                alert('Este módulo ORACLE está en desarrollo');
+            }
+        }
+
+        function getRoleDisplay(role) {
+            const roles = {
+                'super_admin': 'Super Administrador ORACLE',
+                'admin': 'Administrador ORACLE',
+                'doctor': 'Doctor',
+                'medical_assistant': 'Asistente Médico',
+                'staff': 'Personal'
+            };
+            return roles[role] || role;
+        }
+
+        // Initialize ORACLE portal
+        checkAuth();
+
+        // Refresh ORACLE statistics every 30 seconds
+        setInterval(loadOracleStatistics, 30000);
+    </script>
+</body>
+</html>

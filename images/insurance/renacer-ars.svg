@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <defs>
+    <linearGradient id="renacerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2E7D32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1B5E20;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="80" fill="url(#renacerGrad)" rx="10"/>
+  <!-- Rebirth/renewal leaf symbol -->
+  <path d="M 35 25 Q 25 35 35 45 Q 40 50 45 45 Q 55 35 45 25 Q 40 20 35 25" fill="white"/>
+  <path d="M 35 25 L 40 40" stroke="#2E7D32" stroke-width="2" fill="none"/>
+  <text x="60" y="35" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="white">RENACER</text>
+  <text x="60" y="52" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="white">ARS</text>
+</svg>

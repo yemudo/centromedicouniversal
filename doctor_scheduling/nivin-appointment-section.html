@@ -1,0 +1,191 @@
+<!-- Nivin Embedded Appointment Section -->
+<section id="appointment" style="background: linear-gradient(135deg, #a8d5ba 0%, #69BBA8 100%); padding: 60px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <h2 style="color: #2E7D32; font-size: 42px; font-weight: bold; margin-bottom: 20px; text-align: center;">
+            Solicite su Cita con Nivin
+        </h2>
+        
+        <p style="color: #1a5d2e; font-size: 18px; margin-bottom: 40px; text-align: center;">
+            Nuestro asistente médico virtual está listo para ayudarle a agendar su cita
+        </p>
+        
+        <div style="display: flex; gap: 40px; align-items: stretch; flex-wrap: wrap;">
+            <!-- Nivin Chat Embedded -->
+            <div style="flex: 1; min-width: 400px;">
+                <div id="nivin-embed" style="background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; height: 500px;">
+                    <div style="background: linear-gradient(135deg, #2E7D32, #69BBA8); color: white; padding: 20px;">
+                        <h3 style="margin: 0; font-size: 20px;">🏥 Nivin - Asistente Médico</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">Centro Médico Universal</p>
+                    </div>
+                    
+                    <div id="nivin-embed-messages" style="height: 330px; overflow-y: auto; padding: 20px; background: #f9f9f9;">
+                        <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            ¡Hola! Soy Nivin, tu asistente médico virtual. 👋<br><br>
+                            Estoy aquí para ayudarte a:<br>
+                            • 📅 Agendar tu cita médica<br>
+                            • 👨‍⚕️ Encontrar el especialista adecuado<br>
+                            • ⏰ Seleccionar el mejor horario<br><br>
+                            <strong>¿Cómo puedo ayudarte hoy?</strong>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 15px; border-top: 1px solid #e0e0e0; background: white;">
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="nivin-embed-input" placeholder="Escribe tu mensaje..." 
+                                   style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 25px; outline: none;"
+                                   onkeypress="if(event.key==='Enter') sendToNivinEmbed()">
+                            <button onclick="sendToNivinEmbed()" 
+                                    style="background: linear-gradient(135deg, #2E7D32, #388E3C); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px;">
+                                ➤
+                            </button>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                            <button onclick="quickActionEmbed('cita')" 
+                                    style="padding: 8px 15px; background: #e8f5e9; border: 1px solid #2E7D32; border-radius: 20px; color: #2E7D32; font-size: 14px; cursor: pointer; transition: all 0.3s;">
+                                📅 Solicitar Cita
+                            </button>
+                            <button onclick="quickActionEmbed('doctores')" 
+                                    style="padding: 8px 15px; background: #e3f2fd; border: 1px solid #2196f3; border-radius: 20px; color: #2196f3; font-size: 14px; cursor: pointer; transition: all 0.3s;">
+                                👨‍⚕️ Ver Doctores
+                            </button>
+                            <button onclick="quickActionEmbed('horarios')" 
+                                    style="padding: 8px 15px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 20px; color: #ff9800; font-size: 14px; cursor: pointer; transition: all 0.3s;">
+                                ⏰ Horarios Disponibles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Information Panel -->
+            <div style="flex: 1; min-width: 300px;">
+                <div style="background: white; border-radius: 20px; padding: 30px; height: 100%; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h3 style="color: #2E7D32; margin-bottom: 20px; font-size: 24px;">¿Por qué usar Nivin?</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 30px; margin-right: 15px;">⚡</span>
+                            <div>
+                                <strong style="color: #2E7D32;">Rápido y Eficiente</strong><br>
+                                <span style="color: #666; font-size: 14px;">Agende su cita en minutos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 30px; margin-right: 15px;">🔒</span>
+                            <div>
+                                <strong style="color: #2E7D32;">Seguro y Privado</strong><br>
+                                <span style="color: #666; font-size: 14px;">Sus datos están protegidos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 30px; margin-right: 15px;">📱</span>
+                            <div>
+                                <strong style="color: #2E7D32;">Disponible 24/7</strong><br>
+                                <span style="color: #666; font-size: 14px;">Acceda cuando lo necesite</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f0f0f0; border-radius: 10px; padding: 15px; margin-top: 30px;">
+                        <p style="margin: 0; color: #333; font-size: 14px;">
+                            <strong>💡 Consejo:</strong> También puede hacer clic en el botón de chat en la esquina inferior derecha de cualquier página para hablar con Nivin.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Embedded Nivin Functions
+function quickActionEmbed(action) {
+    const input = document.getElementById('nivin-embed-input');
+    
+    switch(action) {
+        case 'cita':
+            input.value = 'Quiero solicitar una cita médica';
+            break;
+        case 'doctores':
+            input.value = 'Quiero ver los doctores disponibles';
+            break;
+        case 'horarios':
+            input.value = '¿Cuáles son los horarios disponibles?';
+            break;
+    }
+    
+    sendToNivinEmbed();
+}
+
+function sendToNivinEmbed() {
+    const input = document.getElementById('nivin-embed-input');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message
+    const messagesDiv = document.getElementById('nivin-embed-messages');
+    const userMsg = document.createElement('div');
+    userMsg.style.cssText = 'background: linear-gradient(135deg, #2E7D32, #388E3C); color: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; margin-left: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);';
+    userMsg.textContent = message;
+    messagesDiv.appendChild(userMsg);
+    
+    input.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    // Simulate Nivin response
+    setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; margin-right: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);';
+        
+        if (message.toLowerCase().includes('cita')) {
+            botMsg.innerHTML = `
+                ¡Perfecto! Te ayudaré a agendar tu cita médica. 📅<br><br>
+                <strong>Nuestros especialistas disponibles:</strong><br>
+                • Dr. Castillo - Medicina Interna<br>
+                • Dra. Decena - Ginecología<br>
+                • Dr. Beltré - Salud Sexual<br>
+                • Dr. Méndez - Cardiología<br>
+                • Dra. Santos - Pediatría<br><br>
+                ¿Con qué especialista deseas tu cita?
+            `;
+        } else if (message.toLowerCase().includes('doctor')) {
+            botMsg.innerHTML = `
+                <strong>Nuestro equipo médico:</strong><br><br>
+                👨‍⚕️ <strong>Dr. Manuel Castillo</strong><br>
+                Medicina Interna - RD$ 2,500<br><br>
+                👩‍⚕️ <strong>Dra. Vidalva Decena</strong><br>
+                Ginecología - RD$ 2,000<br><br>
+                👨‍⚕️ <strong>Dr. Rafael Beltré</strong><br>
+                Salud Sexual - RD$ 3,000<br><br>
+                ¿Con cuál doctor deseas agendar?
+            `;
+        } else {
+            botMsg.innerHTML = 'Entiendo. ¿En qué más puedo ayudarte?';
+        }
+        
+        messagesDiv.appendChild(botMsg);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }, 1000);
+}
+
+// Auto-focus on input when section is visible
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.getElementById('nivin-embed-input')?.focus();
+        }
+    });
+});
+
+const appointmentSection = document.getElementById('appointment');
+if (appointmentSection) {
+    observer.observe(appointmentSection);
+}
+</script>

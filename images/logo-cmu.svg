@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Medical Cross Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#69BBA8" opacity="0.1"/>
+  
+  <!-- Globe/World -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#2c5530" stroke-width="2"/>
+  
+  <!-- Latitude lines -->
+  <ellipse cx="100" cy="100" rx="70" ry="35" fill="none" stroke="#2c5530" stroke-width="1" opacity="0.5"/>
+  <line x1="30" y1="100" x2="170" y2="100" stroke="#2c5530" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Longitude line -->
+  <ellipse cx="100" cy="100" rx="35" ry="70" fill="none" stroke="#2c5530" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Medical Cross -->
+  <rect x="85" y="55" width="30" height="90" rx="5" fill="#D4AF37"/>
+  <rect x="60" y="80" width="80" height="30" rx="5" fill="#D4AF37"/>
+  
+  <!-- Caduceus elements (simplified) -->
+  <rect x="97" y="50" width="6" height="100" fill="#2c5530"/>
+  
+  <!-- Wings (simplified) -->
+  <path d="M85 75 Q70 70 65 80 T75 95 L85 85 Z" fill="#69BBA8"/>
+  <path d="M115 75 Q130 70 135 80 T125 95 L115 85 Z" fill="#69BBA8"/>
+  
+  <!-- Text: CMU -->
+  <text x="100" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2c5530">CMU</text>
+</svg>

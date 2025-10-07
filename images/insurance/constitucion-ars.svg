@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <defs>
+    <linearGradient id="constitucionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1565C0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D47A1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="80" fill="url(#constitucionGrad)" rx="10"/>
+  <!-- Constitutional/legal pillars symbol -->
+  <rect x="22" y="30" width="8" height="30" fill="white" rx="1"/>
+  <rect x="32" y="25" width="8" height="35" fill="white" rx="1"/>
+  <rect x="42" y="30" width="8" height="30" fill="white" rx="1"/>
+  <rect x="20" y="60" width="32" height="4" fill="white" rx="1"/>
+  <text x="60" y="32" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" fill="white">CONSTITUCIÓN</text>
+  <text x="60" y="50" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="white">ARS</text>
+</svg>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Médico Universal - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2D8B8B 0%, #1A5F5F 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-section h1 {
+            color: #2D8B8B;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .logo-section p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2D8B8B;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2D8B8B;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #236B6B;
+        }
+        
+        .error-message {
+            background: #FFE5E5;
+            color: #CC0000;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .credentials-hint {
+            margin-top: 30px;
+            padding: 15px;
+            background: #F0F9FF;
+            border-left: 4px solid #2D8B8B;
+            border-radius: 4px;
+        }
+        
+        .credentials-hint h3 {
+            color: #2D8B8B;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .credentials-hint p {
+            font-size: 13px;
+            color: #555;
+            margin: 5px 0;
+        }
+        
+        .credentials-hint code {
+            background: #E0F2F1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #1A5F5F;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-section">
+            <h1>🏥 Centro Médico Universal</h1>
+            <p>Portal de Recepción</p>
+        </div>
+        
+        <div class="error-message" id="error-message">
+            Usuario o contraseña incorrectos
+        </div>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" 
+                       id="username" 
+                       name="username" 
+                       placeholder="Ingrese su usuario"
+                       autocomplete="username"
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" 
+                       id="password" 
+                       name="password" 
+                       placeholder="Ingrese su contraseña"
+                       autocomplete="current-password"
+                       required>
+            </div>
+            
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+        </form>
+        
+        <div class="credentials-hint">
+            <h3>🔑 Credenciales de Prueba:</h3>
+            <p><strong>Super Admin (Manuel):</strong></p>
+            <p>Usuario: <code>manuel</code></p>
+            <p>Contraseña: <code>cmu2025</code></p>
+            <br>
+            <p><strong>Recepcionista:</strong></p>
+            <p>Usuario: <code>recepcion</code></p>
+            <p>Contraseña: <code>recepcion123</code></p>
+        </div>
+    </div>
+
+    <script>
+        // User database (in real app, this would be on backend)
+        const USERS = {
+            'manuel': {
+                password: 'cmu2025',
+                fullName: 'Manuel Castillo',
+                role: 'super_admin',
+                permissions: ['*'] // All permissions
+            },
+            'recepcion': {
+                password: 'recepcion123',
+                fullName: 'Recepción CMU',
+                role: 'recepcionista',
+                permissions: ['view_calendar', 'schedule_appointments', 'check_in_patients']
+            },
+            'admin': {
+                password: 'admin2025',
+                fullName: 'Administrador',
+                role: 'admin',
+                permissions: ['view_calendar', 'schedule_appointments', 'check_in_patients', 'manage_doctors', 'view_reports']
+            }
+        };
+
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.toLowerCase().trim();
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            // Check credentials
+            if (USERS[username] && USERS[username].password === password) {
+                // Login successful
+                const user = {
+                    username: username,
+                    fullName: USERS[username].fullName,
+                    role: USERS[username].role,
+                    permissions: USERS[username].permissions,
+                    loginTime: new Date().toISOString()
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('cmu_user', JSON.stringify(user));
+                
+                // Redirect to reception portal
+                window.location.href = 'index.html';
+            } else {
+                // Login failed
+                errorMessage.classList.add('show');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+                
+                // Hide error after 3 seconds
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 3000);
+            }
+        });
+        
+        // Auto-focus username field
+        document.getElementById('username').focus();
+    </script>
+</body>
+</html>

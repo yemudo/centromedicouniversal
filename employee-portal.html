@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Empleados - Centro Médico Universal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            min-height: 100vh;
+        }
+
+        /* Login Page */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #388E3C;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #388E3C;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: scale(1.02);
+        }
+
+        /* Dashboard */
+        .dashboard-container {
+            display: none;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #D4AF37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            min-height: calc(100vh - 70px);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .menu-item {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: #f8f9fa;
+            border-left-color: #388E3C;
+        }
+
+        .menu-item.active {
+            background: #e8f5e9;
+            border-left-color: #388E3C;
+            color: #388E3C;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #388E3C;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #69BBA8;
+            opacity: 0.5;
+        }
+
+        .appointment-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 100px repeat(7, 1fr);
+            gap: 1px;
+            background: #e0e0e0;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .schedule-header {
+            background: #388E3C;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .time-slot {
+            background: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 13px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-label {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .slot-available {
+            background: #e8f5e9;
+            color: #388E3C;
+            cursor: pointer;
+        }
+
+        .slot-available:hover {
+            background: #c8e6c9;
+        }
+
+        .slot-occupied {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .doctor-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .doctor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #388E3C, #69BBA8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .doctor-info h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .doctor-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .credentials-info {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .credentials-info h4 {
+            margin-bottom: 10px;
+        }
+
+        .credentials-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .credentials-info li {
+            padding: 5px 0;
+        }
+
+        .credentials-info code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>🏥 Centro Médico Universal</h1>
+                <p>Portal de Empleados</p>
+            </div>
+            <div id="loginAlert"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-login">Ingresar</button>
+            </form>
+            
+            <div class="credentials-info">
+                <h4>🔑 Credenciales de Acceso:</h4>
+                <ul>
+                    <li><strong>Superadmin:</strong> <code>manuelcastillo</code> / <code>SuperAdmin2024!</code></li>
+                    <li><strong>Admin:</strong> <code>admin</code> / <code>Admin2024!</code></li>
+                    <li><strong>Asistente:</strong> <code>nivin</code> / <code>Nivin2024!</code></li>
+                    <li><strong>Recepción:</strong> <code>recepcion</code> / <code>Recepcion2024!</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardPage" class="dashboard-container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-hospital fa-2x"></i>
+                <h1>Centro Médico Universal</h1>
+            </div>
+            <div class="user-info">
+                <span id="userRole">Superadmin</span>
+                <div class="user-avatar" id="userAvatar">MC</div>
+                <span id="userName">Manuel Castillo</span>
+                <button onclick="logout()" style="background: none; border: none; color: white; cursor: pointer;">
+                    <i class="fas fa-sign-out-alt fa-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="menu-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item" onclick="showSection('appointments')">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Citas</span>
+                </div>
+                <div class="menu-item" onclick="showSection('schedule')">
+                    <i class="fas fa-clock"></i>
+                    <span>Horarios</span>
+                </div>
+                <div class="menu-item" onclick="showSection('doctors')">
+                    <i class="fas fa-user-md"></i>
+                    <span>Doctores</span>
+                </div>
+                <div class="menu-item" onclick="showSection('patients')">
+                    <i class="fas fa-users"></i>
+                    <span>Pacientes</span>
+                </div>
+                <div class="menu-item" onclick="showSection('reports')">
+                    <i class="fas fa-file-medical"></i>
+                    <span>Reportes</span>
+                </div>
+                <div class="menu-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Configuración</span>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section">
+                    <h2>Panel de Control</h2>
+                    <div class="dashboard-grid">
+                        <div class="stat-card" onclick="showSection('appointments')">
+                            <div>
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">Citas Hoy</div>
+                            </div>
+                            <i class="fas fa-calendar-check stat-icon"></i>
+                        </div>
+                        <div class="stat-card" onclick="showSection('doctors')">
+                            <div>
+                                <div class="stat-number">95</div>
+                                <div class="stat-label">Doctores</div>
+                            </div>
+                            <i class="fas fa-user-md stat-icon"></i>
+                        </div>
+                        <div class="stat-card" onclick="showSection('patients')">
+                            <div>
+                                <div class="stat-number">1,234</div>
+                                <div class="stat-label">Pacientes</div>
+                            </div>
+                            <i class="fas fa-users stat-icon"></i>
+                        </div>
+                        <div class="stat-card">
+                            <div>
+                                <div class="stat-number">85%</div>
+                                <div class="stat-label">Ocupación</div>
+                            </div>
+                            <i class="fas fa-chart-pie stat-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="appointment-section">
+                        <div class="section-header">
+                            <h3>Citas Recientes</h3>
+                            <button class="btn-primary" onclick="showAppointmentModal()">
+                                <i class="fas fa-plus"></i> Nueva Cita
+                            </button>
+                        </div>
+                        <canvas id="appointmentChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Other sections would go here -->
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Modal -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nueva Cita</h3>
+                <span class="close-modal" onclick="closeModal('appointmentModal')">&times;</span>
+            </div>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label>Paciente</label>
+                    <input type="text" name="patient" required>
+                </div>
+                <div class="form-group">
+                    <label>Doctor</label>
+                    <select name="doctor" required>
+                        <option value="">Seleccione un doctor</option>
+                        <option value="dr-pedro">Dr. Pedro Castillo Rodríguez</option>
+                        <option value="dr-manuel">Dr. Manuel Antonio Castillo</option>
+                        <option value="dra-vidalva">Dra. Vidalva Decena Medina</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Hora</label>
+                    <input type="time" name="time" required>
+                </div>
+                <button type="submit" class="btn-login">Agendar Cita</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // User credentials - MANUELCASTILLO IS THE SUPERADMIN
+        const users = {
+            'manuelcastillo': {
+                password: 'SuperAdmin2024!',
+                role: 'superadmin',
+                name: 'Manuel Castillo',
+                permissions: ['all']
+            },
+            'admin': {
+                password: 'Admin2024!',
+                role: 'admin',
+                name: 'Administrador',
+                permissions: ['appointments', 'doctors', 'patients', 'reports']
+            },
+            'nivin': {
+                password: 'Nivin2024!',
+                role: 'assistant',
+                name: 'Nivín AI',
+                permissions: ['appointments', 'schedule']
+            },
+            'recepcion': {
+                password: 'Recepcion2024!',
+                role: 'receptionist',
+                name: 'Recepción',
+                permissions: ['appointments', 'patients']
+            }
+        };
+
+        // Current user
+        let currentUser = null;
+
+        // Check if already logged in
+        if (localStorage.getItem('currentUser')) {
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            showDashboard();
+        }
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (users[username] && users[username].password === password) {
+                currentUser = {
+                    username: username,
+                    ...users[username]
+                };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                showDashboard();
+            } else {
+                showAlert('Usuario o contraseña incorrectos', 'error');
+            }
+        });
+
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('loginAlert');
+            alertDiv.className = 'alert alert-' + type;
+            alertDiv.textContent = message;
+            setTimeout(() => {
+                alertDiv.textContent = '';
+                alertDiv.className = '';
+            }, 3000);
+        }
+
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboardPage').style.display = 'block';
+            
+            // Update user info
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userRole').textContent = currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1);
+            document.getElementById('userAvatar').textContent = currentUser.name.split(' ').map(n => n[0]).join('');
+            
+            // Initialize dashboard
+            initializeChart();
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboardPage').style.display = 'none';
+        }
+
+        function showSection(section) {
+            // Simple section switching for demo
+            console.log('Switching to section:', section);
+        }
+
+        function initializeChart() {
+            const ctx = document.getElementById('appointmentChart');
+            if (!ctx) return;
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                    datasets: [{
+                        label: 'Citas esta semana',
+                        data: [12, 19, 15, 25, 22, 18, 10],
+                        borderColor: '#388E3C',
+                        backgroundColor: 'rgba(56, 142, 60, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function showAppointmentModal() {
+            document.getElementById('appointmentModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Handle appointment form
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cita agendada exitosamente!');
+            closeModal('appointmentModal');
+        });
+    </script>
+</body>
+</html>

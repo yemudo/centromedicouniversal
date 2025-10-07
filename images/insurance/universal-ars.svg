@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <defs>
+    <linearGradient id="universalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#005AA7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#003d73;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="80" fill="url(#universalGrad)" rx="10"/>
+  <circle cx="40" cy="40" r="20" fill="none" stroke="white" stroke-width="3"/>
+  <path d="M 35 40 L 40 45 L 48 35" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <text x="75" y="38" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="white">UNIVERSAL</text>
+  <text x="75" y="55" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="white">ARS</text>
+</svg>

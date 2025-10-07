@@ -1,0 +1,59 @@
+<script>
+// Nivín Chat Toggle Function - Fixed
+function openNivinChat() {
+    const modal = document.getElementById('nivin-chat-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeNivinChat() {
+    const modal = document.getElementById('nivin-chat-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Make globally available
+window.openNivinChat = openNivinChat;
+window.closeNivinChat = closeNivinChat;
+
+function nivinAction(type) {
+    const input = document.getElementById('nivin-input');
+    if (type === 'cita') input.value = 'Necesito una cita';
+    else if (type === 'queja') input.value = 'Quiero poner una queja';
+    else if (type === 'info') input.value = 'Información sobre servicios';
+    sendNivinMessage();
+}
+
+function sendNivinMessage() {
+    const input = document.getElementById('nivin-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+    
+    const messagesDiv = document.getElementById('nivin-messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.style.cssText = 'background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; padding: 12px 16px; border-radius: 18px; margin: 10px 0; margin-left: auto; max-width: 75%; text-align: right;';
+    userDiv.textContent = msg;
+    messagesDiv.appendChild(userDiv);
+    
+    input.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    // Bot response via Gemini if available
+    if (window.NivinAI && window.NivinAI.handleMessage) {
+        window.NivinAI.handleMessage(msg, messagesDiv);
+    } else {
+        // Fallback response
+        setTimeout(() => {
+            const botDiv = document.createElement('div');
+            botDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);';
+            botDiv.innerHTML = 'Procesando su solicitud...<br><br>Para asistencia inmediata, llame al <a href="tel:+18095946161" style="color: #388E3C; font-weight: bold;">(809) 594-6161</a>';
+            messagesDiv.appendChild(botDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }, 500);
+    }
+}
+</script>

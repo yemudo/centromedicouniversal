@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalaciones - Centro Médico Universal Castillo Rodríguez y Asociados</title>
+    <link rel="stylesheet" href="css/styles.css?v=20250905-1045">
+    <link rel="stylesheet" href="css/header-preview.css?v=20250905-1045">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.min.css" >
+    <meta name="description" content="Instalaciones modernas y equipamiento de última generación en Centro Médico Universal Castillo Rodríguez y Asociados">
+    <style>
+        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
+        .section-header h2 { color: #388E3C !important; }
+        .hero h1, .hero h2 { color: white !important; }
+        section.hero h1, section.hero h2 { color: white !important; }
+        .page-title {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(56, 178, 172, 0.8)), url('images/facilities-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .facility-section {
+            margin-bottom: 4rem;
+        }
+        
+        .facility-header {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .facility-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .facility-header p {
+            color: var(--dark-gray);
+        }
+        
+        .facility-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .facility-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .facility-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .facility-details h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .facility-details p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .facility-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .facility-feature {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .facility-feature i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            margin-top: 0.2rem;
+        }
+        
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .stats-section {
+            background-color: var(--light-gray);
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .facility-video {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .facility-video iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        
+        .facility-content.reverse {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+        
+        .facility-content.reverse .facility-details {
+            direction: ltr;
+        }
+        
+        .facility-content.reverse .facility-image {
+            direction: ltr;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .equipment-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .equipment-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .equipment-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .equipment-info {
+            padding: 1.5rem;
+        }
+        
+        .equipment-info h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .equipment-info p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .facility-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .facility-content.reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .facility-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-preview">
+      <div class="header-wrap">
+        <div class="brand">
+          <div class="brand-text">
+            <h1>Centro Médico Universal</h1>
+            <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href='/'>Inicio</a>
+          <a href='/servicios'>Servicios</a>
+          <a href='/doctores'>Doctores</a>
+          <a class='active' href='/instalaciones'>Instalaciones</a>
+          <a href='/contacto'>Contacto</a>
+        </nav>
+
+        <div class="actions">
+          <a class="phone" href="tel:+18095946161">(809) 594-6161</a>
+          <a class='cta' href='/agendar'>SOLICITAR CITA</a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Nuestras Instalaciones</h1>
+            <p>Infraestructura moderna y equipamiento de última generación para brindarle la mejor atención médica</p>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-header">
+                <h2 style="color: #388E3C !important; font-size: 1.8rem; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Centro Médico Universal</h2>
+                <p>Nuestro moderno centro médico ubicado en Santo Domingo</p>
+            </div>
+            
+            <div class="facility-image" style="width: 100%; max-width: 900px; margin: 0 auto 2rem; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); position: relative; height: 400px;">
+                <picture>
+  <source srcset="centro-medico-final.webp" type="image/webp">
+  <img src="centro-medico-final.jpg"   alt="Edificio del Centro Médico Universal" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1;" loading="lazy">
+</picture>
+            </div>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-header">
+                <h2 style="color: #388E3C !important; font-size: 1.8rem; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Instalaciones de Última Generación</h2>
+                <p>Espacios diseñados para brindar confort y atención de calidad a nuestros pacientes</p>
+            </div>
+            
+            <div class="facility-content">
+                <div class="facility-image">
+                    <picture>
+  <source srcset="images/facilities/reception.webp" type="image/webp">
+  <img src="images/facilities/reception.jpg" loading="lazy"   alt="Recepción" loading="lazy">
+</picture>
+                </div>
+                <div class="facility-details">
+                    <h3>Recepción y Área de Espera</h3>
+                    <p>Nuestra amplia y moderna área de recepción está diseñada para brindarle la mejor bienvenida y comodidad mientras espera su turno. Contamos con personal capacitado para asistirle en todo lo que necesite y resolver cualquier duda que pueda tener.</p>
+                    <div class="facility-features">
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Espacio amplio y ventilado</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sistema de turnos digital</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Wi-Fi gratuito</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Área de café</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Años de experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Especialistas médicos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Consultorios equipados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Pacientes atendidos anualmente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-content reverse">
+                <div class="facility-image">
+                    <picture>
+  <source srcset="images/facilities/exterior1.webp" type="image/webp">
+  <img src="images/facilities/exterior1.jpg" loading="lazy"   alt="Emergencias" loading="lazy">
+</picture>
+                </div>
+                <div class="facility-details">
+                    <h3>Unidad de Emergencias 24/7</h3>
+                    <p>Nuestra unidad de emergencias está disponible las 24 horas del día, los 7 días de la semana, equipada con todo lo necesario para brindar atención inmediata y de calidad en situaciones de urgencia médica.</p>
+                    <div class="facility-features">
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Equipamiento de última generación</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Personal especializado</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Disponibilidad 24/7</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Ambulancias equipadas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-content">
+                <div class="facility-image">
+                    <picture>
+  <source srcset="images/services/diagnostic/imaging_department.webp" type="image/webp">
+  <img src="images/services/diagnostic/imaging_department.jpg" loading="lazy"   alt="Diagnóstico por Imágenes" loading="lazy">
+</picture>
+                </div>
+                <div class="facility-details">
+                    <h3>Centro de Diagnóstico por Imágenes</h3>
+                    <p>Contamos con un centro de diagnóstico por imágenes equipado con tecnología de punta para ofrecer estudios precisos y confiables que ayuden a nuestros especialistas a realizar diagnósticos acertados.</p>
+                    <div class="facility-features">
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Radiología digital</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tomografía computarizada</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mamografía digital</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Densitometría ósea</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-header">
+                <h2 style="color: #388E3C !important; font-size: 1.8rem; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Equipamiento Médico Avanzado</h2>
+                <p>Contamos con la más avanzada tecnología para diagnósticos precisos y tratamientos eficaces</p>
+            </div>
+            
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="equipment-image">
+                        <picture>
+  <source srcset="images/services/diagnostic/ct_scan.webp" type="image/webp">
+  <img src="images/services/diagnostic/ct_scan.jpg" loading="lazy"   alt="Tomógrafo" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+</picture>
+                    </div>
+                    <div class="equipment-info">
+                        <h4>Tomógrafo Computarizado</h4>
+                        <p>Equipo de última generación que permite realizar estudios tomográficos de alta precisión, brindando imágenes detalladas para diagnósticos más precisos.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-image">
+                        <picture>
+  <source srcset="images/services/diagnostic/ultrasound.webp" type="image/webp">
+  <img src="images/services/diagnostic/ultrasound.jpg" loading="lazy"   alt="Ecógrafo" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+</picture>
+                    </div>
+                    <div class="equipment-info">
+                        <h4>Ecógrafo 4D</h4>
+                        <p>Equipo de última generación que permite realizar ecografías en cuatro dimensiones, ideal para monitoreo prenatal y diagnósticos ginecológicos avanzados.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-image">
+                        <picture>
+  <source srcset="images/services/diagnostic/xray.webp" type="image/webp">
+  <img src="images/services/diagnostic/xray.jpg" loading="lazy"   alt="Densitometría" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+</picture>
+                    </div>
+                    <div class="equipment-info">
+                        <h4>Densitómetro Óseo</h4>
+                        <p>Permite evaluar la densidad ósea para diagnóstico y seguimiento de osteoporosis y otras condiciones óseas, con resultados de alta precisión.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="equipment-image">
+                        <picture>
+  <source srcset="images/services/laboratory.webp" type="image/webp">
+  <img src="images/services/laboratory.jpg" loading="lazy"   alt="Laboratorio" loading="lazy">
+</picture>
+                    </div>
+                    <div class="equipment-info">
+                        <h4>Laboratorio Clínico Automatizado</h4>
+                        <p>Sistema automatizado para análisis clínicos que garantiza resultados confiables en el menor tiempo posible, con control de calidad estricto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-content reverse">
+                <div class="facility-image">
+                    <picture>
+  <source srcset="images/facilities/hallway.webp" type="image/webp">
+  <img src="images/facilities/hallway.jpg" loading="lazy"   alt="UCI" loading="lazy">
+</picture>
+                </div>
+                <div class="facility-details">
+                    <h3>Unidad de Cuidados Intensivos</h3>
+                    <p>Nuestra UCI está equipada con la más avanzada tecnología y cuenta con personal altamente especializado para el cuidado de pacientes en estado crítico, garantizando monitorización constante y atención inmediata.</p>
+                    <div class="facility-features">
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Monitores multiparámetros</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Ventiladores mecánicos</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Bombas de infusión</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Personal especializado 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facility-section">
+        <div class="container">
+            <div class="facility-content">
+                <div class="facility-image">
+                    <picture>
+  <source srcset="images/services/pediatrics.webp" type="image/webp">
+  <img src="images/services/pediatrics.jpg" loading="lazy"   alt="Cuidados Neonatales" loading="lazy">
+</picture>
+                </div>
+                <div class="facility-details">
+                    <h3>Sala de Recién Nacidos</h3>
+                    <p>Un espacio diseñado específicamente para el cuidado de los más pequeños, con incubadoras de última generación y personal especializado en neonatología para garantizar los mejores cuidados desde el primer día de vida.</p>
+                    <div class="facility-features">
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Incubadoras avanzadas</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Monitoreo continuo</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Cuidados especializados</span>
+                        </div>
+                        <div class="facility-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Atención personalizada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Galería de Nuestras Instalaciones</h2>
+                <p>Conozca nuestros espacios diseñados para su comodidad y atención</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/facilities/reception.webp" type="image/webp">
+  <img src="images/facilities/reception.jpg" loading="lazy"   alt="Recepción" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/facilities/waiting_room.webp" type="image/webp">
+  <img src="images/facilities/waiting_room.jpg" loading="lazy"   alt="Sala de espera" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/services/consultation.webp" type="image/webp">
+  <img src="images/services/consultation.jpg" loading="lazy"   alt="Consultorio" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/services/diagnostic/imaging_department.webp" type="image/webp">
+  <img src="images/services/diagnostic/imaging_department.jpg" loading="lazy"   alt="Equipamiento" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/services/laboratory.webp" type="image/webp">
+  <img src="images/services/laboratory.jpg" loading="lazy"   alt="Laboratorio" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/facilities/exterior2.webp" type="image/webp">
+  <img src="images/facilities/exterior2.jpg" loading="lazy"   alt="Emergencias" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/facilities/hallway.webp" type="image/webp">
+  <img src="images/facilities/hallway.jpg" loading="lazy"   alt="UCI" loading="lazy">
+</picture>
+                </div>
+                <div class="gallery-item">
+                    <picture>
+  <source srcset="images/services/pediatrics.webp" type="image/webp">
+  <img src="images/services/pediatrics.jpg" loading="lazy"   alt="Sala de recién nacidos" loading="lazy">
+</picture>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appointment">
+        <div class="container">
+            <div class="appointment-content">
+                <div class="appointment-text">
+                    <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">¿Desea conocer nuestras instalaciones?</h2>
+                    <p>Complete el formulario y nos pondremos en contacto con usted para agendar una visita guiada.</p>
+                </div>
+                <form class="appointment-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="" disabled selected>Motivo de interés</option>
+                            <option value="visita">Visita guiada</option>
+                            <option value="info">Información general</option>
+                            <option value="convenio">Convenios institucionales</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Mensaje" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centro Médico Universal</h3>
+                    <p>Castillo Rodríguez y Asociados</p>
+                    <p>Comprometidos con su salud desde 1995</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Club Rotario No 58, Santo Domingo Este, Republica Dominicana 11501</p>
+                    <p><i class="fas fa-phone"></i> (809) 594-6161</p>
+                    <p><i class="fas fa-envelope"></i> info@centromedicouniversal.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horarios</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=501448386617979" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://do.linkedin.com/company/grupouniversal" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/18095946161" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Centro Médico Universal Castillo Rodríguez y Asociados. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.min.js"  defer></script></script>
+    <script src="js/gemini-integration.js?v=1.8"></script>
+    <script src="js/lazy-load.min.js"  defer></script></script>
+    <script src="js/draft-counter.js?v=3"></script>
+ </body>
+</html>

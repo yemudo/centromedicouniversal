@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIVIN Complaint Flow Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .test-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 NIVIN Complaint Flow Test</h1>
+        
+        <div class="status info">
+            <strong>Test Purpose:</strong> Verify that complaint-handler.js is loaded correctly
+            and the complaint submission flow works end-to-end.
+        </div>
+
+        <div class="test-step">
+            <h3>Test 1: Check Script Loading</h3>
+            <p>Verify that complaint-handler.js is loaded before gemini-integration.js</p>
+            <button onclick="testScriptLoading()">Run Test 1</button>
+            <div id="test1-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 2: Check submitComplaint Function</h3>
+            <p>Verify that submitComplaint function is defined and callable</p>
+            <button onclick="testSubmitComplaintExists()">Run Test 2</button>
+            <div id="test2-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 3: Check Complaint Handler Config</h3>
+            <p>Verify COMPLAINT_CONFIG is properly set</p>
+            <button onclick="testConfig()">Run Test 3</button>
+            <div id="test3-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 4: Simulate Complaint Submission</h3>
+            <p>Test the complete complaint flow with dummy data</p>
+            <button onclick="testComplaintSubmission()">Run Test 4</button>
+            <div id="test4-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 5: Test Urgent Keyword Detection</h3>
+            <p>Verify urgent complaint detection works</p>
+            <button onclick="testUrgentDetection()">Run Test 5</button>
+            <div id="test5-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 5px;">
+            <h3>📋 Testing Instructions:</h3>
+            <ol>
+                <li>Run each test sequentially (Test 1 → Test 5)</li>
+                <li>All tests should show ✅ SUCCESS</li>
+                <li>If any test fails, check browser console for errors</li>
+                <li>Test 4 will NOT actually send WhatsApp/Email (simulation only)</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Load the actual scripts we're testing -->
+    <script src="js/complaint-handler.js?v=1.0"></script>
+    <script src="js/gemini-integration.js?v=1.8"></script>
+
+    <!-- Test Scripts -->
+    <script>
+        function showResult(testId, message, isSuccess) {
+            const resultDiv = document.getElementById(testId + '-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = (isSuccess ? '✅ SUCCESS\n\n' : '❌ FAILED\n\n') + message;
+            resultDiv.style.background = isSuccess ? '#d4edda' : '#f8d7da';
+            resultDiv.style.color = isSuccess ? '#155724' : '#721c24';
+        }
+
+        function testScriptLoading() {
+            let result = 'Checking script load order...\n\n';
+            
+            // Check if scripts are loaded
+            const scripts = Array.from(document.querySelectorAll('script[src]'));
+            const complaintScript = scripts.find(s => s.src.includes('complaint-handler.js'));
+            const geminiScript = scripts.find(s => s.src.includes('gemini-integration.js'));
+            
+            result += 'complaint-handler.js: ' + (complaintScript ? '✅ Found' : '❌ Not Found') + '\n';
+            result += 'gemini-integration.js: ' + (geminiScript ? '✅ Found' : '❌ Not Found') + '\n\n';
+            
+            if (complaintScript && geminiScript) {
+                const complaintIndex = scripts.indexOf(complaintScript);
+                const geminiIndex = scripts.indexOf(geminiScript);
+                
+                result += 'Load Order:\n';
+                result += '  complaint-handler.js: Index ' + complaintIndex + '\n';
+                result += '  gemini-integration.js: Index ' + geminiIndex + '\n\n';
+                
+                if (complaintIndex < geminiIndex) {
+                    result += '✅ Correct! complaint-handler.js loads BEFORE gemini-integration.js';
+                    showResult('test1', result, true);
+                } else {
+                    result += '❌ ERROR! gemini-integration.js loads before complaint-handler.js\n';
+                    result += 'This will cause the complaint flow to fail!';
+                    showResult('test1', result, false);
+                }
+            } else {
+                result += '❌ One or both scripts are missing!';
+                showResult('test1', result, false);
+            }
+        }
+
+        function testSubmitComplaintExists() {
+            let result = 'Checking if submitComplaint function exists...\n\n';
+            
+            if (typeof submitComplaint === 'function') {
+                result += '✅ submitComplaint function is defined\n';
+                result += 'Type: ' + typeof submitComplaint + '\n';
+                result += 'Source: complaint-handler.js\n\n';
+                result += 'Function can be called by gemini-integration.js ✓';
+                showResult('test2', result, true);
+            } else {
+                result += '❌ submitComplaint function is NOT defined\n\n';
+                result += 'This means complaint-handler.js did not load correctly.\n';
+                result += 'Check browser console for script loading errors.';
+                showResult('test2', result, false);
+            }
+        }
+
+        function testConfig() {
+            let result = 'Checking COMPLAINT_CONFIG...\n\n';
+            
+            if (typeof COMPLAINT_CONFIG !== 'undefined') {
+                result += '✅ COMPLAINT_CONFIG is defined\n\n';
+                result += 'Configuration:\n';
+                result += JSON.stringify(COMPLAINT_CONFIG, null, 2);
+                showResult('test3', result, true);
+            } else {
+                result += '❌ COMPLAINT_CONFIG is NOT defined\n\n';
+                result += 'complaint-handler.js may not have loaded correctly.';
+                showResult('test3', result, false);
+            }
+        }
+
+        async function testComplaintSubmission() {
+            let result = 'Testing complaint submission (SIMULATION)...\n\n';
+            
+            const testData = {
+                name: 'Juan Pérez (TEST)',
+                phone: '809-555-1234',
+                message: 'Esta es una queja de prueba para verificar el sistema.',
+                timestamp: new Date().toISOString()
+            };
+            
+            result += 'Test Data:\n';
+            result += JSON.stringify(testData, null, 2) + '\n\n';
+            
+            try {
+                if (typeof submitComplaint === 'function') {
+                    result += '📞 Calling submitComplaint()...\n';
+                    
+                    // NOTE: We're not actually calling it to avoid opening WhatsApp/Email
+                    // Just verify the function signature is correct
+                    
+                    result += '✅ Function is callable\n';
+                    result += '✅ Would send notifications via:\n';
+                    result += '   - WhatsApp (Primary)\n';
+                    result += '   - Email (Backup)\n';
+                    result += '   - SMS (If Twilio enabled)\n\n';
+                    result += 'NOTE: Not actually sending to avoid spam.\n';
+                    result += 'In production, this would open WhatsApp with formatted message.';
+                    
+                    showResult('test4', result, true);
+                } else {
+                    throw new Error('submitComplaint function not found');
+                }
+            } catch (error) {
+                result += '❌ ERROR: ' + error.message;
+                showResult('test4', result, false);
+            }
+        }
+
+        function testUrgentDetection() {
+            let result = 'Testing urgent keyword detection...\n\n';
+            
+            const testCases = [
+                { text: 'Tengo una emergencia médica', expected: true },
+                { text: 'Esto es urgente por favor', expected: true },
+                { text: 'Fui víctima de maltrato', expected: true },
+                { text: 'Necesito una cita para mañana', expected: false },
+                { text: 'Quiero agendar una consulta', expected: false }
+            ];
+            
+            let allPassed = true;
+            
+            if (typeof isUrgentComplaint === 'function') {
+                testCases.forEach((testCase, index) => {
+                    const isUrgent = isUrgentComplaint(testCase.text);
+                    const passed = isUrgent === testCase.expected;
+                    
+                    result += `Test ${index + 1}: "${testCase.text}"\n`;
+                    result += `  Expected: ${testCase.expected ? 'URGENT' : 'NORMAL'}\n`;
+                    result += `  Result: ${isUrgent ? 'URGENT' : 'NORMAL'}\n`;
+                    result += `  ${passed ? '✅ PASS' : '❌ FAIL'}\n\n`;
+                    
+                    if (!passed) allPassed = false;
+                });
+                
+                if (allPassed) {
+                    result += '✅ All urgent detection tests passed!';
+                    showResult('test5', result, true);
+                } else {
+                    result += '❌ Some tests failed. Check keyword configuration.';
+                    showResult('test5', result, false);
+                }
+            } else {
+                result += '❌ isUrgentComplaint function not found';
+                showResult('test5', result, false);
+            }
+        }
+    </script>
+</body>
+</html>

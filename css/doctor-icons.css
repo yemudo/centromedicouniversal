@@ -1,0 +1,128 @@
+/* DOCTOR PROFESSIONAL ICONS - Enhanced Professional Medical Look */
+.doctor-icon-professional {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%) !important;
+    border-radius: 50% !important;
+    position: relative !important;
+    border: 3px solid #D4AF37 !important; /* Premium gold border to match your brand */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden !important;
+}
+
+/* Add a medical cross watermark in background */
+.doctor-icon-professional::before {
+    content: '\f0f9' !important; /* Font Awesome medical cross */
+    font-family: 'Font Awesome 6 Free' !important;
+    font-weight: 900 !important;
+    position: absolute !important;
+    font-size: 5rem !important;
+    color: rgba(212, 175, 55, 0.08) !important; /* Very subtle gold watermark */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 0 !important;
+}
+
+.doctor-icon-professional i {
+    font-size: 2.8rem !important; /* Slightly larger for better visibility */
+    line-height: 1 !important;
+    color: #388e3c !important; /* Professional medical green instead of pink */
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    transition: transform 0.3s ease !important; /* Smooth hover effect */
+    position: relative !important;
+    z-index: 1 !important; /* Above the watermark */
+}
+
+/* Hover effect for interactive feel */
+.doctor-card-detailed:hover .doctor-icon-professional i {
+    transform: scale(1.1) !important;
+    color: #D4AF37 !important; /* Gold on hover */
+}
+
+/* Professional medical icon colors - subtle and sophisticated */
+.doctor-icon-professional i.fa-stethoscope {
+    color: #388e3c !important; /* Professional medical green */
+}
+
+.doctor-icon-professional i.fa-user-nurse {
+    color: #5c6bc0 !important; /* Professional medical blue */
+}
+
+.doctor-icon-professional i.fa-user-doctor,
+.doctor-icon-professional i.fa-user-md {
+    color: #388e3c !important; /* Green for medical professionals */
+}
+
+.doctor-icon-professional i.fa-baby {
+    color: #42a5f5 !important; /* Soft blue for pediatrics */
+}
+
+.doctor-icon-professional i.fa-heartbeat {
+    color: #ef5350 !important; /* Medical red for cardiology */
+}
+
+.doctor-icon-professional i.fa-user-tie {
+    color: #795548 !important; /* Brown for directors */
+}
+
+.doctor-icon-professional i.fa-male {
+    color: #5c6bc0 !important; /* Professional blue */
+}
+
+.doctor-icon-professional i.fa-female {
+    color: #5c6bc0 !important; /* Professional blue */
+}
+
+.doctor-icon-professional i.fa-bone {
+    color: #607D8B !important; /* Gray for orthopedics */
+}
+
+.doctor-icon-professional i.fa-eye {
+    color: #00BCD4 !important; /* Teal for ophthalmology */
+}
+
+.doctor-icon-professional i.fa-brain {
+    color: #9C27B0 !important; /* Purple for neurology */
+}
+
+.doctor-icon-professional i.fa-lungs {
+    color: #4CAF50 !important; /* Green for pneumology */
+}
+
+.doctor-icon-professional i.fa-stomach {
+    color: #FF9800 !important; /* Orange for gastroenterology */
+}
+
+.doctor-icon-professional i.fa-stethoscope {
+    color: #388e3c !important; /* Green for internal medicine */
+}
+
+.doctor-icon-professional i.fa-heart {
+    color: #E53935 !important; /* Red for sexual health/therapy */
+}
+
+.doctor-icon-professional i.fa-tooth {
+    color: #FFFFFF !important; /* White for dentistry */
+    text-shadow: 0 0 0 #388e3c !important;
+    background: #388e3c !important;
+    padding: 8px !important;
+    border-radius: 50% !important;
+}
+
+.doctor-icon-professional i.fa-syringe {
+    color: #9E9E9E !important; /* Gray for anesthesia */
+}
+
+.doctor-icon-professional i.fa-ambulance {
+    color: #F44336 !important; /* Red for emergency/intensive care */
+}
+
+.doctor-icon-professional i.fa-hand-sparkles {
+    color: #FFC107 !important; /* Yellow for dermatology */
+}

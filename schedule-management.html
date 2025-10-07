@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Horarios - Centro Médico Universal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .permission-indicator {
+            background: #e8f5e9;
+            border-left: 4px solid #2E7D32;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .schedule-selector {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 100px repeat(7, 1fr);
+            gap: 1px;
+            background: #ddd;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .time-slot {
+            padding: 15px;
+            background: white;
+            min-height: 60px;
+        }
+        
+        .time-header {
+            background: #2E7D32;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .day-header {
+            background: #f5f5f5;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .appointment-block {
+            background: #D4AF37;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .available-slot {
+            background: #e8f5e9;
+            text-align: center;
+            color: #2E7D32;
+            cursor: pointer;
+        }
+        
+        .available-slot:hover {
+            background: #c8e6c9;
+        }
+        
+        .permission-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .permission-list {
+            margin-top: 15px;
+        }
+        
+        .permission-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background: #2E7D32;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>📅 Gestión de Horarios Médicos</h1>
+            <a href="dashboard-supabase.html" class="back-btn">← Volver al Dashboard</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Permission Indicator -->
+        <div class="permission-indicator">
+            <strong>Nivel de Acceso:</strong> <span id="userRole">Cargando...</span>
+            <span id="permissionNote"></span>
+        </div>
+        
+        <!-- Schedule Selector (for admins) -->
+        <div class="schedule-selector" id="doctorSelector" style="display: none;">
+            <label><strong>Ver horario de:</strong></label>
+            <select id="doctorSelect" onchange="loadSchedule()">
+                <option value="">Seleccionar doctor...</option>
+            </select>
+        </div>
+        
+        <!-- Weekly Schedule Grid -->
+        <div class="schedule-grid" id="scheduleGrid">
+            <div class="time-header">Hora</div>
+            <div class="day-header">Lunes</div>
+            <div class="day-header">Martes</div>
+            <div class="day-header">Miércoles</div>
+            <div class="day-header">Jueves</div>
+            <div class="day-header">Viernes</div>
+            <div class="day-header">Sábado</div>
+            <div class="day-header">Domingo</div>
+            <!-- Time slots will be generated here -->
+        </div>
+        
+        <!-- Permission Management Panel -->
+        <div class="permission-panel" id="permissionPanel" style="display: none;">
+            <h3>Gestión de Permisos</h3>
+            <button class="btn btn-primary" onclick="showGrantAccessModal()">Otorgar Acceso</button>
+            
+            <div class="permission-list" id="permissionList">
+                <h4>Personas con acceso a este horario:</h4>
+                <!-- Permission items will be listed here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Grant Access Modal -->
+    <div id="grantAccessModal" class="modal">
+        <div class="modal-content">
+            <h2>Otorgar Acceso al Horario</h2>
+            <form id="grantAccessForm">
+                <div class="form-group">
+                    <label>Usuario *</label>
+                    <select id="grantToUser" required>
+                        <option value="">Seleccionar usuario...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tipo de Permiso *</label>
+                    <select id="permissionType" required>
+                        <option value="full">Acceso Completo (Ver y Editar)</option>
+                        <option value="view_only">Solo Ver</option>
+                        <option value="temporary">Temporal (Cobertura)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="expirationGroup" style="display: none;">
+                    <label>Fecha de Expiración</label>
+                    <input type="datetime-local" id="expiresAt">
+                </div>
+                
+                <div class="form-group">
+                    <label>Razón</label>
+                    <textarea id="reason" rows="3" placeholder="Ej: Asistente médico, Cobertura de vacaciones..."></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Otorgar Acceso</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+        
+        const supabaseUrl = 'https://hsuntoblbzlnqgeteypr.supabase.co'
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzdW50b2JsYnpsbnFnZXRleXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NDM2MDEsImV4cCI6MjA3NDMxOTYwMX0.NMpmigOC5UK_M53scFixz-dw9dJoBoiZDovZERsJmQ0'
+        const supabase = createClient(supabaseUrl, supabaseAnonKey)
+        
+        let currentUser = null;
+        let selectedDoctorId = null;
+        let permissions = [];
+        
+        // Show message function
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = message;
+            messageDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; padding: 15px; border-radius: 5px; z-index: 1000; background: ' + (type === 'error' ? '#f44336' : '#4CAF50') + '; color: white;';
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 5000);
+        }
+        
+        async function init() {
+            const { data: { session } } = await supabase.auth.getSession()
+            
+            if (!session) {
+                window.location.href = 'login.html'
+                return
+            }
+            
+            // Get current user profile
+            const { data: profile } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', session.user.id)
+                .single()
+            
+            currentUser = profile;
+            
+            // Set up UI based on role
+            setupUIForRole();
+            
+            // Load schedule
+            if (currentUser.user_role === 'doctor') {
+                selectedDoctorId = currentUser.id;
+                loadSchedule();
+                loadPermissions();
+            } else if (currentUser.user_role === 'medical_assistant') {
+                loadAssignedDoctors();
+            } else if (['super_admin', 'admin'].includes(currentUser.user_role)) {
+                console.log('User is super_admin/admin, loading doctor list...');
+                loadDoctorList();
+            } else {
+                console.log('User role:', currentUser.user_role, 'No doctor list to load');
+            }
+        }
+        
+        function setupUIForRole() {
+            const roleText = {
+                'super_admin': 'Super Administrador - Acceso Total',
+                'admin': 'Administrador - Acceso a Todos los Horarios',
+                'doctor': 'Doctor - Mi Horario',
+                'medical_assistant': 'Asistente Médico - Horarios Asignados'
+            };
+            
+            document.getElementById('userRole').textContent = roleText[currentUser.user_role] || 'Usuario';
+            
+            // Show doctor selector for admins
+            if (['super_admin', 'admin'].includes(currentUser.user_role)) {
+                document.getElementById('doctorSelector').style.display = 'block';
+            }
+            
+            // Show permission panel for doctors and admins
+            if (['super_admin', 'admin', 'doctor'].includes(currentUser.user_role)) {
+                document.getElementById('permissionPanel').style.display = 'block';
+            }
+        }
+        
+        async function loadDoctorList() {
+            try {
+                console.log('Loading doctors from doctors_directory...');
+                
+                // Load doctors from doctors_directory table
+                const { data: doctors, error } = await supabase
+                    .from('doctors_directory')
+                    .select('id, doctor_name, specialty')
+                    .order('doctor_name')
+                
+                if (error) {
+                    console.error('Error loading doctors:', error);
+                    showMessage('Error al cargar doctores: ' + error.message, 'error');
+                    return;
+                }
+                
+                console.log(`Loaded ${doctors?.length || 0} doctors`, doctors);
+                
+                const select = document.getElementById('doctorSelect');
+                select.innerHTML = '<option value="">Seleccionar doctor...</option>';
+                
+                if (doctors && doctors.length > 0) {
+                    doctors.forEach(doctor => {
+                        const option = document.createElement('option');
+                        option.value = doctor.id;
+                        option.textContent = `${doctor.doctor_name} - ${doctor.specialty}`;
+                        select.appendChild(option);
+                    });
+                    console.log('Doctors added to dropdown');
+                } else {
+                    console.log('No doctors found in doctors_directory');
+                    // Try loading from profiles as fallback
+                    const fallbackOption = document.createElement('option');
+                    fallbackOption.textContent = 'No se encontraron doctores en el directorio';
+                    select.appendChild(fallbackOption);
+                }
+            } catch (error) {
+                console.error('Unexpected error in loadDoctorList:', error);
+                showMessage('Error inesperado al cargar doctores', 'error');
+            }
+        }
+        
+        async function loadSchedule() {
+            const doctorId = selectedDoctorId || document.getElementById('doctorSelect')?.value;
+            if (!doctorId) return;
+            
+            selectedDoctorId = doctorId;
+            
+            // Generate time slots
+            generateTimeSlots();
+            
+            // Load appointments for this doctor
+            const today = new Date();
+            const weekStart = new Date(today);
+            weekStart.setDate(today.getDate() - today.getDay());
+            const weekEnd = new Date(weekStart);
+            weekEnd.setDate(weekStart.getDate() + 6);
+            
+            const { data: appointments } = await supabase
+                .from('appointments')
+                .select('*')
+                .eq('doctor_id', doctorId)
+                .gte('appointment_date', weekStart.toISOString().split('T')[0])
+                .lte('appointment_date', weekEnd.toISOString().split('T')[0])
+            
+            // Display appointments in grid
+            displayAppointments(appointments || []);
+            
+            // Load permissions if it's the doctor's own schedule
+            if (currentUser.user_role === 'doctor' || ['super_admin', 'admin'].includes(currentUser.user_role)) {
+                loadPermissions();
+            }
+        }
+        
+        function generateTimeSlots() {
+            const grid = document.getElementById('scheduleGrid');
+            // Clear existing slots (keep headers)
+            while (grid.children.length > 8) {
+                grid.removeChild(grid.lastChild);
+            }
+            
+            const times = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
+            
+            times.forEach(time => {
+                // Time label
+                const timeLabel = document.createElement('div');
+                timeLabel.className = 'time-slot day-header';
+                timeLabel.textContent = time;
+                grid.appendChild(timeLabel);
+                
+                // 7 day slots
+                for (let day = 0; day < 7; day++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'time-slot available-slot';
+                    slot.dataset.time = time;
+                    slot.dataset.day = day;
+                    slot.textContent = 'Disponible';
+                    slot.onclick = () => bookAppointment(day, time);
+                    grid.appendChild(slot);
+                }
+            });
+        }
+        
+        function displayAppointments(appointments) {
+            appointments.forEach(apt => {
+                const date = new Date(apt.appointment_date);
+                const day = date.getDay();
+                const time = apt.appointment_time.substring(0, 5);
+                
+                // Find the corresponding slot
+                const slots = document.querySelectorAll('.time-slot');
+                slots.forEach(slot => {
+                    if (slot.dataset.day == day && slot.dataset.time == time) {
+                        slot.className = 'time-slot';
+                        slot.innerHTML = `<div class="appointment-block">
+                            ${apt.patient_name || 'Paciente #' + apt.patient_id}
+                            <br>${apt.appointment_type || 'Consulta'}
+                        </div>`;
+                        slot.onclick = null;
+                    }
+                });
+            });
+        }
+        
+        async function loadPermissions() {
+            if (!selectedDoctorId) return;
+            
+            const { data: perms } = await supabase
+                .from('schedule_permissions')
+                .select('*, granted_to_user:granted_to(first_name, last_name, user_role)')
+                .eq('doctor_id', selectedDoctorId)
+                .is('revoked_at', null)
+            
+            permissions = perms || [];
+            displayPermissions();
+        }
+        
+        function displayPermissions() {
+            const list = document.getElementById('permissionList');
+            
+            if (permissions.length === 0) {
+                list.innerHTML = '<p style="color: #666;">No hay permisos otorgados</p>';
+                return;
+            }
+            
+            list.innerHTML = '<h4>Personas con acceso a este horario:</h4>';
+            permissions.forEach(perm => {
+                const item = document.createElement('div');
+                item.className = 'permission-item';
+                item.innerHTML = `
+                    <div>
+                        <strong>${perm.granted_to_user.first_name} ${perm.granted_to_user.last_name}</strong>
+                        <br>
+                        <small>${perm.permission_type} - ${perm.reason || 'Sin razón especificada'}</small>
+                        ${perm.expires_at ? `<br><small>Expira: ${new Date(perm.expires_at).toLocaleString()}</small>` : ''}
+                    </div>
+                    <button class="btn btn-danger" onclick="revokePermission('${perm.id}')">Revocar</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+        
+        window.showGrantAccessModal = async function() {
+            // Load users for dropdown
+            const { data: users } = await supabase
+                .from('profiles')
+                .select('id, first_name, last_name, user_role')
+                .in('user_role', ['doctor', 'medical_assistant', 'admin'])
+                .neq('id', currentUser.id)
+                .order('first_name')
+            
+            const select = document.getElementById('grantToUser');
+            select.innerHTML = '<option value="">Seleccionar usuario...</option>';
+            users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.textContent = `${user.first_name} ${user.last_name} (${user.user_role})`;
+                select.appendChild(option);
+            });
+            
+            document.getElementById('grantAccessModal').classList.add('show');
+        }
+        
+        window.closeModal = function() {
+            document.getElementById('grantAccessModal').classList.remove('show');
+        }
+        
+        document.getElementById('permissionType').onchange = function() {
+            const expGroup = document.getElementById('expirationGroup');
+            if (this.value === 'temporary') {
+                expGroup.style.display = 'block';
+            } else {
+                expGroup.style.display = 'none';
+            }
+        }
+        
+        document.getElementById('grantAccessForm').onsubmit = async function(e) {
+            e.preventDefault();
+            
+            const permissionData = {
+                doctor_id: selectedDoctorId,
+                granted_to: document.getElementById('grantToUser').value,
+                permission_type: document.getElementById('permissionType').value,
+                reason: document.getElementById('reason').value,
+                created_by: currentUser.id
+            };
+            
+            if (document.getElementById('permissionType').value === 'temporary') {
+                permissionData.expires_at = document.getElementById('expiresAt').value;
+            }
+            
+            const { error } = await supabase
+                .from('schedule_permissions')
+                .insert([permissionData]);
+            
+            if (error) {
+                alert('Error al otorgar permiso: ' + error.message);
+            } else {
+                alert('Permiso otorgado exitosamente');
+                closeModal();
+                loadPermissions();
+                this.reset();
+            }
+        }
+        
+        window.revokePermission = async function(permId) {
+            if (!confirm('¿Está seguro de revocar este permiso?')) return;
+            
+            const { error } = await supabase
+                .from('schedule_permissions')
+                .update({ revoked_at: new Date().toISOString() })
+                .eq('id', permId);
+            
+            if (error) {
+                alert('Error al revocar permiso: ' + error.message);
+            } else {
+                alert('Permiso revocado');
+                loadPermissions();
+            }
+        }
+        
+        // Initialize
+        init();
+    </script>
+</body>
+</html>

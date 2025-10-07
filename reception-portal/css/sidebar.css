@@ -1,0 +1,201 @@
+/*
+ * Centro Médico Universal - Sidebar Styles
+ * Based on eClinicalWorks sidebar design
+ */
+
+/* ===========================
+   LEFT SIDEBAR
+   =========================== */
+
+.sidebar {
+    width: 260px;
+    background: var(--ecw-sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid #1A252F;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #1A252F;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #34495E;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #4A6278;
+}
+
+/* ===========================
+   NAVIGATION ICONS
+   =========================== */
+
+.nav-icons {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    border-bottom: 1px solid #1A252F;
+}
+
+.nav-icon {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.nav-icon:hover {
+    background: var(--ecw-sidebar-hover);
+}
+
+.nav-icon.active {
+    background: var(--ecw-sidebar-hover);
+    border-left: 3px solid var(--ecw-orange);
+}
+
+.nav-label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ===========================
+   FILTER SECTIONS
+   =========================== */
+
+.filter-section {
+    padding: 15px;
+    border-bottom: 1px solid #1A252F;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-icon {
+    font-size: 16px;
+}
+
+.search-box {
+    margin-bottom: 10px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #34495E;
+    border-radius: 4px;
+    background: #34495E;
+    color: white;
+    font-size: 12px;
+}
+
+.search-input::placeholder {
+    color: #95A5A6;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--ecw-orange);
+    background: #3A5060;
+}
+
+/* ===========================
+   FILTER LISTS
+   =========================== */
+
+.filter-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.filter-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filter-list::-webkit-scrollbar-track {
+    background: #1A252F;
+}
+
+.filter-list::-webkit-scrollbar-thumb {
+    background: #34495E;
+    border-radius: 3px;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.filter-item:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.filter-item input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.filter-label {
+    flex: 1;
+    user-select: none;
+}
+
+.filter-count {
+    color: #95A5A6;
+    font-size: 11px;
+}
+
+.select-all {
+    border-bottom: 1px solid #34495E;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+/* ===========================
+   RESPONSIVE SIDEBAR
+   =========================== */
+
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 220px;
+    }
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        position: absolute;
+        left: -260px;
+        transition: left 0.3s;
+        z-index: 500;
+    }
+    
+    .sidebar.open {
+        left: 0;
+    }
+}

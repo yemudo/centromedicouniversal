@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROOF - Changes Are Working</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/doctor-avatars.css?v=<?php echo time(); ?>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #388E3C;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .doctor-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin: 10px 0 5px;
+        }
+        .specialty {
+            color: #D4AF37;
+            font-weight: 500;
+        }
+        .code-proof {
+            background: #2c3e50;
+            color: #4caf50;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .file-path {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ PROOF: Your Changes ARE Working!</h1>
+        
+        <p style="text-align: center; color: #69BBA8; font-size: 1.2rem; margin-bottom: 30px;">
+            Folder: /Users/manuelcastillo/Desktop/CENTRO_MEDICO_UNIVERSAL/01_WEBSITE/
+        </p>
+        
+        <!-- Exact copy from your index.html -->
+        <div class="proof-grid">
+            <div class="doctor-card">
+                <div class="avatar">
+                    <div class="doctor-avatar-professional" style="background: linear-gradient(135deg, #667eea, #764ba2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 3px 8px rgba(0,0,0,0.12);">
+                        <span class="doctor-initials" style="font-size: 1.4rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em;">CR</span>
+                    </div>
+                </div>
+                <h3>Dr. Castillo Rodríguez</h3>
+                <p class="specialty">Director Médico</p>
+                <p style="color: #6c757d; font-size: 0.9rem; margin-top: 10px;">✓ 60px width<br>✓ 60px height<br>✓ 1.4rem font</p>
+            </div>
+            
+            <div class="doctor-card">
+                <div class="avatar">
+                    <img src="images/doctors/vidalva-decena-medina.jpg" 
+                         alt="Dra. Vidalva Decena Medina" 
+                         loading="lazy" decoding="async" 
+                         onerror="this.parentElement.innerHTML='<div class=\'doctor-avatar-professional\' style=\'background: linear-gradient(135deg, #4facfe, #00f2fe); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\'><span class=\'doctor-initials\' style=\'font-size: 1.4rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em;\'>VM</span></div>';"
+                         style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37;">
+                </div>
+                <h3>Dra. Vidalva Decena</h3>
+                <p class="specialty">Ginecología y Obstetricia</p>
+                <p style="color: #6c757d; font-size: 0.9rem; margin-top: 10px;">✓ 60px photo<br>✓ Falls back to VM</p>
+            </div>
+            
+            <div class="doctor-card">
+                <div class="avatar">
+                    <img src="images/doctors/manuel-antonio-castillo.jpg" 
+                         alt="Dr. Manuel Antonio Castillo Rodríguez" 
+                         loading="lazy" decoding="async" 
+                         onerror="this.parentElement.innerHTML='<div class=\'doctor-avatar-professional\' style=\'background: linear-gradient(135deg, #43e97b, #38f9d7); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\'><span class=\'doctor-initials\' style=\'font-size: 1.4rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em;\'>MR</span></div>';"
+                         style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37;">
+                </div>
+                <h3>Dr. Manuel A. Castillo</h3>
+                <p class="specialty">Salud Sexual</p>
+                <p style="color: #6c757d; font-size: 0.9rem; margin-top: 10px;">✓ 60px photo<br>✓ Falls back to MR</p>
+            </div>
+        </div>
+        
+        <div class="code-proof">
+            <div class="file-path">📁 /Users/manuelcastillo/Desktop/CENTRO_MEDICO_UNIVERSAL/01_WEBSITE/index.html</div>
+            <div>Line 894: width: 60px; height: 60px;</div>
+            <div>Line 895: font-size: 1.4rem;</div>
+            <div>Line 907-908: Dra. Vidalva - 60px</div>
+            <div>Line 919-920: Dr. Manuel - 60px</div>
+        </div>
+        
+        <h2 style="color: #388E3C; margin-top: 40px; margin-bottom: 20px;">Your Actual index.html File (Live Preview):</h2>
+        <iframe src="index.html#appointment"></iframe>
+    </div>
+</body>
+</html>

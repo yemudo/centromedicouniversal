@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <defs>
+    <linearGradient id="mapfreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D50032;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A00028;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="80" fill="url(#mapfreGrad)" rx="10"/>
+  <!-- MAPFRE M symbol -->
+  <path d="M 20 25 L 25 35 L 30 25 L 35 35 L 40 25 L 40 55 L 35 55 L 35 40 L 30 50 L 25 40 L 25 55 L 20 55 Z" fill="white"/>
+  <text x="55" y="38" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" fill="white" letter-spacing="2">MAPFRE</text>
+  <text x="55" y="55" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="500" fill="white">Salud ARS</text>
+</svg>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Hierarchy - Centro Médico Universal</title>
+    <link rel="stylesheet" href="css/doctor-avatars.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 20px;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #388E3C;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #69BBA8;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+        
+        /* Two-Level Pyramid */
+        .pyramid-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        /* Connecting Line */
+        .connector {
+            width: 3px;
+            height: 40px;
+            background: linear-gradient(to bottom, #D4AF37, #69BBA8);
+            margin: -40px auto 0;
+            position: relative;
+            z-index: 0;
+        }
+        
+        /* Level 1 - Top Director */
+        .level-top {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .top-director-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            position: relative;
+            border: 3px solid #D4AF37;
+            transition: transform 0.3s ease;
+        }
+        
+        .top-director-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        /* Crown for top position */
+        .top-director-card::before {
+            content: '👑';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        /* Level 2 - Executive Director */
+        .level-executive {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .executive-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            text-align: center;
+            border: 3px solid #69BBA8;
+            transition: transform 0.3s ease;
+        }
+        
+        .executive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        
+        /* Avatar styling */
+        .director-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+        }
+        
+        .director-avatar-professional {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .director-initials {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Name and title styling */
+        .director-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .director-title {
+            font-size: 1.1rem;
+            color: #D4AF37;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .executive-title {
+            color: #69BBA8;
+        }
+        
+        .director-description {
+            font-size: 0.95rem;
+            color: #6c757d;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+        
+        /* Visual pyramid background */
+        .pyramid-visual {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 300px;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        @media (max-width: 768px) {
+            .top-director-card, .executive-card {
+                padding: 20px;
+            }
+            
+            .director-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .director-initials {
+                font-size: 1.4rem;
+            }
+            
+            .director-name {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Estructura de Liderazgo</h1>
+        <p class="subtitle">Centro Médico Universal - Jerarquía Directiva</p>
+        
+        <div class="pyramid-structure">
+            <!-- Level 1 - Top of Pyramid -->
+            <div class="level-top">
+                <div class="top-director-card">
+                    <div class="director-avatar">
+                        <div class="director-avatar-professional" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <span class="director-initials">CR</span>
+                        </div>
+                    </div>
+                    <h2 class="director-name">Dr. Castillo Rodríguez</h2>
+                    <p class="director-title">Director General</p>
+                    <p class="director-description">
+                        Director Médico del Centro<br>
+                        Más de 25 años de experiencia en medicina
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Connecting Line -->
+            <div class="connector"></div>
+            
+            <!-- Level 2 - Executive Director -->
+            <div class="level-executive">
+                <div class="executive-card">
+                    <div class="director-avatar">
+                        <div class="director-avatar-professional" style="background: linear-gradient(135deg, #30cfd0, #330867);">
+                            <span class="director-initials">JC</span>
+                        </div>
+                    </div>
+                    <h2 class="director-name">Dr. Juan Aníbal Castillo Rodríguez</h2>
+                    <p class="director-title executive-title">Director Ejecutivo</p>
+                    <p class="director-description">
+                        Anestesiólogo<br>
+                        22+ años de experiencia
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Optional: Add SVG pyramid in background -->
+        <svg class="pyramid-visual" viewBox="0 0 400 300">
+            <polygon points="200,50 100,250 300,250" 
+                     fill="#D4AF37" 
+                     opacity="0.3"/>
+        </svg>
+    </div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico por Imágenes - Centro Médico Universal Castillo Rodríguez y Asociados</title>
+    <link rel="stylesheet" href="css/styles.css?v=20250905-1045">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.min.css" >
+    <meta name="description" content="Servicios de diagnóstico por imágenes ofrecidos por Centro Médico Universal Castillo Rodríguez y Asociados">
+    <style>
+        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
+        .section-header h2 { color: #388E3C !important; }
+        .hero h1, .hero h2 { color: white !important; }
+        section.hero h1, section.hero h2 { color: white !important; }
+        .service-detail {
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-detail h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+        }
+        
+        .service-image {
+            height: 350px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .service-features {
+            margin: 1.5rem 0;
+        }
+        
+        .service-features ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .service-features ul li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-features ul li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .page-title {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(56, 178, 172, 0.8)), url('images/services/diagnostics.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .service-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .tech-specs {
+            background-color: #f0f8ff;
+            padding: 1rem;
+            border-left: 4px solid var(--secondary-color);
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tech-specs h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 1.5rem;
+        }
+
+        .service-card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card-content p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Centro Médico Universal</h1>
+                <p>Castillo Rodríguez y Asociados</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/'>Inicio</a></li>
+                    <li><a class='active' href='/servicios'>Servicios</a></li>
+                    <li><a href='/doctores'>Doctores</a></li>
+                    <li><a href='/instalaciones'>Instalaciones</a></li>
+                    <li><a href='/contacto'>Contacto</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Diagnóstico por Imágenes</h1>
+            <p>Equipos de última generación y especialistas certificados para un diagnóstico preciso</p>
+        </div>
+    </section>
+
+    <section class="services-details">
+        <div class="container">
+            <div class="service-intro">
+                <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Tecnología Avanzada de Diagnóstico</h2>
+                <p>En Centro Médico Universal contamos con el departamento de diagnóstico por imágenes más avanzado de la región. Nuestros equipos de última generación y nuestro equipo de especialistas certificados garantizan diagnósticos precisos para orientar el tratamiento adecuado de cada paciente.</p>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-image">
+                    <picture>
+  <source srcset="images/services/diagnostics.webp" type="image/webp">
+  <img src="images/services/diagnostics.jpg" loading="lazy"   alt="Tomografía Computarizada" loading="lazy">
+</picture>
+                </div>
+                <h3>Tomografía Computarizada (TC)</h3>
+                <p>Nuestro centro cuenta con un tomógrafo computarizado multicorte de última generación que permite obtener imágenes detalladas de órganos internos, huesos, tejidos blandos y vasos sanguíneos con una precisión incomparable.</p>
+                <div class="tech-specs">
+                    <h4>Especificaciones técnicas:</h4>
+                    <p>Tomógrafo multicorte de 128 cortes con software de reconstrucción 3D y reducción de dosis de radiación, permitiendo estudios de alta definición con mínima exposición para el paciente.</p>
+                </div>
+                <div class="service-features">
+                    <ul>
+                        <li>TC de tórax, abdomen y pelvis</li>
+                        <li>Angiotomografía</li>
+                        <li>TC de alta resolución</li>
+                        <li>Reconstrucción 3D para planeamiento quirúrgico</li>
+                        <li>Colonoscopía virtual</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-image">
+                    <picture>
+  <source srcset="images/services/xray.webp" type="image/webp">
+  <img src="images/services/xray.jpg" loading="lazy"   alt="Radiología Digital" loading="lazy">
+</picture>
+                </div>
+                <h3>Radiología Digital</h3>
+                <p>Utilizamos radiología digital directa (DR) que ofrece imágenes de alta calidad con menor radiación. El sistema permite visualización inmediata y compartir resultados de forma segura con los especialistas tratantes.</p>
+                <div class="service-features">
+                    <ul>
+                        <li>Radiografías de tórax, abdomen y extremidades</li>
+                        <li>Estudios contrastados</li>
+                        <li>Radiografías especiales</li>
+                        <li>Menor dosis de radiación que sistemas convencionales</li>
+                        <li>Resultados disponibles inmediatamente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-image">
+                    <picture>
+  <source srcset="images/services/ultrasound.webp" type="image/webp">
+  <img src="images/services/ultrasound.jpg" loading="lazy"   alt="Ultrasonido" loading="lazy">
+</picture>
+                </div>
+                <h3>Ultrasonido</h3>
+                <p>Contamos con equipos de ultrasonido de alta definición con tecnología Doppler color, elastografía y 4D para estudios avanzados. Esta tecnología no invasiva permite evaluar órganos internos, tejidos blandos, articulaciones y estructuras vasculares.</p>
+                <div class="service-features">
+                    <ul>
+                        <li>Ultrasonido general y especializado</li>
+                        <li>Ecografía 4D obstétrica</li>
+                        <li>Elastografía</li>
+                        <li>Doppler color vascular y cardíaco</li>
+                        <li>Ecografía musculoesquelética</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem; text-align: center;">Servicios adicionales</h2>
+
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-card-image">
+                        <picture>
+  <source srcset="images/services/diagnostics.webp" type="image/webp">
+  <img src="images/services/diagnostics.jpg" loading="lazy"   alt="Resonancia Magnética" loading="lazy">
+</picture>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Resonancia Magnética</h3>
+                        <p>Imágenes detalladas mediante campos magnéticos sin radiación. Ideal para tejidos blandos, cerebro, columna y articulaciones.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-card-image">
+                        <picture>
+  <source srcset="images/services/xray.webp" type="image/webp">
+  <img src="images/services/xray.jpg" loading="lazy"   alt="Mamografía Digital" loading="lazy">
+</picture>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Mamografía Digital</h3>
+                        <p>Sistema avanzado para detección temprana de cáncer de mama con menor radiación y mayor precisión diagnóstica.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-card-image">
+                        <picture>
+  <source srcset="images/services/ultrasound.webp" type="image/webp">
+  <img src="images/services/ultrasound.jpg" loading="lazy"   alt="Densitometría Ósea" loading="lazy">
+</picture>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Densitometría Ósea</h3>
+                        <p>Evaluación precisa de la densidad mineral ósea para diagnóstico y seguimiento de osteoporosis y riesgo de fracturas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section" style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f0f8ff; border-radius: 10px;">
+                <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Agende su cita hoy mismo</h2>
+                <p>Todos nuestros servicios de diagnóstico por imágenes requieren cita previa. Nuestro personal le asistirá con la preparación necesaria para cada estudio.</p>
+                <a class='btn primary' href='/contacto' style='margin-top: 1rem; display: inline-block;'>Solicitar Cita</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centro Médico Universal</h3>
+                    <p>Castillo Rodríguez y Asociados</p>
+                    <p>Comprometidos con su salud desde 1995</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Club Rotario No 58, Santo Domingo Este, República Dominicana 11501</p>
+                    <p><i class="fas fa-phone"></i> (809) 594-6161</p>
+                    <p><i class="fas fa-envelope"></i> info@centromedicouniversal.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horarios</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=501448386617979" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://do.linkedin.com/company/grupouniversal" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/18095946161" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Centro Médico Universal Castillo Rodríguez y Asociados. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.min.js"  defer></script></script>
+    <script src="js/gemini-integration.js?v=1.8"></script>
+    <script src="js/draft-counter.js?v=3"></script>
+</body>
+</html>

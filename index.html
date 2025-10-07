@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es"><!-- v1759524476 --><!-- v1759523803 -->
+<head>
+    <meta http-equiv=1759635661"Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv=1759635661"Pragma" content="no-cache">
+    <meta http-equiv=1759635661"Expires" content="0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv=1759635661"Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv=1759635661"Pragma" content="no-cache">
+    <meta http-equiv=1759635661"Expires" content="0">
+    <title>Centro Médico Universal Castillo Rodríguez y Asociados</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661">
+    <link rel="shortcut icon" href="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661">
+    <link rel="stylesheet" href="css/styles.css?v=1759635661" />
+    <link rel="stylesheet" href="css/header-preview.css?v=1759635661" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" >
+    <meta name="description" content="Centro Médico Universal Castillo Rodríguez y Asociados - Servicios médicos de calidad">
+    <meta name="theme-color" content="#388E3C">
+    <style>
+        /* Apply clean font throughout site */
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+        }
+        
+        /* Professional repeating typing effect - NO CURSOR */
+        p.hero-subtitle.typing-effect {
+            position: relative;
+            display: inline-block;
+            width: auto;
+        }
+        
+        p.hero-subtitle.typing-effect span {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 6s steps(80, end) infinite;
+            max-width: 0;
+        }
+        
+        @keyframes typing {
+            0% { max-width: 0; }
+            50% { max-width: 100%; }
+            100% { max-width: 100%; }
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
+        .section-header h2 { color: #388E3C !important; }
+        .hero h1, .hero h2 { color: white !important; }
+        section.hero h1, section.hero h2 { color: white !important; }
+        
+        /* Hero Logo Styles */
+        .hero-logo-container {
+            width: 250px;
+            height: 250px;
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #1B5E20;
+        }
+        
+        .hero-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-hide-text { display: none !important; }
+            .mobile-show-text { display: inline !important; }
+            
+            .hero-logo-container {
+                width: clamp(200px, 50vw, 250px) !important;
+                height: clamp(200px, 50vw, 250px) !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .hero-buttons {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.75rem !important;
+            }
+            
+            .hero-buttons a {
+                width: 100% !important;
+                max-width: 280px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-logo-container {
+                width: clamp(150px, 40vw, 180px) !important;
+                height: clamp(150px, 40vw, 180px) !important;
+            }
+            
+            .trust-indicators {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .quick-services {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+        }
+
+        /* ============================================
+           HERO SECTION ANIMATIONS - Eye-catching entrance effects
+           ============================================ */
+        
+        /* Logo bounce-in animation */
+        @keyframes logoEntry {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .hero-logo-container {
+            animation: logoEntry 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        
+        /* Priority banner pulse animation */
+        @keyframes bannerPulse {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .hero-content > div[style*="background: white"] {
+            animation: bannerPulse 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+        
+        /* Typing text fade-in */
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            animation: textFadeIn 0.8s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+        
+        /* Button stagger animation */
+        @keyframes buttonSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-buttons {
+            display: flex !important;
+        }
+        
+        .hero-buttons a:nth-child(1) {
+            animation: buttonSlideIn 0.6s ease-out 1.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons a:nth-child(2) {
+            animation: buttonSlideIn 0.6s ease-out 1.4s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons a:nth-child(3) {
+            animation: buttonSlideIn 0.6s ease-out 1.6s forwards;
+            opacity: 0;
+        }
+        
+        /* Button hover glow effect */
+        .hero-button {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .hero-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Icon pulse animations for contact bar */
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        
+        .fa-stethoscope,
+        .fa-phone,
+        .fa-calendar-check {
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+        
+        .fa-stethoscope {
+            animation-delay: 0s;
+        }
+        
+        .fa-phone {
+            animation-delay: 0.3s;
+        }
+        
+        .fa-calendar-check {
+            animation-delay: 0.6s;
+        }
+        
+        /* Banner carousel fade animation enhancement */
+        @keyframes bannerFadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .carousel-banner {
+            animation: bannerFadeSlide 0.6s ease-out;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .hero-logo-container {
+                animation-duration: 1s;
+            }
+            
+            .hero-buttons a {
+                animation-duration: 0.5s !important;
+            }
+        }
+        
+
+        /* ============================================
+           STICKY NIVIN FLOAT BUTTON ANIMATIONS
+           ============================================ */
+        
+        /* Continuous pulse animation */
+        @keyframes nivinPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(56, 142, 60, 0.4);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 8px 30px rgba(56, 142, 60, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(56, 142, 60, 0.4);
+            }
+        }
+        
+        /* Ripple wave effect */
+        @keyframes nivinRipple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+        
+        /* Bounce entrance */
+        @keyframes nivinBounceIn {
+            0% {
+                transform: scale(0) translateY(100px);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        #nivin-float-button {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 9999 !important;
+            animation: nivinBounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 2s forwards;
+            opacity: 0;
+        }
+        
+        #nivin-float-button > div {
+            animation: nivinPulse 2s ease-in-out infinite !important;
+            position: relative;
+        }
+        
+        /* Ripple effect container */
+        #nivin-float-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70px;
+            height: 70px;
+            background: rgba(56, 142, 60, 0.4);
+            border-radius: 50%;
+            animation: nivinRipple 2s ease-out infinite;
+            z-index: -1;
+        }
+        
+        #nivin-float-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70px;
+            height: 70px;
+            background: rgba(56, 142, 60, 0.3);
+            border-radius: 50%;
+            animation: nivinRipple 2s ease-out 1s infinite;
+            z-index: -1;
+        }
+        
+        /* Mobile positioning */
+        @media (max-width: 768px) {
+            #nivin-float-button {
+                bottom: 15px !important;
+                right: 15px !important;
+            }
+            
+            #nivin-float-button > div {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            #nivin-float-button::before,
+            #nivin-float-button::after {
+                width: 60px !important;
+                height: 60px !important;
+            }
+        }
+        
+
+        /* Dual Hero Logo Responsive Styles */
+        @media (max-width: 768px) {
+            .dual-hero-logo-container {
+                gap: 25px !important;
+            }
+            
+            .dual-hero-logo-container img[alt="Centro Médico Universal"] {
+                width: 140px !important;
+                height: 140px !important;
+            }
+            
+            .dual-hero-logo-container img[alt*="Nivín"] {
+                width: 140px !important;
+            }
+            
+            .dual-hero-logo-container div[style*="font-size: 3rem"] {
+                font-size: 2rem !important;
+            }
+            
+            /* Keep Nivín badge visible on all screens */
+            .nivin-badge {
+                padding: 6px 12px !important;
+                margin-left: 10px !important;
+                font-size: 0.7rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dual-hero-logo-container {
+                gap: 20px !important;
+            }
+            
+            .dual-hero-logo-container img[alt="Centro Médico Universal"] {
+                width: 120px !important;
+                height: 120px !important;
+            }
+            
+            .dual-hero-logo-container img[alt*="Nivín"] {
+                width: 120px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-preview">
+      <div class="header-wrap">
+        <div class="brand">
+<img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661" alt="CMU Logo" class="brand-logo">
+          <div class="brand-text">
+            <h1>Centro Médico Universal</h1>
+            <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
+          </div>
+          <div class="nivin-badge" style="display: flex; align-items: center; margin-left: 20px; padding: 8px 18px; background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%); border-radius: 20px; border: 2px solid #D4AF37;">
+            <span style="color: white; font-size: 0.75rem; font-weight: 600; white-space: nowrap;">Powered by Nivín EMR</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <ul>
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href='/servicios'>Servicios</a></li>
+            <li><a href='/doctores.html'>Doctores</a></li>
+            <li><a href='/instalaciones'>Instalaciones</a></li>
+            <li><a href="#appointment">Citas</a></li>
+            <li><a href='/contacto'>Contacto</a></li>
+          </ul>
+          <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+          </div>
+        </nav>
+
+        <div class="actions">
+          <a class="phone" href="tel:+18095946161">(809) 594-6161</a>
+          <a class="btn outline" href="/nivin-login.html" rel="noopener">Ingreso Staff Médico</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero hero--green" style="background: linear-gradient(135deg, #2E7D32 0%, #388E3C 25%, #69BBA8 50%, rgba(212, 175, 55, 0.5) 75%, #69BBA8 100%); position: relative;">
+    <div class="hero__overlay" style="background: linear-gradient(45deg, rgba(212, 175, 55, 0.15), transparent); backdrop-filter: brightness(0.95);"></div>
+    <div class="container hero__container">
+        <div class="hero-content" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+            <!-- Dual Logo Container -->
+            <div class="dual-hero-logo-container" style="display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 20px; flex-wrap: wrap;">
+                <!-- CMU Logo (Circular) -->
+                <div style="position: relative;">
+                    <picture>
+                      <source srcset="images/logo/cmu-logo-new.png" type="image/png">
+                      <img src="images/logo/cmu-logo-new.png" 
+                           class="hero-logo"
+                           alt="Centro Médico Universal"
+                           loading="lazy"
+                           style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #D4AF37; box-shadow: 0 15px 40px rgba(0,0,0,0.3); background: white; padding: 10px;"
+                           onerror="this.style.display='none';">
+                    </picture>
+                </div>
+                
+                <!-- Elegant Separator -->
+                <div style="width: 2px; height: 120px; background: linear-gradient(180deg, transparent 0%, #D4AF37 20%, #D4AF37 80%, transparent 100%); display: none;"></div>
+                <div style="font-size: 3rem; color: #D4AF37; opacity: 0.6; font-weight: 100; display: block;">+</div>
+                
+                <!-- Nivín Logo -->
+                <div style="position: relative;">
+                    <img src="/nivin-emr/assets/logos/nivin-full-logo-blue.svg" 
+                         alt="Nivín EMR - Sistema Médico Inteligente"
+                         loading="lazy"
+                         style="width: 180px; height: auto; filter: drop-shadow(0 15px 40px rgba(0,0,0,0.3));"
+                         onerror="this.style.display='none';">
+
+                </div>
+            </div>
+            <div style="display: inline-block; background: white; border-radius: 50px; padding: 12px 40px; margin: 20px auto 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 3px solid #D4AF37; text-align: center;">
+                <span style="font-size: 1.35rem !important; line-height: 1.2; margin: 0; font-weight: 800; letter-spacing: -0.5px; color: #D4AF37; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">SU SALUD ES NUESTRA PRIORIDAD</span>
+            </div>
+            <p class="hero-subtitle typing-effect"><span>Brindamos atención médica de excelencia con profesionales especializados</span></p>
+            <div class="hero-buttons">
+                <a class='hero-button hero-button-oval open-nivin-btn' href='#' onclick="event.preventDefault(); nivinAction('cita'); return false;"><span class="gold-text">SOLICITAR CITA</span></a>
+                <a class='hero-button hero-button-oval' href='/servicios'><span class="gold-text">NUESTROS<br>SERVICIOS</span></a>
+                <a class='hero-button hero-button-oval' href='/doctores.html'><span class="gold-text">NUESTROS<br>DOCTORES</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Professional Contact Bar -->
+    <section style="background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%); padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; text-align: center;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: white; font-weight: 500; font-size: 0.85rem;">
+                    <i class="fas fa-stethoscope" style="font-size: 1rem; color: #D4AF37;"></i>
+                    <span class="mobile-hide-text">Atención Médica 24/7</span>
+                    <span class="mobile-show-text" style="display: none;">24/7</span>
+                </div>
+                <a href="tel:+18095946161" style="display: flex; align-items: center; gap: 0.5rem; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; background: rgba(212,175,55,0.2); padding: 0.5rem 1rem; border-radius: 15px; border: 1px solid rgba(212,175,55,0.3); transition: all 0.3s ease; backdrop-filter: blur(10px);">
+                    <i class="fas fa-phone" style="font-size: 0.9rem; color: #D4AF37;"></i>
+                    <span>(809) 594-6161</span>
+                </a>
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: white; font-weight: 500; font-size: 0.85rem;">
+                    <i class="fas fa-calendar-check" style="font-size: 1rem; color: #D4AF37;"></i>
+                    <span class="mobile-hide-text">Citas Online Disponibles</span>
+                    <span class="mobile-show-text" style="display: none;">Citas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Banner Section -->
+
+    <!-- News Banners Carousel Section -->
+
+
+    <!-- Trust Indicators Section -->
+    <!-- Banner Carousel Section -->
+    <section style="background: #f8f9fa; padding: 2rem 0;">
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; height: 180px;">
+            
+            <!-- Banner 1: BOOK -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 1; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="flex-shrink: 0; text-align: center;">
+                        <img src="./images/doctors/dr-castillo.jpg" alt="Dr. Castillo" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #D4AF37;">
+                        <p style="margin-top: 0.5rem; color: #388E3C; font-weight: 600;">Dr. Manuel A. Castillo</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #388E3C; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Cicatrices Invisibles</h3>
+                        <p style="color: #D4AF37; font-size: 1rem; margin: 0 0 0.8rem 0; font-weight: 600;">Abuso sexual y vaginismo</p>
+                        <p style="color: #666; line-height: 1.6; margin: 0 0 1.5rem 0;">Una investigación profunda sobre el impacto del abuso sexual y el vaginismo, resultado de más de 25 años de experiencia.</p>
+                        <a href="https://www.cuestalibros.com/5056294176" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600;">📚 Comprar Libro</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 2: 95 Doctors -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #E8F5E9; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-user-md" style="font-size: 2.2rem; color: #2E7D32;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #2E7D32; font-size: 1.5rem; margin: 0 0 0.4rem 0;">95 Especialistas Médicos</h3>
+                        <p style="color: #4CAF50; font-size: 1rem; margin: 0 0 0.8rem 0;">El equipo médico más completo</p>
+                        <p style="color: #666;">Contamos con especialistas certificados en todas las áreas médicas para brindarte la mejor atención.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 3: Technology -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #E3F2FD; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-robot" style="font-size: 2.2rem; color: #1976D2;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #1976D2; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Tecnología Digital Avanzada</h3>
+                        <p style="color: #2196F3; font-size: 1rem; margin: 0 0 0.8rem 0;">Sistema inteligente Nivín</p>
+                        <p style="color: #666;">Agenda citas, consulta doctores y resuelve dudas con nuestro asistente virtual 24/7.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 4: Accreditation -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #FFF3E0; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-award" style="font-size: 2.2rem; color: #F57C00;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #F57C00; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Acreditación Internacional</h3>
+                        <p style="color: #FF9800; font-size: 1rem; margin: 0 0 0.8rem 0;">Certificados de calidad</p>
+                        <p style="color: #666;">Cumplimos con los más altos estándares internacionales de calidad y seguridad.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 5: Facilities -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #F3E5F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-hospital" style="font-size: 2.2rem; color: #6A1B9A;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #6A1B9A; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Instalaciones Modernas</h3>
+                        <p style="color: #9C27B0; font-size: 1rem; margin: 0 0 0.8rem 0;">Áreas renovadas con tecnología</p>
+                        <p style="color: #666;">Espacios diseñados para tu comodidad con equipos de última generación.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 6: Emergency -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #FFEBEE; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-ambulance" style="font-size: 2.2rem; color: #C62828;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #C62828; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Emergencias 24/7</h3>
+                        <p style="color: #F44336; font-size: 1rem; margin: 0 0 0.8rem 0;">Atención de urgencias disponible</p>
+                        <p style="color: #666;">Servicio de emergencias las 24 horas con personal especializado siempre disponible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 7: Insurance -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #E0F7FA; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-credit-card" style="font-size: 2.2rem; color: #00838F;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #00838F; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Seguros Aceptados</h3>
+                        <p style="color: #00BCD4; font-size: 1rem; margin: 0 0 0.8rem 0;">Convenios con principales aseguradoras</p>
+                        <p style="color: #666;">Aceptamos todos los seguros médicos principales de la República Dominicana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 8: Community -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #FCE4EC; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-heart" style="font-size: 2.2rem; color: #AD1457;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #AD1457; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Compromiso con la Comunidad</h3>
+                        <p style="color: #E91E63; font-size: 1rem; margin: 0 0 0.8rem 0;">Sirviendo a la región</p>
+                        <p style="color: #666;">Más de 25 años cuidando la salud de las familias dominicanas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 9: Testimonial Aleida -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #E0F2F1; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-quote-left" style="font-size: 2.2rem; color: #00695C;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #00695C; font-size: 1.8rem; margin: 0 0 0.5rem 0;">"Excelente atención médica"</h3>
+                        <p style="color: #69BBA8; font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;">Aleida Pereyra</p>
+                        <p style="color: #666; font-style: italic;">El Dr. Castillo es un excelente profesional. Me ayudó con mi tratamiento y siempre estuvo disponible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 10: Testimonial Jazmin -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #F3E5F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-star" style="font-size: 2.2rem; color: #6A1B9A;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #6A1B9A; font-size: 1.8rem; margin: 0 0 0.5rem 0;">"Personal muy profesional"</h3>
+                        <p style="color: #AB47BC; font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;">Jazmin Martinez</p>
+                        <p style="color: #666; font-style: italic;">Me encanta la atención que recibo aquí. Todo el personal es amable y profesional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 11: Testimonial Marlon -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #FBE9E7; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-thumbs-up" style="font-size: 2.2rem; color: #D84315;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #D84315; font-size: 1.8rem; margin: 0 0 0.5rem 0;">"Lo recomiendo ampliamente"</h3>
+                        <p style="color: #FF7043; font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;">Marlon Castillo</p>
+                        <p style="color: #666; font-style: italic;">Gran experiencia con todos los doctores. Instalaciones modernas y buen trato.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 12: COVID Safety -->
+            <div class="carousel-banner" style="position: absolute; width: 100%; opacity: 0; transition: opacity 0.5s;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: white; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-left: 4px solid #69BBA8;">
+                    <div style="width: 70px; height: 70px; background: #E3F2FD; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-shield-alt" style="font-size: 2.2rem; color: #1565C0;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: #1565C0; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Protocolos de Seguridad</h3>
+                        <p style="color: #42A5F5; font-size: 1rem; margin: 0 0 0.8rem 0;">Tu salud es nuestra prioridad</p>
+                        <p style="color: #666;">Cumplimos con todos los protocolos de bioseguridad para tu tranquilidad.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+        (function() {
+            const banners = document.querySelectorAll('.carousel-banner');
+            let index = 0;
+            
+            console.log('✅ Banner system loaded: ' + banners.length + ' banners');
+            
+            function rotate() {
+                banners.forEach((b, i) => {
+                    b.style.opacity = i === index ? '1' : '0';
+                });
+                console.log('Showing banner ' + (index + 1) + ' of ' + banners.length);
+                index = (index + 1) % banners.length;
+            }
+            
+            setInterval(rotate, 5000);
+        })();
+        </script>
+    </section>
+
+    <section class="defer-visibility" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 4rem 0; border-top: 1px solid #dee2e6;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: center; padding: 0 1rem;">
+                <div style="padding: clamp(1.5rem, 4vw, 2rem); background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(105,187,168,0.2); border-left: 4px solid #69BBA8; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <!-- Professional Hospital Building Icon -->
+                    <i class="fas fa-hospital-alt" style="font-size: clamp(3.5rem, 8vw, 4.5rem); color: #69BBA8; margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="color: #69BBA8; margin-bottom: 0.5rem; font-size: clamp(1.2rem, 3.5vw, 1.5rem); line-height: 1.2;">+25 Años</h3>
+                    <p style="color: #666; margin: 0; font-size: clamp(0.85rem, 2.5vw, 1rem);">De experiencia médica</p>
+                </div>
+                <div style="padding: clamp(1.5rem, 4vw, 2rem); background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(212,175,55,0.2); border-left: 4px solid #69BBA8; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <!-- Professional Medical Team Icon -->
+                    <i class="fas fa-user-md" style="font-size: clamp(3.5rem, 8vw, 4.5rem); color: #D4AF37; margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="color: #D4AF37; margin-bottom: 0.5rem; font-size: clamp(1.2rem, 3.5vw, 1.5rem); line-height: 1.2;">80+ Especialistas</h3>
+                    <p style="color: #666; margin: 0; font-size: clamp(0.85rem, 2.5vw, 1rem);">Médicos certificados</p>
+                </div>
+                <div style="padding: clamp(1.5rem, 4vw, 2rem); background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(105,187,168,0.2); border-left: 4px solid #69BBA8; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <!-- Professional Award/Certificate Icon -->
+                    <i class="fas fa-certificate" style="font-size: clamp(3.5rem, 8vw, 4.5rem); color: #69BBA8; margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="color: #69BBA8; margin-bottom: 0.5rem; font-size: clamp(1.2rem, 3.5vw, 1.5rem); line-height: 1.2;">Excelencia</h3>
+                    <p style="color: #666; margin: 0; font-size: clamp(0.85rem, 2.5vw, 1rem);">En atención médica</p>
+                </div>
+                <div style="padding: clamp(1.5rem, 4vw, 2rem); background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(212,175,55,0.2); border-left: 4px solid #69BBA8; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <!-- Professional MRI/CT Scanner Icon -->
+                    <i class="fas fa-x-ray" style="font-size: clamp(3.5rem, 8vw, 4.5rem); color: #D4AF37; margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="color: #D4AF37; margin-bottom: 0.5rem; font-size: clamp(1.2rem, 3.5vw, 1.5rem); line-height: 1.2;">Tecnología</h3>
+                    <p style="color: #666; margin: 0; font-size: clamp(0.85rem, 2.5vw, 1rem);">Equipos modernos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Providers Section -->
+    <section class="insurance-section defer-visibility" style="background: #ffffff; padding: 3rem 0; border-bottom: 1px solid #e9ecef; overflow: hidden;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <h2 style="font-size: 1.6rem; color: #388E3C; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; letter-spacing: -0.5px;">Seguros Médicos Aceptados</h2>
+                <p style="color: #666; font-size: 0.9rem;">Trabajamos con las principales aseguradoras del país</p>
+            </div>
+            <div class="insurance-carousel" style="position: relative; overflow: hidden; padding: 0.5rem 0;">
+                <div class="insurance-track" style="display: flex; animation: scroll 20s linear infinite;">
+                    <!-- First set of logos -->
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #0066CC, #0052a3); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(0,102,204,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">PRIMERA</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #003d82, #002c5f); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(0,61,130,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">UNIVERSAL</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(46,125,50,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">RENACER</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #E30613, #c70510); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(227,6,19,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">MAPFRE</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">SALUD ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #6B46C1, #553399); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(107,70,193,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">RESERVAS</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #006633, #004d26); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(0,102,51,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">SeNaSa</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <!-- Duplicate set for seamless scrolling -->
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #0066CC, #0052a3); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(0,102,204,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">PRIMERA</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #003d82, #002c5f); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(0,61,130,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">UNIVERSAL</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(46,125,50,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">RENACER</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #E30613, #c70510); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(227,6,19,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">MAPFRE</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">SALUD ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #6B46C1, #553399); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(107,70,193,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">RESERVAS</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; padding: 10px 18px; background: linear-gradient(135deg, #006633, #004d26); color: white; border-radius: 10px; box-shadow: 0 3px 5px rgba(0,102,51,0.3); min-width: 110px; margin: 0 10px;">
+                        <div style="font-size: 14px; font-weight: bold;">SeNaSa</div>
+                        <div style="font-size: 8px; opacity: 0.9; margin-top: 1px;">ARS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            @keyframes scroll {
+            @keyframes fadeOut {
+                0% { opacity: 1; }
+                70% { opacity: 1; }
+                100% { opacity: 0; }
+            }
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+            .insurance-carousel:hover .insurance-track {
+                animation-play-state: paused;
+            }
+    
+        /* Dual Hero Logo Responsive Styles */
+        @media (max-width: 768px) {
+            .dual-hero-logo-container {
+                gap: 25px !important;
+            }
+            
+            .dual-hero-logo-container img[alt="Centro Médico Universal"] {
+                width: 140px !important;
+                height: 140px !important;
+            }
+            
+            .dual-hero-logo-container img[alt*="Nivín"] {
+                width: 140px !important;
+            }
+            
+            .dual-hero-logo-container div[style*="font-size: 3rem"] {
+                font-size: 2rem !important;
+            }
+            
+            /* Keep Nivín badge visible on all screens */
+            .nivin-badge {
+                padding: 6px 12px !important;
+                margin-left: 10px !important;
+                font-size: 0.7rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dual-hero-logo-container {
+                gap: 20px !important;
+            }
+            
+            .dual-hero-logo-container img[alt="Centro Médico Universal"] {
+                width: 120px !important;
+                height: 120px !important;
+            }
+            
+            .dual-hero-logo-container img[alt*="Nivín"] {
+                width: 120px !important;
+            }
+        }
+    </style>>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services defer-visibility">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem; padding: 0 1rem;">
+                <h2 style="font-size: 1.6rem; color: #388E3C; margin-bottom: 1rem; font-weight: 800; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; letter-spacing: -0.5px;">Nuestros Servicios</h2>
+                <p style="font-size: clamp(1rem, 3vw, 1.2rem); color: #69BBA8; max-width: 90%; margin: 0 auto; line-height: 1.5; font-weight: 500;">Ofrecemos una amplia gama de servicios médicos para el cuidado integral de su salud</p>
+            </div>
+            <!-- Quick Access Services -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; padding: 0 1rem;">
+                <div style="background: linear-gradient(135deg, #69BBA8 0%, #5AA89A 100%); color: white; padding: clamp(1.5rem, 4vw, 2rem); border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(105,187,168,0.3);">
+                    <!-- Professional Calendar/Appointment Icon -->
+                    <i class="fas fa-calendar-check" style="font-size: clamp(3.5rem, 8vw, 4.5rem); margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="margin-bottom: 1rem; font-size: clamp(1.2rem, 3vw, 1.4rem); line-height: 1.3;">Citas Online</h3>
+                    <p style="margin-bottom: 1.5rem; opacity: 0.95; font-size: clamp(0.9rem, 2.5vw, 1rem); line-height: 1.4;">Agenda tu cita médica de forma rápida y segura</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #D4AF37 0%, #D4AF37 100%); color: white; padding: clamp(1.5rem, 4vw, 2rem); border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(212,175,55,0.3);">
+                    <!-- Professional Lab Results Icon -->
+                    <i class="fas fa-flask" style="font-size: clamp(3.5rem, 8vw, 4.5rem); margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="margin-bottom: 1rem; font-size: clamp(1.2rem, 3vw, 1.4rem); line-height: 1.3;">Resultados Lab</h3>
+                    <p style="margin-bottom: 1.5rem; opacity: 0.95; font-size: clamp(0.9rem, 2.5vw, 1rem); line-height: 1.4;">Consulta tus resultados de laboratorio online</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #69BBA8 0%, #D4AF37 100%); color: white; padding: clamp(1.5rem, 4vw, 2rem); border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(105,187,168,0.3);">
+                    <!-- Professional Emergency/Ambulance Icon -->
+                    <i class="fas fa-ambulance" style="font-size: clamp(3.5rem, 8vw, 4.5rem); margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="margin-bottom: 1rem; font-size: clamp(1.2rem, 3vw, 1.4rem); line-height: 1.3;">Atención Urgente</h3>
+                    <p style="margin-bottom: 1.5rem; opacity: 0.95; font-size: clamp(0.9rem, 2.5vw, 1rem); line-height: 1.4;">Servicio médico de urgencias disponible</p>
+                    <a href="tel:+18095946161" style="background: rgba(255,255,255,0.25); color: white; padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1.2rem, 3vw, 1.5rem); border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; font-size: clamp(0.85rem, 2.2vw, 0.95rem); border: 2px solid rgba(255,255,255,0.3);">Contactar</a>
+                </div>
+            </div>
+
+            <section class="doctors defer-visibility">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="font-size: 1.6rem; color: #D4AF37; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; letter-spacing: -0.5px;">Nuestro Equipo Médico</h2>
+                <p style="color: #69BBA8; font-weight: 500;">Profesionales de la salud con amplia experiencia y dedicación</p>
+            </div>
+            <div class="doctors-grid">
+                <div class="doctor-card">
+                    <div class="avatar">
+                        <img src="images/DoctorsPics/pedro-rafael.png?v=1759635661_0128" alt="Dr. Pedro Rafael Castillo Rodríguez" loading="lazy" decoding="async" onerror="this.src='images/logo/cmu-logo-new.png'; this.onerror=null; this.style.objectFit='contain'; this.style.padding='10px';">
+                    </div>
+                    <h3>Dr. Pedro Rafael Castillo Rodríguez</h3>
+                    <p class="specialty">Director Médico</p>
+                    <p>Especialista en Medicina Interna con más de 20 años de experiencia.</p>
+                </div>
+                <div class="doctor-card">
+                    <div class="avatar"><img src="images/DoctorsPics/vidalva-decena-medina.png?v=1759635661_0128" alt="Dra. Vidalva Decena Medina" loading="lazy" decoding="async" onerror="this.onerror=null; this.remove(); const e=document.createElement('div'); e.className='emoji'; e.textContent='👩‍⚕️'; this.parentNode.appendChild(e);"></div>
+                    <h3>Dra. Vidalva Decena Medina</h3>
+                    <p class="specialty">Ginecología y Obstetricia</p>
+                    <p>Especialista en ginecología dedicada a la atención integral de la salud femenina.</p>
+                </div>
+                <div class="doctor-card">
+                    <div class="avatar"><img src="images/DoctorsPics/manuel-antonio-castillo.png?v=1759635661_0128" alt="Dr. Manuel Antonio Castillo Rodríguez" loading="lazy" decoding="async" onerror="this.onerror=null; this.remove(); const e=document.createElement('div'); e.className='emoji'; e.textContent='👨‍⚕️'; this.parentNode.appendChild(e);"></div>
+                    <h3>Dr. Manuel Antonio Castillo Rodríguez</h3>
+                    <p class="specialty">Especialista en Salud Sexual</p>
+                    <p>Especialista dominicano con más de 25 años de experiencia en ginecología, sexualidad humana y terapia de parejas. Autor de investigaciones sobre vaginismo y abuso sexual.</p>
+                </div>
+            </div>
+            <div class="section-footer">
+                <a class='btn outline' href='/doctores.html'>Conocer a todo el equipo</a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="defer-visibility">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centro Médico Universal</h3>
+                    <p>Castillo Rodríguez y Asociados</p>
+                    <p>Comprometidos con su salud desde 1995</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Club Rotario No 58, Santo Domingo Este, Republica Dominicana 11501</p>
+                    <p><i class="fas fa-phone"></i> (809) 594-6161</p>
+                    <p><i class="fas fa-envelope"></i> info@centromedicouniversal.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horarios</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Nuestro Compromiso</h3>
+                    <p>En Centro Médico Universal, nos comprometemos a brindar atención médica de calidad y un servicio excepcional a todos nuestros pacientes.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Centro Médico Universal. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+ 
+ 
+  <!-- Nivín AI Chatbot - Minimal Version -->
+    <!-- Nivín Enhanced Capabilities -->
+    <script src="js/complaint-handler.js"></script>
+    <script src="js/nivin-symptom-mapping.js"></script>
+    <script src="js/nivin-better-responses.js"></script>
+    <script src="js/gemini-integration.js?v=1759635661"></script>
+    <script src="js/nivin-chat-init.js?v=1759635661"></script>
+    <script src="js/open-nivin.js?v=1759635661"></script>
+    
+    <script src="js/lazy-load.min.js" defer></script>
+
+    <!-- Draft-only visitor counter (CountAPI) loaded via external script to satisfy CSP -->
+
+<!-- Nivín Floating Chat Button -->
+<div id="nivin-float-button" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; cursor: pointer;">
+    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #388E3C, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(56, 142, 60, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="openNivinChat()">
+        <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/nivin-full-logo-white.svg?v=1759635661?v=1759635661" alt="Nivín" style="width: 50px; height: auto;">
+    </div>
+</div>
+
+<!-- Nivín Chat Modal -->
+<div id="nivin-chat-modal" style="display: none; position: fixed; top: 50%; right: 20px; transform: translateY(-50%); width: 400px; max-width: 90vw; height: auto; max-height: 90vh; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; flex-direction: column; overflow-y: auto;">
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #388E3C, #2E7D32); padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+        <div style="flex: 1;">
+            <!-- Logo Row -->
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/nivin-full-logo-white.svg?v=1759635661" alt="Nivin Logo" style="height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661" alt="CMU Logo" style="height: 50px; width: 50px; border-radius: 50%; background: white; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+            </div>
+            <!-- Title -->
+            <h3 style="margin: 0; padding: 0; color: #FFFFFF !important; font-size: 18px; font-weight: 700; position: relative; z-index: 10; opacity: 1 !important; background: transparent;">Nivín - Asistente Médico</h3>
+            <!-- Subtitle -->
+            <p style="margin: 3px 0 0 0; padding: 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 400;">Centro Médico Universal</p>
+        </div>
+        <!-- Close Button -->
+        <button onclick="closeNivinChat()" style="background: rgba(255,255,255,0.15); border: none; color: white; font-size: 24px; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">×</button>
+    </div>
+    
+    <!-- Messages -->
+    <div id="nivin-messages" style="flex: 1; display: block; overflow-y: auto; min-height: 300px; padding: 20px; background: #f5f5f5; font-family: Arial, sans-serif;">
+        <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #000 !important; font-size: 16px !important; line-height: 1.6; font-weight: 500 !important;">
+            ¡Hola! Soy Nivín, tu asistente médico virtual de Centro Médico Universal. 👋<br><br>
+            ¿En qué puedo ayudarte hoy?
+        </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div style="padding: 10px; background: white; border-top: 1px solid #e0e0e0; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+        <button onclick="nivinAction('cita')" style="padding: 8px 12px; background: #e8f5e9; border: 1px solid #388E3C; border-radius: 15px; color: #2E7D32; font-size: 12px; cursor: pointer; font-weight: 600;">📅 Solicitar Cita</button>
+        <button onclick="nivinAction('queja')" style="padding: 8px 12px; background: #ffebee; border: 1px solid #f44336; border-radius: 15px; color: #c62828; font-size: 12px; cursor: pointer; font-weight: 600;">📝 Poner Queja</button>
+        <button onclick="nivinAction('doctores')" style="padding: 8px 12px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 15px; color: #e65100; font-size: 12px; cursor: pointer; font-weight: 600;">👨‍⚕️ Ver Doctores</button>
+        <button onclick="nivinAction('info')" style="padding: 8px 12px; background: #e3f2fd; border: 1px solid #2196f3; border-radius: 15px; color: #1976d2; font-size: 12px; cursor: pointer; font-weight: 600;">ℹ️ Información</button>
+    </div>
+    
+    <!-- Nueva Conversación Button -->
+    <div style="padding: 8px 15px; background: #fafafa; border-top: 1px solid #e0e0e0; display: flex; justify-content: center;">
+        <button onclick="clearNivinChat()" style="padding: 8px 16px; background: linear-gradient(135deg, #FF9800, #F57C00); border: none; border-radius: 15px; color: white; font-size: 13px; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(255,152,0,0.3); transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 16px;">🔄</span> Nueva Conversación
+        </button>
+    </div>
+    <!-- Input -->
+    <div style="padding: 15px; background: white; border-top: 1px solid #e0e0e0;">
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="nivin-input" placeholder="Escribe tu mensaje..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 25px; outline: none; font-size: 14px;" onkeypress="if(event.key==='Enter') sendNivinMessage()">
+            <button onclick="sendNivinMessage()" style="background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">➤</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// openNivinChat() function is in open-nivin.js
+
+function closeNivinChat() {
+    const modal = document.getElementById('nivin-chat-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function clearNivinChat() {
+    // Clear all messages except the initial greeting
+    const messagesContainer = document.getElementById('nivin-messages');
+    messagesContainer.innerHTML = `
+        <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #000 !important; font-size: 16px !important; line-height: 1.6; font-weight: 500 !important;">
+            ¡Hola! Soy Nivín, tu asistente médico virtual de Centro Médico Universal. 👋<br><br>
+            ¿En qué puedo ayudarte hoy?
+        </div>
+    `;
+    
+    // Clear the input field
+    const input = document.getElementById('nivin-input');
+    if (input) {
+        input.value = '';
+    }
+    
+    // Reset conversation state if exists
+    if (window.conversationHistory) {
+        window.conversationHistory = [];
+    }
+    
+    // Reset any flow state
+    if (window.currentFlow) {
+        window.currentFlow = null;
+    }
+    
+    // Show a subtle confirmation
+    const tempMessage = document.createElement('div');
+    tempMessage.style.cssText = 'background: #E8F5E9; padding: 10px 15px; border-radius: 10px; margin-bottom: 10px; text-align: center; color: #2E7D32; font-size: 13px; animation: fadeOut 2s forwards;';
+    tempMessage.innerHTML = '✨ Nueva conversación iniciada';
+    messagesContainer.appendChild(tempMessage);
+    
+    // Remove the message after 2 seconds
+    setTimeout(() => {
+        if (tempMessage.parentNode) {
+            tempMessage.remove();
+        }
+    }, 2000);
+    
+    console.log('✅ Chat cleared - Ready for new conversation');
+}
+
+// Make globally available
+window.closeNivinChat = closeNivinChat;
+
+function nivinAction(type) {
+    // First, open the Nivín chat modal
+    if (typeof openNivinChat === 'function') {
+        openNivinChat();
+    } else {
+        // Fallback if function not loaded
+        const modal = document.getElementById('nivin-chat-modal');
+        if (modal) modal.style.display = 'flex';
+    }
+    
+    // Wait for modal to open, then set message and send
+    setTimeout(() => {
+        const input = document.getElementById('nivin-input');
+        if (input) {
+            if (type === 'cita') input.value = 'Necesito una cita';
+            else if (type === 'queja') input.value = 'Quiero poner una queja';
+            else if (type === "info") input.value = "Información sobre servicios";
+            else if (type === "doctores") input.value = "Quiero ver los doctores disponibles";
+            sendNivinMessage();
+        }
+    }, 200);
+}
+
+function sendNivinMessage() {
+    const input = document.getElementById('nivin-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+    
+    const messagesDiv = document.getElementById('nivin-messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.style.cssText = 'background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; padding: 12px 16px; border-radius: 18px; margin: 10px 0; margin-left: auto; max-width: 75%; text-align: right;';
+    userDiv.textContent = msg;
+    messagesDiv.appendChild(userDiv);
+    
+    input.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    // Bot response via Gemini if available
+    if (window.NivinAI && window.NivinAI.handleMessage) {
+        window.NivinAI.handleMessage(msg, messagesDiv);
+    } else {
+        // Fallback response
+        setTimeout(() => {
+            const botDiv = document.createElement('div');
+            botDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);';
+            botDiv.innerHTML = 'Iniciando asistente virtual...';
+            messagesDiv.appendChild(botDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }, 500);
+    }
+}
+</script>
+  </body>
+  </html>
+<!-- Version: 20251003_112243 -->

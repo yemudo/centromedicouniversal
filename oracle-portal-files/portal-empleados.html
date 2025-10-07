@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Empleados - Centro Médico Universal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .oracle-badge {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        .form-container {
+            padding: 40px 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .credentials-info {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 8px;
+        }
+        
+        .credentials-info h3 {
+            color: #1e3c72;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .credentials-info p {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .credentials-info code {
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            background: #ffe0e0;
+            border-left: 4px solid #ff4444;
+            color: #cc0000;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .oracle-indicator {
+            text-align: center;
+            padding: 15px;
+            background: #fff3e0;
+            border-top: 2px solid #ff9800;
+            font-size: 12px;
+            color: #ff6b00;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="../images/logo/cmu-logo-new.png" alt="Centro Médico Universal" onerror="this.style.display='none'">
+            </div>
+            <h1>Portal de Empleados</h1>
+            <span class="oracle-badge">ORACLE SYSTEM</span>
+        </div>
+        
+        <div class="form-container">
+            <div class="error-message" id="error-message"></div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario ORACLE</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Ingrese su usuario"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña ORACLE</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Ingrese su contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+                
+                <button type="submit" id="login-btn">
+                    Iniciar Sesión en ORACLE
+                </button>
+            </form>
+            
+            <div class="credentials-info">
+                <h3>Credenciales ORACLE</h3>
+                <p>
+                    Usuario: <code>mcastillo</code><br>
+                    Contraseña: <code>Admin@2025</code>
+                </p>
+            </div>
+        </div>
+        
+        <div class="oracle-indicator">
+            CONECTADO A ORACLE DATABASE
+        </div>
+    </div>
+    
+    <script>
+        const API_URL = '/api';
+        
+        // Form submission
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('login-btn');
+            const errorDiv = document.getElementById('error-message');
+            
+            // Hide previous errors
+            errorDiv.style.display = 'none';
+            
+            // Validate fields
+            if (!username || !password) {
+                showError('Por favor complete todos los campos');
+                return;
+            }
+            
+            // Disable button
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Verificando...';
+            
+            try {
+                const response = await fetch(`${API_URL}/oracle-auth.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store user data
+                    localStorage.setItem('oracle_user', JSON.stringify(data.data));
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard-empleados.html';
+                } else {
+                    showError(data.error || 'Credenciales inválidas');
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Iniciar Sesión en ORACLE';
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('Error de conexión. Verifique que el servidor esté activo.');
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Iniciar Sesión en ORACLE';
+            }
+        });
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        // Check if already logged in
+        if (localStorage.getItem('oracle_user')) {
+            window.location.href = 'dashboard-empleados.html';
+        }
+    </script>
+</body>
+</html>

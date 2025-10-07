@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Circular Logo for Centro Médico Universal -->
+  
+  <!-- White circular background -->
+  <circle cx="200" cy="200" r="190" fill="white"/>
+  
+  <!-- Outer circle border (dark green) -->
+  <circle cx="200" cy="200" r="190" fill="none" stroke="#2c5530" stroke-width="4"/>
+  
+  <!-- Inner decorative circle -->
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#69BBA8" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Top curved text: CENTRO MÉDICO UNIVERSAL -->
+  <defs>
+    <path id="topArc" d="M 70,200 A 130,130 0 0,1 330,200" fill="none"/>
+  </defs>
+  <text font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2c5530" letter-spacing="2">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+      CENTRO MÉDICO UNIVERSAL
+    </textPath>
+  </text>
+  
+  <!-- Bottom curved text: GRUPO HOSPITALARIO M -->
+  <defs>
+    <path id="bottomArc" d="M 330,200 A 130,130 0 0,1 70,200" fill="none"/>
+  </defs>
+  <text font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#2c5530" letter-spacing="1">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+      GRUPO HOSPITALARIO M
+    </textPath>
+  </text>
+  
+  <!-- Center globe/world symbol -->
+  <g transform="translate(200, 200)">
+    <!-- Globe circle -->
+    <circle cx="0" cy="0" r="85" fill="none" stroke="#2c5530" stroke-width="3"/>
+    
+    <!-- Latitude lines -->
+    <ellipse cx="0" cy="0" rx="85" ry="40" fill="none" stroke="#69BBA8" stroke-width="2" opacity="0.6"/>
+    <line x1="-85" y1="0" x2="85" y2="0" stroke="#69BBA8" stroke-width="2" opacity="0.6"/>
+    <ellipse cx="0" cy="0" rx="85" ry="20" fill="none" stroke="#69BBA8" stroke-width="1.5" opacity="0.4"/>
+    
+    <!-- Longitude lines -->
+    <ellipse cx="0" cy="0" rx="40" ry="85" fill="none" stroke="#69BBA8" stroke-width="2" opacity="0.6"/>
+    <ellipse cx="0" cy="0" rx="20" ry="85" fill="none" stroke="#69BBA8" stroke-width="1.5" opacity="0.4"/>
+    
+    <!-- Central caduceus staff -->
+    <rect x="-4" y="-60" width="8" height="120" fill="#2c5530" rx="2"/>
+    
+    <!-- Medical cross (gold) -->
+    <g transform="translate(0, 0)">
+      <rect x="-8" y="-35" width="16" height="70" rx="3" fill="#D4AF37"/>
+      <rect x="-35" y="-8" width="70" height="16" rx="3" fill="#D4AF37"/>
+    </g>
+    
+    <!-- Caduceus wings (light teal) -->
+    <path d="M -8,-55 Q -30,-65 -40,-50 Q -35,-35 -20,-40 L -8,-45 Z" fill="#69BBA8" opacity="0.8"/>
+    <path d="M 8,-55 Q 30,-65 40,-50 Q 35,-35 20,-40 L 8,-45 Z" fill="#69BBA8" opacity="0.8"/>
+    
+    <!-- Small serpents on staff (simplified) -->
+    <path d="M -4,-30 Q -15,-25 -10,-15 Q -5,-10 -4,-5" fill="none" stroke="#2c5530" stroke-width="2"/>
+    <path d="M 4,-30 Q 15,-25 10,-15 Q 5,-10 4,-5" fill="none" stroke="#2c5530" stroke-width="2"/>
+  </g>
+  
+  <!-- Small medical symbols at cardinal points -->
+  <!-- Top -->
+  <g transform="translate(200, 40)">
+    <circle cx="0" cy="0" r="8" fill="#D4AF37"/>
+    <rect x="-1.5" y="-5" width="3" height="10" fill="white"/>
+    <rect x="-5" y="-1.5" width="10" height="3" fill="white"/>
+  </g>
+  
+  <!-- Bottom -->
+  <g transform="translate(200, 360)">
+    <circle cx="0" cy="0" r="8" fill="#D4AF37"/>
+    <rect x="-1.5" y="-5" width="3" height="10" fill="white"/>
+    <rect x="-5" y="-1.5" width="10" height="3" fill="white"/>
+  </g>
+  
+  <!-- Left -->
+  <g transform="translate(40, 200)">
+    <circle cx="0" cy="0" r="8" fill="#D4AF37"/>
+    <rect x="-1.5" y="-5" width="3" height="10" fill="white"/>
+    <rect x="-5" y="-1.5" width="10" height="3" fill="white"/>
+  </g>
+  
+  <!-- Right -->
+  <g transform="translate(360, 200)">
+    <circle cx="0" cy="0" r="8" fill="#D4AF37"/>
+    <rect x="-1.5" y="-5" width="3" height="10" fill="white"/>
+    <rect x="-5" y="-1.5" width="10" height="3" fill="white"/>
+  </g>
+</svg>

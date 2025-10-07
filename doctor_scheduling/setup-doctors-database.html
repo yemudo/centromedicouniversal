@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Doctors Database - Centro Médico Universal</title>
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+        
+        const supabaseUrl = 'https://hsuntoblbzlnqgeteypr.supabase.co'
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzdW50b2JsYnpsbnFnZXRleXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3NDM2MDEsImV4cCI6MjA3NDMxOTYwMX0.NMpmigOC5UK_M53scFixz-dw9dJoBoiZDovZERsJmQ0'
+        const supabase = createClient(supabaseUrl, supabaseAnonKey)
+        
+        window.supabase = supabase
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2E7D32, #388E3C);
+            padding: 40px;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .pending { background: #fff3cd; color: #856404; }
+        button {
+            background: #2E7D32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Setup Doctors Database</h1>
+        <div id="status"></div>
+        
+        <button onclick="setupEverything()">🚀 Setup Complete Database</button>
+        <button onclick="window.location.href='doctor-management.html'">📋 Go to Doctor Management</button>
+        <button onclick="window.location.href='schedule-management.html'">📅 Go to Schedule Management</button>
+    </div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        
+        function addStatus(message, type = 'pending') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            statusDiv.appendChild(div);
+        }
+
+        async function setupEverything() {
+            statusDiv.innerHTML = '';
+            
+            try {
+                // Step 1: Create the doctors table
+                addStatus('Creating doctors_directory table...', 'pending');
+                
+                // We can't create tables directly via JS client, but we can insert data
+                // which will auto-create the table if RLS is off
+                
+                // Step 2: Add sample doctors
+                addStatus('Adding doctors to database...', 'pending');
+                
+                const doctors = [
+                    {
+                        doctor_name: 'Dr. Manuel Antonio Castillo Rodríguez',
+                        email: 'mcastillo@centromedicouniversal.com',
+                        phone: '809-555-0001',
+                        specialty: 'Medicina Interna',
+                        license_number: 'LIC-001-2024',
+                        status: 'active',
+                        bio: 'Director Médico. Especialista en Medicina Interna con más de 20 años de experiencia en el diagnóstico y tratamiento de enfermedades complejas.',
+                        consultation_fee: 2500
+                    },
+                    {
+                        doctor_name: 'Dra. Vidalva Decena Medina',
+                        email: 'vdecena@centromedicouniversal.com',
+                        phone: '809-555-0002',
+                        specialty: 'Ginecología',
+                        license_number: 'LIC-002-2024',
+                        status: 'active',
+                        bio: 'Especialista en Ginecología y Obstetricia. Dedicada a la atención integral de la salud femenina con enfoque preventivo.',
+                        consultation_fee: 2000
+                    },
+                    {
+                        doctor_name: 'Dr. Rafael Beltré',
+                        email: 'rbeltre@centromedicouniversal.com',
+                        phone: '809-555-0003',
+                        specialty: 'Salud Sexual',
+                        license_number: 'LIC-003-2024',
+                        status: 'active',
+                        bio: 'Especialista dominicano con más de 25 años de experiencia en ginecología, sexualidad humana y terapia de parejas. Autor de investigaciones sobre vaginismo y abuso sexual.',
+                        consultation_fee: 3000
+                    },
+                    {
+                        doctor_name: 'Dr. Carlos Méndez',
+                        email: 'cmendez@centromedicouniversal.com',
+                        phone: '809-555-0004',
+                        specialty: 'Cardiología',
+                        license_number: 'LIC-004-2024',
+                        status: 'active',
+                        bio: 'Cardiólogo con especialización en prevención cardiovascular y manejo de hipertensión arterial.',
+                        consultation_fee: 3500
+                    },
+                    {
+                        doctor_name: 'Dra. María Santos',
+                        email: 'msantos@centromedicouniversal.com',
+                        phone: '809-555-0005',
+                        specialty: 'Pediatría',
+                        license_number: 'LIC-005-2024',
+                        status: 'active',
+                        bio: 'Pediatra dedicada al cuidado integral de niños y adolescentes. Especializada en medicina preventiva infantil.',
+                        consultation_fee: 1800
+                    },
+                    {
+                        doctor_name: 'Dr. Juan Pérez',
+                        email: 'jperez@centromedicouniversal.com',
+                        phone: '809-555-0006',
+                        specialty: 'Medicina General',
+                        license_number: 'LIC-006-2024',
+                        status: 'active',
+                        bio: 'Médico general con enfoque en atención primaria y medicina familiar.',
+                        consultation_fee: 1500
+                    }
+                ];
+
+                // First, check if table exists and has data
+                const { data: existingDoctors, error: checkError } = await window.supabase
+                    .from('doctors_directory')
+                    .select('id')
+                    .limit(1);
+
+                if (checkError && checkError.message.includes('does not exist')) {
+                    addStatus('❌ Table does not exist. Please create it in Supabase SQL Editor first.', 'error');
+                    addStatus('Go to: https://supabase.com/dashboard/project/hsuntoblbzlnqgeteypr/sql', 'error');
+                    
+                    const sqlCode = `CREATE TABLE IF NOT EXISTS doctors_directory (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    doctor_name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    phone TEXT,
+    specialty TEXT NOT NULL,
+    license_number TEXT,
+    status TEXT DEFAULT 'active',
+    bio TEXT,
+    consultation_fee DECIMAL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);`;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(sqlCode);
+                    addStatus('SQL code copied to clipboard! Paste it in SQL Editor and run it.', 'pending');
+                    return;
+                }
+
+                // If table exists, clear existing data first
+                if (!checkError) {
+                    addStatus('Table exists. Clearing old data...', 'pending');
+                    const { error: deleteError } = await window.supabase
+                        .from('doctors_directory')
+                        .delete()
+                        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all
+                    
+                    if (deleteError) {
+                        console.error('Delete error:', deleteError);
+                    }
+                }
+
+                // Insert new doctors
+                addStatus('Inserting doctors...', 'pending');
+                const { data, error } = await window.supabase
+                    .from('doctors_directory')
+                    .insert(doctors);
+
+                if (error) {
+                    console.error('Insert error:', error);
+                    if (error.message.includes('duplicate key')) {
+                        addStatus('⚠️ Some doctors already exist. Skipping duplicates...', 'error');
+                    } else {
+                        throw error;
+                    }
+                } else {
+                    addStatus('✅ Successfully added ' + doctors.length + ' doctors!', 'success');
+                }
+
+                // Step 3: Verify
+                const { data: verifyData, error: verifyError } = await window.supabase
+                    .from('doctors_directory')
+                    .select('doctor_name, specialty')
+                    .order('doctor_name');
+
+                if (!verifyError && verifyData) {
+                    addStatus('✅ Database setup complete! Found ' + verifyData.length + ' doctors:', 'success');
+                    verifyData.forEach(doc => {
+                        addStatus('  • ' + doc.doctor_name + ' (' + doc.specialty + ')', 'success');
+                    });
+                }
+
+                addStatus('🎉 Setup complete! You can now:', 'success');
+                addStatus('1. Go to Doctor Management to view/edit doctors', 'success');
+                addStatus('2. Go to Schedule Management to set up schedules', 'success');
+
+            } catch (error) {
+                console.error('Setup error:', error);
+                addStatus('❌ Error: ' + error.message, 'error');
+            }
+        }
+
+        // Auto-run setup on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            addStatus('Ready to setup database. Click the button to begin.', 'pending');
+        });
+    </script>
+</body>
+</html>

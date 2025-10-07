@@ -1,0 +1,221 @@
+<!-- STANDARD HEADER FOR ALL PAGES - CENTRO MÉDICO UNIVERSAL -->
+<!-- Do NOT modify without updating all pages -->
+
+<header class="header-preview">
+    <div class="header-wrap">
+        <div class="brand">
+            <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759635661" 
+                 alt="CMU Logo" 
+                 class="brand-logo"
+                 onerror="this.src='/images/centro_medico_logo_circular.png'">
+            <div class="brand-text">
+                <h1>Centro Médico Universal</h1>
+                <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
+            </div>
+            <div class="nivin-badge" style="display: flex; align-items: center; margin-left: 20px; padding: 8px 18px; background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%); border-radius: 20px; border: 2px solid #D4AF37;">
+                <span style="color: white; font-size: 0.75rem; font-weight: 600; white-space: nowrap;">Powered by Nivín EMR</span>
+            </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="/doctores.html">Doctores</a></li>
+                <li><a href="/instalaciones">Instalaciones</a></li>
+                <li><a href="/#appointment">Citas</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <div class="actions">
+            <a class="phone" href="tel:+18095946161">(809) 594-6161</a>
+            <a class="btn outline" href="/nivin-login.html" rel="noopener">Ingreso Staff Médico</a>
+        </div>
+    </div>
+</header>
+
+<!-- STANDARD HEADER CSS -->
+<style>
+.header-preview {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.brand-text h1 {
+    font-size: 1.2rem;
+    color: #2E7D32;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.brand-text p {
+    font-size: 0.7rem;
+    color: #666;
+    margin: 2px 0 0 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: #2E7D32;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.phone {
+    color: #2E7D32;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.btn.outline {
+    padding: 10px 20px;
+    border: 2px solid #2E7D32;
+    border-radius: 25px;
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn.outline:hover {
+    background: #2E7D32;
+    color: white;
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #2E7D32;
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+    .header-wrap {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+    }
+    
+    .nav {
+        order: 4;
+        width: 100%;
+        display: none;
+    }
+    
+    .nav.active {
+        display: block;
+    }
+    
+    .nav ul {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 0;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    .brand-text h1 {
+        font-size: 1rem;
+    }
+    
+    .brand-text p {
+        font-size: 0.65rem;
+    }
+    
+    .brand-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .nivin-badge {
+        display: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .phone {
+        font-size: 0.9rem;
+    }
+    
+    .btn.outline {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}
+</style>
+
+<script>
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const nav = document.querySelector('.nav');
+    
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    }
+});
+</script>

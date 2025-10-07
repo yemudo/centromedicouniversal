@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Doctores - Centro Médico Universal Castillo Rodríguez y Asociados</title>
+    <link rel="stylesheet" href="css/styles.css?v=20250913-1020">
+    <link rel="stylesheet" href="css/header-preview.css?v=20250912-2355">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.min.css" >
+    <meta name="description" content="Conozca a nuestros médicos especialistas en Centro Médico Universal. Agende su cita y reciba atención de calidad.">
+    <meta name="theme-color" content="#2dd4ac">
+    <style>
+        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
+        .section-header h2 { color: #388E3C !important; }
+        .hero h1, .hero h2 { color: white !important; }
+        section.hero h1, section.hero h2 { color: white !important; }
+        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
+        .section-header h2 { color: #388E3C !important; }
+    </style>
+    <link rel="manifest" href="/manifest.webmanifest">
+    
+    <style>
+        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
+        .section-header h2 { color: #388E3C !important; }
+        .hero h1, .hero h2 { color: white !important; }
+        section.hero h1, section.hero h2 { color: white !important; }
+        .page-title {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(56, 178, 172, 0.8)), url('images/doctors-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .doctors-page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+            align-items: stretch;
+        }
+        
+        .doctor-card-detailed {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        
+        .doctor-card-detailed:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .doctor-image {
+            width: 80px !important;
+            height: 80px !important;
+            min-width: 80px !important;
+            min-height: 80px !important;
+            max-width: 80px !important;
+            max-height: 80px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 1rem !important;
+            background: white !important;
+            border: 3px solid #D4AF37 !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+            font-size: 2rem !important;
+            line-height: 1 !important;
+            overflow: hidden !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            aspect-ratio: 1/1 !important;
+        }
+        
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .doctor-image picture {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .doctor-card-detailed:hover .doctor-image i {
+            transform: scale(1.05);
+        }
+        
+        .doctor-info {
+            padding: 1rem 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .doctor-actions {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        
+        .doctor-name {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .doctor-specialty {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .doctor-bio {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .doctor-details {
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+        
+        .doctor-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doctor-detail i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            min-width: 20px;
+        }
+        
+        .department-section {
+            margin-bottom: 4rem;
+        }
+        
+        .department-header {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .department-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .department-header p {
+            color: var(--dark-gray);
+        }
+        
+        .department-doctors {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .schedule-badge {
+            display: inline-block;
+            background-color: var(--light-gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .doctor-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .doctor-actions a {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem 0;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .doctor-actions .appointment-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .doctor-actions .profile-btn {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .doctor-actions .appointment-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .doctor-actions .profile-btn:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+        
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background-color: #e0e0e0;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            padding-left: 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .search-box i {
+            position: absolute;
+            top: 50%;
+            left: 0.8rem;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .doctors-page-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .department-doctors {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-preview">
+      <div class="header-wrap">
+        <div class="brand">
+          <div class="brand-text">
+            <h1>Centro Médico Universal</h1>
+            <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href='/'>Inicio</a>
+          <a href='/servicios'>Servicios</a>
+          <a class='active' href='/doctores'>Doctores</a>
+          <a href='/instalaciones'>Instalaciones</a>
+          <a href='/contacto'>Contacto</a>
+        </nav>
+
+        <div class="actions">
+          <a class="phone" href="tel:+18095946161">(809) 594-6161</a>
+          <a class='cta' href='/agendar'>SOLICITAR CITA</a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Nuestros Especialistas</h1>
+            <p>Un equipo médico comprometido con su salud y bienestar</p>
+        </div>
+    </section>
+
+    <section class="doctors-section">
+        <div class="container">
+            <div class="filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar médico por nombre o especialidad...">
+                </div>
+                
+                <div class="filter-controls">
+                    <!-- Botones generados dinámicamente -->
+                </div>
+            </div>
+            
+            <!-- Static doctors list - no JS needed -->
+            <div id="departments-root">
+                <!-- All doctors will be loaded here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="appointment">
+        <div class="container">
+            <div class="appointment-content">
+                <div class="appointment-text">
+                    <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Agende su cita con nuestros especialistas</h2>
+                    <p>Complete el formulario y nos pondremos en contacto con usted para confirmar su cita médica.</p>
+                </div>
+                <form class="appointment-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="appointment-specialty" required>
+                            <option value="" disabled selected>Seleccione especialidad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="appointment-doctor" required>
+                            <option value="" disabled selected>Seleccione doctor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Motivo de consulta" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Solicitar Cita</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Centro Médico Universal</h3>
+                    <p>Castillo Rodríguez y Asociados</p>
+                    <p>Comprometidos con su salud desde 1995</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Club Rotario No 58, Santo Domingo Este, Republica Dominicana 11501</p>
+                    <p><i class="fas fa-phone"></i> (809) 594-6161</p>
+                    <p><i class="fas fa-envelope"></i> info@centromedicouniversal.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horarios</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=501448386617979" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://do.linkedin.com/company/grupouniversal" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/18095946161" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Centro Médico Universal Castillo Rodríguez y Asociados. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a aria-label='Solicitar Cita' class='mobile-cta' href='/agendar'>
+        <i class="fas fa-calendar-check" aria-hidden="true"></i>
+        <span>Solicitar Cita</span>
+    </a>
+    <script src="js/main.min.js" defer></script>
+    <script src="js/gemini-integration.js?v=1.8"></script>
+    <script src="js/lazy-load.min.js" defer></script>
+    <script src="js/specialty-icons.min.js" defer></script>
+    <script src="js/render-doctors.js?v=20250913-1020"></script>
+    <script src="js/structured-data.min.js" defer></script>
+    <script src="js/pwa.min.js" defer></script>
+    <script src="js/draft-counter.js?v=3"></script>
+</body>
+</html>

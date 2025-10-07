@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Citas - Centro Médico Universal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .booking-header {
+            background: #388E3C;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .booking-header h1 {
+            font-size: 1.8rem;
+            color: #D4AF37;
+            margin-bottom: 10px;
+        }
+        
+        .booking-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .booking-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 15px 30px;
+            background: white;
+            border: 2px solid #388E3C;
+            color: #388E3C;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-button:hover {
+            background: #388E3C;
+            color: white;
+        }
+        
+        .tab-button.active {
+            background: #388E3C;
+            color: #D4AF37;
+        }
+        
+        .booking-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .tab-panel {
+            display: none;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        /* Custom Booking Form */
+        .custom-booking {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            color: #388E3C;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #69BBA8;
+            box-shadow: 0 0 0 3px rgba(105, 187, 168, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .specialty-card {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .specialty-card:hover {
+            border-color: #69BBA8;
+            background: #f0fdf4;
+        }
+        
+        .specialty-card.selected {
+            background: #388E3C;
+            color: white;
+            border-color: #388E3C;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .time-slot {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .time-slot:hover {
+            border-color: #69BBA8;
+            background: #f0fdf4;
+        }
+        
+        .time-slot.selected {
+            background: #D4AF37;
+            color: white;
+            border-color: #D4AF37;
+        }
+        
+        .submit-button {
+            padding: 15px 50px;
+            background: #388E3C;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+        
+        .submit-button:hover {
+            background: #2E7D32;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 142, 60, 0.3);
+        }
+        
+        /* Integration Instructions */
+        .integration-card {
+            background: #f8f9fa;
+            border-left: 4px solid #D4AF37;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        
+        .integration-card h3 {
+            color: #388E3C;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+        }
+        
+        .step-list li {
+            counter-increment: step;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #D4AF37;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+            }
+            
+            .booking-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-header">
+        <h1>Sistema de Citas</h1>
+        <p>Centro Médico Universal - Castillo Rodríguez y Asociados</p>
+    </div>
+    
+    <div class="booking-container">
+        <div class="booking-tabs">
+            <button class="tab-button active" onclick="showTab('custom')">Sistema Personalizado</button>
+            <button class="tab-button" onclick="showTab('zoho')">Zoho Booking</button>
+            <button class="tab-button" onclick="showTab('calendly')">Calendly</button>
+            <button class="tab-button" onclick="showTab('instructions')">Instrucciones</button>
+        </div>
+        
+        <div class="booking-content">
+            <!-- Custom Booking System -->
+            <div id="custom" class="tab-panel active">
+                <h2 style="color: #388E3C; margin-bottom: 30px;">Agendar Cita Médica</h2>
+                <form class="custom-booking" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre Completo *</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cédula/Pasaporte *</label>
+                            <input type="text" name="id" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Teléfono *</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Seguro Médico</label>
+                        <select name="insurance">
+                            <option value="">Seleccione su seguro</option>
+                            <option value="primera">ARS Primera</option>
+                            <option value="universal">ARS Universal</option>
+                            <option value="humano">ARS Humano</option>
+                            <option value="renacer">ARS Renacer</option>
+                            <option value="mapfre">MAPFRE Salud</option>
+                            <option value="reservas">ARS Reservas</option>
+                            <option value="senasa">SeNaSa</option>
+                            <option value="privado">Privado (Sin Seguro)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Especialidad Requerida *</label>
+                        <div class="specialty-grid">
+                            <div class="specialty-card" onclick="selectSpecialty(this, 'general')">
+                                Medicina General
+                            </div>
+                            <div class="specialty-card" onclick="selectSpecialty(this, 'pediatria')">
+                                Pediatría
+                            </div>
+                            <div class="specialty-card" onclick="selectSpecialty(this, 'ginecologia')">
+                                Ginecología
+                            </div>
+                            <div class="specialty-card" onclick="selectSpecialty(this, 'cardiologia')">
+                                Cardiología
+                            </div>
+                            <div class="specialty-card" onclick="selectSpecialty(this, 'dermatologia')">
+                                Dermatología
+                            </div>
+                            <div class="specialty-card" onclick="selectSpecialty(this, 'psicologia')">
+                                Psicología
+                            </div>
+                        </div>
+                        <input type="hidden" name="specialty" id="selectedSpecialty" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha Preferida *</label>
+                            <input type="date" name="date" min="" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hora Preferida *</label>
+                            <div class="time-slots">
+                                <div class="time-slot" onclick="selectTime(this, '08:00')">8:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this, '09:00')">9:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this, '10:00')">10:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this, '11:00')">11:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this, '14:00')">2:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '15:00')">3:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '16:00')">4:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '17:00')">5:00 PM</div>
+                            </div>
+                            <input type="hidden" name="time" id="selectedTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Motivo de la Consulta</label>
+                        <textarea name="reason" rows="4" placeholder="Describa brevemente el motivo de su consulta..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Confirmar Cita</button>
+                </form>
+            </div>
+            
+            <!-- Zoho Booking Integration -->
+            <div id="zoho" class="tab-panel">
+                <h2 style="color: #388E3C; margin-bottom: 30px;">Integración con Zoho Booking</h2>
+                <div class="integration-card">
+                    <h3>Configuración Rápida</h3>
+                    <p>Zoho Booking es ideal para centros médicos. Ofrece:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Calendario sincronizado con Google/Outlook</li>
+                        <li>Confirmaciones automáticas por SMS/Email</li>
+                        <li>Gestión de múltiples doctores</li>
+                        <li>Recordatorios automáticos</li>
+                        <li>Panel de administración completo</li>
+                    </ul>
+                </div>
+                
+                <div class="code-block">
+&lt;!-- Zoho Booking Embed Code --&gt;
+&lt;iframe 
+    src="https://centromedicouniversal.zohobookings.com/portal-embed#/customer/centromedicouniversal"
+    style="border: none; width: 100%; height: 600px;"
+    scrolling="auto"&gt;
+&lt;/iframe&gt;
+                </div>
+                
+                <button class="submit-button" onclick="window.open('https://www.zoho.com/bookings/', '_blank')">
+                    Crear Cuenta Zoho Booking
+                </button>
+            </div>
+            
+            <!-- Calendly Integration -->
+            <div id="calendly" class="tab-panel">
+                <h2 style="color: #388E3C; margin-bottom: 30px;">Integración con Calendly</h2>
+                <div class="integration-card">
+                    <h3>Configuración Simple</h3>
+                    <p>Calendly es perfecto para consultorios pequeños:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Configuración en 5 minutos</li>
+                        <li>Integración con Zoom para teleconsultas</li>
+                        <li>Cobros automáticos con Stripe</li>
+                        <li>Límites de citas por día</li>
+                    </ul>
+                </div>
+                
+                <div class="code-block">
+&lt;!-- Calendly Inline Widget --&gt;
+&lt;div class="calendly-inline-widget" 
+     data-url="https://calendly.com/centromedicouniversal" 
+     style="min-width:320px;height:630px;"&gt;
+&lt;/div&gt;
+&lt;script src="https://assets.calendly.com/assets/external/widget.js"&gt;&lt;/script&gt;
+                </div>
+                
+                <button class="submit-button" onclick="window.open('https://calendly.com/signup', '_blank')">
+                    Crear Cuenta Calendly
+                </button>
+            </div>
+            
+            <!-- Instructions -->
+            <div id="instructions" class="tab-panel">
+                <h2 style="color: #388E3C; margin-bottom: 30px;">Instrucciones de Integración</h2>
+                
+                <div class="integration-card">
+                    <h3>🏆 Recomendación Gold Standard</h3>
+                    <p><strong>Para Centro Médico Universal recomendamos Zoho Booking</strong> porque:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>✅ Maneja múltiples doctores y especialidades</li>
+                        <li>✅ Integración con seguros médicos</li>
+                        <li>✅ Historial de pacientes</li>
+                        <li>✅ HIPAA compliant (privacidad médica)</li>
+                        <li>✅ Reportes y análisis</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: #388E3C; margin: 30px 0 20px;">Pasos de Implementación:</h3>
+                
+                <ol class="step-list">
+                    <li>
+                        <strong>Crear Cuenta en Zoho Booking</strong><br>
+                        Visita zoho.com/bookings y crea una cuenta con el email del centro médico
+                    </li>
+                    
+                    <li>
+                        <strong>Configurar Servicios</strong><br>
+                        Añade cada especialidad como un "servicio" con duración y precio
+                    </li>
+                    
+                    <li>
+                        <strong>Agregar Personal</strong><br>
+                        Crea perfiles para cada doctor con sus horarios disponibles
+                    </li>
+                    
+                    <li>
+                        <strong>Personalizar Formulario</strong><br>
+                        Añade campos para seguro médico, síntomas, etc.
+                    </li>
+                    
+                    <li>
+                        <strong>Obtener Código de Integración</strong><br>
+                        Ve a Settings → Embed → Copy code
+                    </li>
+                    
+                    <li>
+                        <strong>Integrar en tu Sitio</strong><br>
+                        Pega el código en tu index.html donde quieras el calendario
+                    </li>
+                </ol>
+                
+                <div class="integration-card" style="background: #fef3c7; border-color: #D4AF37;">
+                    <h3>💡 Tip Pro</h3>
+                    <p>Configura webhooks para enviar datos de citas a tu sistema de gestión hospitalaria (HIS) automáticamente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Set minimum date to today
+        document.querySelector('input[type="date"]').min = new Date().toISOString().split('T')[0];
+        
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected panel
+            document.getElementById(tabName).classList.add('active');
+            
+            // Mark button as active
+            event.target.classList.add('active');
+        }
+        
+        // Specialty selection
+        function selectSpecialty(element, specialty) {
+            // Remove previous selection
+            document.querySelectorAll('.specialty-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Select new specialty
+            element.classList.add('selected');
+            document.getElementById('selectedSpecialty').value = specialty;
+        }
+        
+        // Time selection
+        function selectTime(element, time) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Select new time
+            element.classList.add('selected');
+            document.getElementById('selectedTime').value = time;
+        }
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Here you would send to your backend
+            console.log('Booking data:', data);
+            
+            // Show success message
+            alert('¡Cita agendada exitosamente! Recibirá un correo de confirmación.');
+            
+            // Reset form
+            this.reset();
+            document.querySelectorAll('.selected').forEach(el => {
+                el.classList.remove('selected');
+            });
+        });
+    </script>
+</body>
+</html>

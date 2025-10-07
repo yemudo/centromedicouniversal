@@ -1,0 +1,19 @@
+{
+  "name": "centro-medico-universal",
+  "version": "1.0.0",
+  "description": "Centro Médico Universal - Professional Medical Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": ["medical", "healthcare", "website", "booking"],
+  "author": "Centro Médico Universal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/centromedicouniversal/centromedicouniversal.git"
+  },
+  "homepage": "https://centromedicouniversal.com"
+}

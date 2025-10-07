@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivín EMR - Calendario de Citas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #2c3e50;
+        }
+
+        /* Header */
+        .dashboard-header {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .header-title span {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-role {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Calendar Controls */
+        .calendar-controls {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .date-navigation {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: #1e7e34;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #28a745;
+            transform: translateY(-1px);
+        }
+
+        .current-date {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 8px 15px;
+            border: 1px solid #d0d0d0;
+            background: white;
+            color: #555;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .view-btn.active {
+            background: #1e7e34;
+            color: white;
+            border-color: #1e7e34;
+        }
+
+        /* Calendar Grid */
+        .calendar-container {
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(auto-fit, minmax(180px, 1fr));
+            min-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Time Column */
+        .time-column {
+            border-right: 2px solid #e0e0e0;
+            background: #f8f9fa;
+        }
+
+        .time-slot {
+            height: 60px;
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Provider Columns */
+        .provider-column {
+            border-right: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .provider-column:last-child {
+            border-right: none;
+        }
+
+        .provider-header {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 13px;
+            background: linear-gradient(135deg, #1e7e34, #28a745);
+            color: white;
+            border-bottom: 2px solid #1e7e34;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .provider-specialty {
+            font-size: 11px;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+
+        .provider-slots {
+            position: relative;
+        }
+
+        .slot {
+            height: 60px;
+            border-bottom: 1px solid #e8e8e8;
+            position: relative;
+        }
+
+        /* Appointment Blocks */
+        .appointment {
+            position: absolute;
+            left: 4px;
+            right: 4px;
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-left: 4px solid;
+        }
+
+        .appointment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+
+        /* Appointment Types - Color Coding like eClinicalWorks */
+        .appointment.consulta {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            border-left-color: #2E7D32;
+            color: white;
+        }
+
+        .appointment.seguimiento {
+            background: linear-gradient(135deg, #2196F3, #42A5F5);
+            border-left-color: #1565C0;
+            color: white;
+        }
+
+        .appointment.emergencia {
+            background: linear-gradient(135deg, #F44336, #E57373);
+            border-left-color: #C62828;
+            color: white;
+        }
+
+        .appointment.procedimiento {
+            background: linear-gradient(135deg, #FF9800, #FFB74D);
+            border-left-color: #E65100;
+            color: white;
+        }
+
+        .appointment.telemedicina {
+            background: linear-gradient(135deg, #9C27B0, #BA68C8);
+            border-left-color: #6A1B9A;
+            color: white;
+        }
+
+        .appointment-time {
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .appointment-patient {
+            font-weight: 600;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .appointment-type-label {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        .appointment-status {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .appointment-status.confirmed {
+            background: #4CAF50;
+        }
+
+        .appointment-status.checked-in {
+            background: #2196F3;
+        }
+
+        .appointment-status.in-progress {
+            background: #FF9800;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e7e34;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .calendar-grid {
+                min-width: 100%;
+                grid-template-columns: 60px repeat(3, 1fr);
+            }
+            
+            .provider-header {
+                font-size: 11px;
+                padding: 10px 5px;
+            }
+            
+            .appointment {
+                font-size: 10px;
+                padding: 6px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .calendar-grid {
+                grid-template-columns: 60px repeat(2, 1fr);
+            }
+            
+            .header-title h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="header-left">
+            <img src="/images/logo/cmu-logo-new.png" alt="CMU Logo" class="logo">
+            <div class="header-title">
+                <h1>Nivín EMR</h1>
+                <span>Sistema Médico - Centro Médico Universal</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <div class="user-name" id="userName">Usuario</div>
+                <div class="user-role" id="userRole">Cargando...</div>
+            </div>
+            <button class="nav-btn" onclick="logout()">🚪 Salir</button>
+        </div>
+    </div>
+
+    <!-- Calendar Controls -->
+    <div class="calendar-controls">
+        <div class="date-navigation">
+            <button class="nav-btn" onclick="previousDay()">◀ Anterior</button>
+            <div class="current-date" id="currentDate">Cargando...</div>
+            <button class="nav-btn" onclick="nextDay()">Siguiente ▶</button>
+            <button class="nav-btn" onclick="goToToday()">📅 Hoy</button>
+        </div>
+        <div class="view-controls">
+            <button class="view-btn active" onclick="setView('day')">Día</button>
+            <button class="view-btn" onclick="setView('week')">Semana</button>
+            <button class="nav-btn" onclick="refreshCalendar()">🔄 Actualizar</button>
+        </div>
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="calendar-container">
+        <div id="calendarGrid" class="calendar-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Cargando calendario...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let currentDate = new Date();
+        let providersData = [];
+        let appointmentsData = [];
+
+        // Time slots (9 AM to 8 PM)
+        const timeSlots = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+            '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+            '18:00', '18:30', '19:00', '19:30', '20:00'
+        ];
+
+        // Appointment type labels in Spanish
+        const appointmentLabels = {
+            'consulta': 'Consulta',
+            'seguimiento': 'Seguimiento',
+            'emergencia': 'Emergencia',
+            'procedimiento': 'Procedimiento',
+            'telemedicina': 'Telemedicina'
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserInfo();
+            updateDateDisplay();
+            loadProviders();
+        });
+
+        // Load user information
+        function loadUserInfo() {
+            // Check if user is logged in
+            fetch('/auth.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'check_session' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    window.location.href = '/nivin-login.html';
+                    return;
+                }
+                document.getElementById('userName').textContent = data.data.full_name || 'Usuario';
+                document.getElementById('userRole').textContent = data.data.role || '';
+            })
+            .catch(error => {
+                console.error('Error loading user:', error);
+            });
+        }
+
+        // Date navigation
+        function previousDay() {
+            currentDate.setDate(currentDate.getDate() - 1);
+            updateDateDisplay();
+            loadAppointments();
+        }
+
+        function nextDay() {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateDateDisplay();
+            loadAppointments();
+        }
+
+        function goToToday() {
+            currentDate = new Date();
+            updateDateDisplay();
+            loadAppointments();
+        }
+
+        function updateDateDisplay() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = currentDate.toLocaleDateString('es-ES', options);
+            document.getElementById('currentDate').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+        }
+
+        function setView(view) {
+            // Update active button
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (view === 'week') {
+                alert('Vista semanal próximamente disponible');
+            }
+        }
+
+        function refreshCalendar() {
+            loadProviders();
+        }
+
+        // Load providers from database
+        async function loadProviders() {
+            try {
+                // For now, use static provider data
+                // TODO: Create API endpoint to fetch providers
+                providersData = [
+                    { id: 78, nombre: 'Dr. Juan Castillo', especialidad: 'Anestesiología' },
+                    { id: 63, nombre: 'Dr. Joaquín Ramírez', especialidad: 'Cardiología' },
+                    { id: 64, nombre: 'Dr. Juan Peña', especialidad: 'Cardiología' },
+                    { id: 65, nombre: 'Dr. Oscar Hache', especialidad: 'Cardiología' },
+                    { id: 66, nombre: 'Dr. Ramón Bido', especialidad: 'Cardiología' },
+                    { id: 67, nombre: 'Dra. Sivelis Segura', especialidad: 'Cardiología' }
+                ];
+                
+                renderCalendar();
+                loadAppointments();
+            } catch (error) {
+                console.error('Error loading providers:', error);
+                alert('Error cargando médicos');
+            }
+        }
+
+        // Render calendar grid
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            
+            // Create time column
+            const timeCol = document.createElement('div');
+            timeCol.className = 'time-column';
+            
+            // Header for time column
+            timeCol.innerHTML = '<div class="time-slot" style="height: 60px; font-weight: 600; background: #1e7e34; color: white;">Hora</div>';
+            
+            // Add time slots
+            timeSlots.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                timeCol.appendChild(slot);
+            });
+            grid.appendChild(timeCol);
+            
+            // Create provider columns
+            providersData.forEach(provider => {
+                const providerCol = document.createElement('div');
+                providerCol.className = 'provider-column';
+                providerCol.dataset.providerId = provider.id;
+                
+                // Provider header
+                const header = document.createElement('div');
+                header.className = 'provider-header';
+                header.innerHTML = `
+                    <div>${provider.nombre}</div>
+                    <div class="provider-specialty">${provider.especialidad}</div>
+                `;
+                providerCol.appendChild(header);
+                
+                // Provider slots container
+                const slotsContainer = document.createElement('div');
+                slotsContainer.className = 'provider-slots';
+                slotsContainer.id = `provider-${provider.id}`;
+                
+                // Create empty slots
+                timeSlots.forEach((time, index) => {
+                    const slot = document.createElement('div');
+                    slot.className = 'slot';
+                    slot.dataset.time = time;
+                    slot.dataset.index = index;
+                    slotsContainer.appendChild(slot);
+                });
+                
+                providerCol.appendChild(slotsContainer);
+                grid.appendChild(providerCol);
+            });
+        }
+
+        // Load appointments for current date
+        async function loadAppointments() {
+            try {
+                const dateStr = currentDate.toISOString().split('T')[0];
+                
+                // TODO: Create API endpoint to fetch appointments
+                // For now, use mock data
+                appointmentsData = [];
+                
+                renderAppointments();
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+            }
+        }
+
+        // Render appointments on calendar
+        function renderAppointments() {
+            // Clear existing appointments
+            document.querySelectorAll('.appointment').forEach(apt => apt.remove());
+            
+            appointmentsData.forEach(appointment => {
+                const providerSlots = document.getElementById(`provider-${appointment.doctor_id}`);
+                if (!providerSlots) return;
+                
+                // Calculate position based on time
+                const startIndex = getTimeSlotIndex(appointment.appointment_time);
+                if (startIndex === -1) return;
+                
+                const slot = providerSlots.children[startIndex];
+                if (!slot) return;
+                
+                // Create appointment element
+                const aptElement = document.createElement('div');
+                aptElement.className = `appointment ${appointment.appointment_type}`;
+                aptElement.innerHTML = `
+                    <div class="appointment-time">${formatTime(appointment.appointment_time)}</div>
+                    <div class="appointment-patient">${appointment.patient_name}</div>
+                    <div class="appointment-type-label">${appointmentLabels[appointment.appointment_type] || appointment.appointment_type}</div>
+                    <div class="appointment-status ${appointment.status}"></div>
+                `;
+                
+                // Calculate height based on duration
+                const durationSlots = Math.ceil(appointment.duration_minutes / 30);
+                const heightPx = (durationSlots * 60) - 8; // 60px per slot minus padding
+                aptElement.style.height = heightPx + 'px';
+                
+                // Add click handler
+                aptElement.onclick = () => showAppointmentDetails(appointment);
+                
+                slot.style.position = 'relative';
+                slot.appendChild(aptElement);
+            });
+        }
+
+        // Helper functions
+        function getTimeSlotIndex(time) {
+            const timeStr = time.substring(0, 5); // Get HH:MM
+            return timeSlots.indexOf(timeStr);
+        }
+
+        function formatTime(time) {
+            return time.substring(0, 5); // Return HH:MM
+        }
+
+        function showAppointmentDetails(appointment) {
+            alert(`
+Detalles de la Cita:
+----------------
+Paciente: ${appointment.patient_name}
+Tipo: ${appointmentLabels[appointment.appointment_type]}
+Hora: ${formatTime(appointment.appointment_time)}
+Duración: ${appointment.duration_minutes} minutos
+Estado: ${appointment.status}
+            `);
+        }
+
+        function logout() {
+            fetch('/auth.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'logout' })
+            })
+            .then(() => {
+                window.location.href = '/nivin-login.html';
+            })
+            .catch(error => {
+                console.error('Logout error:', error);
+                window.location.href = '/nivin-login.html';
+            });
+        }
+    </script>
+</body>
+</html>

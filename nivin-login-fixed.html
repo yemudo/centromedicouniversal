@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivin EMR System - Login</title>
+    <link rel="icon" type="image/png" href="/assets/images/nivin-logo.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-width: 280px;
+            height: auto;
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .login-header p {
+            font-size: 14px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .login-body {
+            padding: 40px 35px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 136, 229, 0.3);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        .alert-icon {
+            font-size: 18px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .demo-info {
+            margin-top: 25px;
+            padding: 18px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #666;
+            border: 1px solid #e9ecef;
+        }
+
+        .demo-info h3 {
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: #1E88E5;
+            font-weight: 600;
+        }
+
+        .demo-info p {
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+
+        .demo-info strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 10px;
+            }
+            
+            .login-header {
+                padding: 30px 20px;
+            }
+            
+            .login-body {
+                padding: 30px 25px;
+            }
+            
+            .logo-container img {
+                max-width: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo-container">
+                <img src="/assets/images/nivin-logo-white.svg" alt="Nivín EMR System" style="width: 280px; max-width: 100%; height: auto; filter: none;">
+            </div>
+            <h1>Nivín EMR System</h1>
+            <p>Acceso seguro y conforme con HIPAA para profesionales de la salud.</p>
+        </div>
+
+        <div class="login-body">
+            <div id="alert" class="alert hidden">
+                <span class="alert-icon"></span>
+                <span class="alert-text"></span>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        required 
+                        autocomplete="username"
+                        placeholder="Ingrese su usuario"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        autocomplete="current-password"
+                        placeholder="Ingrese su contraseña"
+                    >
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span id="btnText">Ingresar al Sistema</span>
+                    <span id="btnLoading" class="loading hidden"></span>
+                </button>
+            </form>
+
+            <div class="demo-info">
+                <h3>🔐 Seguridad HIPAA</h3>
+                <p>• Sesión automática de cierre después de 15 minutos de inactividad</p>
+                <p>• Todos los accesos son registrados para auditoría</p>
+                <p>• La cuenta se bloqueará después de 5 intentos fallidos</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2025 Nivin EMR System. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Force HTTPS redirect
+        if (window.location.protocol === 'http:') {
+            window.location.href = 'https://' + window.location.host + window.location.pathname;
+        }
+
+        // DigitalOcean MySQL Authentication
+        const API_URL = '/api';
+
+        const loginForm = document.getElementById('loginForm');
+        const alertDiv = document.getElementById('alert');
+        const alertText = alertDiv.querySelector('.alert-text');
+        const alertIcon = alertDiv.querySelector('.alert-icon');
+        const loginBtn = document.getElementById('loginBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoading = document.getElementById('btnLoading');
+
+        function showAlert(message, type = 'error') {
+            alertText.textContent = message;
+            alertIcon.textContent = type === 'error' ? '❌' : '✅';
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.classList.remove('hidden');
+        }
+
+        function hideAlert() {
+            alertDiv.classList.add('hidden');
+        }
+
+        function setLoading(loading) {
+            loginBtn.disabled = loading;
+            if (loading) {
+                btnText.classList.add('hidden');
+                btnLoading.classList.remove('hidden');
+            } else {
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+            }
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showAlert('Por favor ingrese usuario y contraseña');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                // Force HTTPS
+                const apiUrl = window.location.protocol === 'https:' 
+                    ? `${API_URL}/digitalocean-auth.php`
+                    : `https://${window.location.hostname}/api/digitalocean-auth.php`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Store user info
+                    sessionStorage.setItem('user', JSON.stringify(data.data));
+
+                    showAlert('¡Inicio de sesión exitoso!', 'success');
+
+                    // Check if password change required
+                    if (data.data.requires_password_change) {
+                        setTimeout(() => {
+                            window.location.href = 'change-password.html';
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1000);
+                    }
+                } else {
+                    showAlert(data.error || 'Usuario o contraseña incorrectos');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showAlert('Error de conexión. Por favor intente nuevamente.');
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        // Add enter key support
+        document.getElementById('password').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Check if already logged in via session
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_URL}/digitalocean-auth.php`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                if (data.success) {
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (error) {
+                // Not logged in, stay on login page
+            }
+        });
+    </script>
+</body>
+</html>
