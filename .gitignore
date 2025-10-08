@@ -65,3 +65,33 @@ temp/
 
 # Local development
 .local/
+
+# ========================================
+# CREDENTIAL & SENSITIVE DOCUMENTATION
+# These files contain real credentials and should NEVER be in GitHub
+# All documentation is backed up on DigitalOcean server
+# ========================================
+
+# Credential files
+*CREDENTIALS*.md
+*PASSWORD*.md
+*API_KEY*.md
+*TOKEN*.md
+MYSQL_DATABASE_CREDENTIALS.md
+
+# API & Service credentials
+*TWILIO*.md
+*SENDGRID*.md
+*DIGITALOCEAN*.md
+*ORACLE*.md
+
+# Session/Work logs with embedded credentials
+WORK_SESSION_COMPLETE_*.md
+NIVIN_COMPANY_COMPLETE_PROFILE_*.md
+PASSWORD_RESET_SYSTEM_*.md
+
+# Any file with secrets
+*SECRET*.md
+*PRIVATE*.md
+*AUTH_*.md
+
