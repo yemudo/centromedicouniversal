@@ -3,434 +3,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestros Doctores - Centro Médico Universal Castillo Rodríguez y Asociados</title>
-    <link rel="stylesheet" href="css/styles.css?v=20250913-1020">
-    <link rel="stylesheet" href="css/header-preview.css?v=20250912-2355">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.min.css" >
-    <meta name="description" content="Conozca a nuestros médicos especialistas en Centro Médico Universal. Agende su cita y reciba atención de calidad.">
-    <meta name="theme-color" content="#2dd4ac">
+    <title>Nuestros Doctores - Centro Médico Universal</title>
+    <link rel="icon" href="/nivin-emr/assets/logos/cmu-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
-        .hero h1, .hero h2 { color: white !important; }
-        section.hero h1, section.hero h2 { color: white !important; }
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
-    </style>
-    <link rel="manifest" href="/manifest.webmanifest">
-    
-    <style>
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
-        .hero h1, .hero h2 { color: white !important; }
-        section.hero h1, section.hero h2 { color: white !important; }
-        .page-title {
-            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(56, 178, 172, 0.8)), url('images/doctors-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+        /* STANDARD NAVIGATION HEADER STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        .doctors-page-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-            align-items: stretch;
-        }
-        
-        .doctor-card-detailed {
+        .header-preview {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            height: 500px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        
-        .doctor-card-detailed:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .doctor-image {
-            width: 80px !important;
-            height: 80px !important;
-            min-width: 80px !important;
-            min-height: 80px !important;
-            max-width: 80px !important;
-            max-height: 80px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            margin: 0 auto 1rem !important;
-            background: white !important;
-            border: 3px solid #D4AF37 !important;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
-            font-size: 2rem !important;
-            line-height: 1 !important;
-            overflow: hidden !important;
-            position: relative !important;
-            flex-shrink: 0 !important;
-            aspect-ratio: 1/1 !important;
-        }
-        
-        .doctor-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .doctor-image picture {
-            width: 100%;
-            height: 100%;
+
+        .header-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-        
-        .doctor-card-detailed:hover .doctor-image i {
-            transform: scale(1.05);
-        }
-        
-        .doctor-info {
-            padding: 1rem 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
+            padding: 15px 30px;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .brand-text h1 {
+            font-size: 1.2rem;
+            color: #2E7D32;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.7rem;
+            color: #666;
+            margin: 2px 0 0 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: #2E7D32;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            color: #2E7D32;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .btn.outline {
+            padding: 10px 20px;
+            border: 2px solid #2E7D32;
+            border-radius: 25px;
+            color: #2E7D32;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn.outline:hover {
+            background: #2E7D32;
+            color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #2E7D32;
+        }
+
+        /* PAGE SPECIFIC STYLES */
+        body { 
+            background: #f5f5f5; 
+            min-height: 100vh; 
+            padding: 0;
+            margin: 0;
         }
         
-        .doctor-actions {
-            margin-top: auto;
-            padding-top: 1rem;
+        .page-content {
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #388E3C 0%, #1B5E20 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border: 3px solid #1B5E20;
+        }
+        
+        .logo img { width: 100%; height: 100%; object-fit: contain; }
+        .header h2 { font-size: 36px; margin-bottom: 10px; }
+        .header p { font-size: 18px; opacity: 0.95; }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #388E3C;
+            border-radius: 50px;
+            outline: none;
+        }
+        
+        .nivin-cta-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto 30px;
+            max-width: 600px;
+        }
+        
+        .btn-nivin-cita {
+            background: linear-gradient(135deg, #388E3C, #2E7D32);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(56,142,60,0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-nivin-cita:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56,142,60,0.4);
+        }
+        
+        .search-input:focus { border-color: #1B5E20; box-shadow: 0 0 0 3px rgba(56,142,60,0.1); }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 48px; font-weight: bold; color: #388E3C; }
+        .stat-label { font-size: 14px; color: #666; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .specialty-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .specialty-title {
+            font-size: 24px;
+            color: #388E3C;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #388E3C;
+        }
+        
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .doctor-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(56,142,60,0.2);
+            border-color: #388E3C;
         }
         
         .doctor-name {
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
         }
         
         .doctor-specialty {
-            font-size: 1rem;
-            color: var(--accent-color);
+            color: #388E3C;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 1rem;
-            display: block;
+            margin-bottom: 10px;
         }
         
-        .doctor-bio {
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .doctor-details {
-            margin-top: 1rem;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-        }
-        
-        .doctor-detail {
+        .doctor-schedule {
+            font-size: 13px;
+            color: #666;
             display: flex;
             align-items: center;
-            margin-bottom: 0.5rem;
+            gap: 5px;
         }
         
-        .doctor-detail i {
-            color: var(--primary-color);
-            margin-right: 0.5rem;
-            min-width: 20px;
-        }
-        
-        .department-section {
-            margin-bottom: 4rem;
-        }
-        
-        .department-header {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-left: 1rem;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .department-header h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .department-header p {
-            color: var(--dark-gray);
-        }
-        
-        .department-doctors {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .schedule-badge {
-            display: inline-block;
-            background-color: var(--light-gray);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        
-        .doctor-actions {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .doctor-actions a {
-            flex: 1;
-            text-align: center;
-            padding: 0.8rem 0;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .doctor-actions .appointment-btn {
-            background-color: var(--primary-color);
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #388E3C;
             color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(56,142,60,0.3);
+            transition: all 0.3s;
+            z-index: 1000;
         }
         
-        .doctor-actions .profile-btn {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
+        .back-button:hover {
+            background: #1B5E20;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(56,142,60,0.4);
         }
         
-        .doctor-actions .appointment-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .doctor-actions .profile-btn:hover {
-            background-color: var(--light-gray);
-        }
-        
-        .filter-section {
-            margin-bottom: 2rem;
-        }
-        
-        .filter-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            background-color: var(--light-gray);
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .filter-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .filter-btn:hover:not(.active) {
-            background-color: #e0e0e0;
-        }
-        
-        .search-box {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            padding-left: 2.5rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .search-box i {
-            position: absolute;
-            top: 50%;
-            left: 0.8rem;
-            transform: translateY(-50%);
-            color: #999;
-        }
-        
-        @media (max-width: 768px) {
-            .doctors-page-grid {
-                grid-template-columns: 1fr;
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .header-wrap {
+                flex-wrap: wrap;
+                padding: 15px 20px;
             }
             
-            .department-doctors {
-                grid-template-columns: 1fr;
+            .nav {
+                order: 4;
+                width: 100%;
+                display: none;
+            }
+            
+            .nav.active {
+                display: block;
+            }
+            
+            .nav ul {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .brand-text h1 {
+                font-size: 1rem;
+            }
+            
+            .brand-text p {
+                font-size: 0.65rem;
+            }
+            
+            .brand-logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .nivin-badge {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h2 { font-size: 28px; }
+            .doctors-grid { grid-template-columns: 1fr; }
+            .stats-bar { flex-direction: column; padding: 20px; }
+            .stat-number { font-size: 36px; }
+            
+            .actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .phone {
+                font-size: 0.9rem;
+            }
+            
+            .btn.outline {
+                padding: 8px 16px;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- STANDARD NAVIGATION HEADER -->
     <header class="header-preview">
-      <div class="header-wrap">
-        <div class="brand">
-          <div class="brand-text">
-            <h1>Centro Médico Universal</h1>
-            <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
-          </div>
+        <div class="header-wrap">
+            <div class="brand">
+                <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" 
+                     alt="CMU Logo" 
+                     class="brand-logo"
+                     onerror="this.src='/images/centro_medico_logo_circular.png'">
+                <div class="brand-text">
+                    <h1>Centro Médico Universal</h1>
+                    <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
+                </div>
+            </div>
+
+            <nav class="nav" aria-label="Primary">
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/servicios">Servicios</a></li>
+                    <li><a href="/doctores.html" class="active">Doctores</a></li>
+                    <li><a href="/instalaciones">Instalaciones</a></li>
+                    <li><a href="/#appointment">Citas</a></li>
+                    <li><a href="/contacto">Contacto</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+
+            <div class="actions">
+                <a class="phone" href="tel:+18095946161">(809) 594-6161</a>
+                <a class="btn outline" href="/nivin-login.html" rel="noopener">Ingreso Staff Médico</a>
+            </div>
         </div>
-
-        <nav class="nav" aria-label="Primary">
-          <a href='/'>Inicio</a>
-          <a href='/servicios'>Servicios</a>
-          <a class='active' href='/doctores'>Doctores</a>
-          <a href='/instalaciones'>Instalaciones</a>
-          <a href='/contacto'>Contacto</a>
-        </nav>
-
-        <div class="actions">
-          <a class="phone" href="tel:+18095946161">(809) 594-6161</a>
-          <a class='cta' href='/agendar'>SOLICITAR CITA</a>
-        </div>
-
-        <button class="mobile-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
     </header>
 
-    <section class="page-title">
-        <div class="container">
-            <h1>Nuestros Especialistas</h1>
-            <p>Un equipo médico comprometido con su salud y bienestar</p>
-        </div>
-    </section>
-
-    <section class="doctors-section">
-        <div class="container">
-            <div class="filter-section">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar médico por nombre o especialidad...">
-                </div>
-                
-                <div class="filter-controls">
-                    <!-- Botones generados dinámicamente -->
-                </div>
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+        <div class="header">
+            <div class="logo">
+                <img src="/nivin-emr/assets/logos/cmu-logo.png" alt="Centro Médico Universal">
             </div>
+            <h2>Nuestros Doctores</h2>
+            <p>Equipo médico de excelencia</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">83</div>
+                <div class="stat-label">Doctores</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Especialidades</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Atención</div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Buscar por nombre o especialidad...">
+        </div>
+
+        <div class="nivin-cta-container">
+            <button class="btn-nivin-cita" onclick="openNivinChat()" aria-label="Agendar cita con Nivín">
+                📅 Agendar Cita con Nivín
+            </button>
+        </div>
+
+        <div id="doctorsContainer"></div>
+
+        <a href="/" class="back-button">← Volver</a>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('.nav');
             
-            <!-- Static doctors list - no JS needed -->
-            <div id="departments-root">
-                <!-- All doctors will be loaded here by JS -->
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+        });
+
+        // Doctors data and rendering
+        const DOCTORS=[{name:'Dr. Juan Aníbal Castillo Rodríguez',specialty:'Anestesiología'},{name:'Dr. Joaquín Ramírez',specialty:'Cardiología'},{name:'Dr. Juan Peña Núñez',specialty:'Cardiología'},{name:'Dr. Oscar Hache Padilla',specialty:'Cardiología'},{name:'Dr. Ramón Antonio Bido Acevedo',specialty:'Cardiología'},{name:'Dra. Sivelis Segura Rivas',specialty:'Cardiología'},{name:'Dr. Alecsandri Gil Zorrilla',specialty:'Cirugía General'},{name:'Dr. Federico Ulices Lagrange Alcántara',specialty:'Cirugía General'},{name:'Dr. José Enrique Arzeno Schulze',specialty:'Cirugía General'},{name:'Dra. Luz Esther Reyes Durán',specialty:'Cirugía General'},{name:'Dra. María Mora',specialty:'Cirugía General'},{name:'Dr. Ramón Hamilton Capellán Cruz',specialty:'Cirugía General y Laparoscopia'},{name:'Dra. Luz Mery Ramos Rosario',specialty:'Cirugía General y Pediátrica'},{name:'Dra. Yohanna De La Cruz Fernández',specialty:'Cirugía Maxilofacial'},{name:'Dra. María Magdalena Castillo Viloria',specialty:'Cirugía Vascular'},{name:'Dra. Zaida Elena Thomas Kelly',specialty:'Dermatología'},{name:'Dra. Grilse Guzmán Núñez',specialty:'Diabetología'},{name:'Dr. Castillo Rodríguez',specialty:'Director Médico'},{name:'Dra. Mónica Camejo',specialty:'Endocrinología'},{name:'Dra. Danely Edilia Gómez Morfa',specialty:'Endocrinología Ginecológica e Infertilidad'},{name:'Dr. Pedro Rafael Castillo Rodríguez',specialty:'Gastroenterología'},{name:'Dr. Staling Piña',specialty:'Gastroenterología'},{name:'Dra. Bartolina Romero',specialty:'Gastroenterología'},{name:'Dr. César Augusto Peña Acosta',specialty:'Ginecología y Obstetricia'},{name:'Dr. Enmanuel Miranda',specialty:'Ginecología y Obstetricia'},{name:'Dr. Francisco Javier Cedeño',specialty:'Ginecología y Obstetricia'},{name:'Dr. Reyson Edgar Pavón Fontanilla',specialty:'Ginecología y Obstetricia'},{name:'Dra. Adalgiza Ramona Jiménez Jiménez',specialty:'Ginecología y Obstetricia'},{name:'Dra. Alcia Crimely Matos Ramírez',specialty:'Ginecología y Obstetricia'},{name:'Dra. Andrea Henríquez',specialty:'Ginecología y Obstetricia'},{name:'Dra. Emma Francisca Muñoz de Almonte',specialty:'Ginecología y Obstetricia'},{name:'Dra. Ercilia Maribel Polanco Cruz',specialty:'Ginecología y Obstetricia'},{name:'Dra. Eulalia Fiordaliza Castro López',specialty:'Ginecología y Obstetricia'},{name:'Dra. Griselda Alt. Basora Ramírez',specialty:'Ginecología y Obstetricia'},{name:'Dra. Irsa M. Montero Díaz',specialty:'Ginecología y Obstetricia'},{name:'Dra. Julissa María Rojas Hernández',specialty:'Ginecología y Obstetricia'},{name:'Dra. Lucía Altagracia de Jesús de Jesús',specialty:'Ginecología y Obstetricia'},{name:'Dra. Marilelda Reyes',specialty:'Ginecología y Obstetricia'},{name:'Dra. Miriam Dolores Yorro Suero',specialty:'Ginecología y Obstetricia'},{name:'Dra. Ramona Jiménez',specialty:'Ginecología y Obstetricia'},{name:'Dra. Vidalva Decena Medina',specialty:'Ginecología y Obstetricia'},{name:'Dra. Maribel Mejía Tapia',specialty:'Ginecología y Obstetricia Oncológica'},{name:'Dra. Sheila Tejeda Lorenzo',specialty:'Medicina Intensiva'},{name:'Dr. Carlos Manuel Sánchez Morillo',specialty:'Medicina Interna'},{name:'Dra. Ana Karina Sánchez Carrión',specialty:'Medicina Interna y Geriatría'},{name:'Dra. Ruth Araujo Cuevas',specialty:'Nefrología'},{name:'Dra. Jaisy Rafalis Terrero Pérez',specialty:'Neumología'},{name:'Dra. Mercedes Montero Bautista',specialty:'Neumología'},{name:'Dra. Kenia Ysabel González De La Rosa',specialty:'Neumología Pediátrica'},{name:'Dr. Francisco Pimentel Perdomo',specialty:'Neurología'},{name:'Dra. Jenny Ferreiras',specialty:'Neurología'},{name:'Dra. Wilma Tapia',specialty:'Nutrición'},{name:'Dra. Carolina Mella Campo',specialty:'Odontología'},{name:'Dr. Francisco Méndez',specialty:'Oftalmología'},{name:'Dra. Guillermina Méndez',specialty:'Oftalmología'},{name:'Dra. Mariel Yamel Navarro Cabrera',specialty:'Ortopedia Pediátrica y Traumatología'},{name:'Dr. César Carlos Coradín',specialty:'Ortopedia y Traumatología'},{name:'Dr. Enmanuel Escalante Pérez',specialty:'Ortopedia y Traumatología'},{name:'Dr. Ernesto Pérez Roque',specialty:'Ortopedia y Traumatología'},{name:'Dr. Jonathan Alberto Lara Taveras',specialty:'Ortopedia y Traumatología'},{name:'Dr. Víctor Justiniano Rosario Suazo',specialty:'Ortopedia y Traumatología'},{name:'Dr. Yuly Rafael Mena Santana',specialty:'Ortopedia y Traumatología'},{name:'Dr. César Antonio Scheker Feliz',specialty:'Otorrinolaringología'},{name:'Dr. David Enrique Cuevas Matos',specialty:'Otorrinolaringología'},{name:'Dra. Ana Teresa Torres',specialty:'Pediatría'},{name:'Dra. Gina Ángela Del Carmen Hernández',specialty:'Pediatría'},{name:'Dra. Sonia Altagracia Castillo Peguero',specialty:'Pediatría'},{name:'Dra. Ysa Liliana Matos Bello',specialty:'Pediatría'},{name:'Dra. Rosa María Abreu Pérez',specialty:'Pediatría e Infectología'},{name:'Dra. Anyelis Santana',specialty:'Pediatría y Hematología'},{name:'Dr. Jorge Alejandro Vilorio Wilkes',specialty:'Pediatría y Perinatología'},{name:'Dra. Alexandra González Cordero',specialty:'Pediatría y Perinatología'},{name:'Dra. Androceligne Peralta',specialty:'Pediatría y Perinatología'},{name:'Dra. Carmen Isabel Sala',specialty:'Pediatría y Perinatología'},{name:'Dra. Evelyn Carolina Mariñez Ramírez',specialty:'Pediatría y Perinatología'},{name:'Dra. Inmaculada Concepción Corporán',specialty:'Pediatría y Perinatología'},{name:'Dra. Josefina Altagracia Dilone',specialty:'Pediatría y Perinatología'},{name:'Dra. Julia Esther Benítez Martínez',specialty:'Pediatría y Perinatología'},{name:'Dra. Libanesa Lalane De León',specialty:'Pediatría y Perinatología'},{name:'Dr. Manuel Antonio Castillo Rodríguez',specialty:'Salud Sexual'},{name:'Dr. Isaías Daniel Jiménez Batista',specialty:'Urología'},{name:'Dra. Caveli García Rodríguez',specialty:'Urología'},{name:'Dra. Katia García Fermín',specialty:'Urología'}];
+        
+        function renderDoctors(d){
+            const c=document.getElementById('doctorsContainer');
+            const b={};
+            d.forEach(o=>{
+                if(!b[o.specialty])b[o.specialty]=[];
+                b[o.specialty].push(o)
+            });
+            const s=Object.keys(b).sort();
+            c.innerHTML=s.map(sp=>`<div class="specialty-section" data-specialty="${sp}"><h2 class="specialty-title">${sp}</h2><div class="doctors-grid">${b[sp].map(o=>`<div class="doctor-card" data-name="${o.name}"><div class="doctor-name">${o.name}</div><div class="doctor-specialty">${o.specialty}</div><div class="doctor-schedule">🕐 Lun-Vie: 8:00 AM - 5:00 PM</div></div>`).join('')}</div></div>`).join('')
+        }
+        
+        renderDoctors(DOCTORS);
+        
+        document.getElementById('searchInput').addEventListener('input',function(){
+            const s=this.value.toLowerCase().trim();
+            const sections=document.querySelectorAll('.specialty-section');
+            sections.forEach(section=>{
+                const cards=section.querySelectorAll('.doctor-card');
+                let v=1759890905;
+                cards.forEach(card=>{
+                    const n=card.dataset.name.toLowerCase();
+                    const sp=section.dataset.specialty.toLowerCase();
+                    if(n.includes(s)||sp.includes(s)){
+                        card.style.display='block';
+                        v++
+                    }else{
+                        card.style.display='none'
+                    }
+                });
+                section.style.display=v>0?'block':'none'
+            })
+        });
+    </script>
+
+    <!-- Nivín Chat Modal -->
+    <div id="nivin-chat-modal" style="display: none; position: fixed; top: 50%; right: 20px; transform: translateY(-50%); width: 400px; max-width: 90vw; height: auto; max-height: 90vh; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; flex-direction: column; overflow-y: auto;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #388E3C, #2E7D32); padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+            <div style="flex: 1;">
+                <!-- Logo Row -->
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/nivin-full-logo-white.svg?v=1759890905" alt="Nivin Logo" style="height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                    <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" alt="CMU Logo" style="height: 50px; width: 50px; border-radius: 50%; background: white; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+                </div>
+                <!-- Title -->
+                <h3 style="margin: 0; padding: 0; color: #FFFFFF !important; font-size: 18px; font-weight: 700; position: relative; z-index: 10; opacity: 1 !important; background: transparent;">Nivín - Asistente Médico</h3>
+                <!-- Subtitle -->
+                <p style="margin: 3px 0 0 0; padding: 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 400;">Centro Médico Universal</p>
+            </div>
+            <!-- Close Button -->
+            <button onclick="closeNivinChat()" style="background: rgba(255,255,255,0.15); border: none; color: white; font-size: 24px; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">×</button>
+        </div>
+        
+        <!-- Messages -->
+        <div id="nivin-messages" style="flex: 1; display: block; overflow-y: auto; min-height: 300px; padding: 20px; background: #f5f5f5; font-family: Arial, sans-serif;">
+            <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #000 !important; font-size: 16px !important; line-height: 1.6; font-weight: 500 !important;">
+                ¡Hola! Soy Nivín, tu asistente médico virtual de Centro Médico Universal. 👋<br><br>
+                ¿En qué puedo ayudarte hoy?
             </div>
         </div>
-    </section>
-
-    <section class="appointment">
-        <div class="container">
-            <div class="appointment-content">
-                <div class="appointment-text">
-                    <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Agende su cita con nuestros especialistas</h2>
-                    <p>Complete el formulario y nos pondremos en contacto con usted para confirmar su cita médica.</p>
-                </div>
-                <form class="appointment-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Nombre completo" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Correo electrónico" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Teléfono" required>
-                    </div>
-                    <div class="form-group">
-                        <select id="appointment-specialty" required>
-                            <option value="" disabled selected>Seleccione especialidad</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="appointment-doctor" required>
-                            <option value="" disabled selected>Seleccione doctor</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Motivo de consulta" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn primary">Solicitar Cita</button>
-                </form>
+        
+        <!-- Quick Actions -->
+        <div style="padding: 10px; background: white; border-top: 1px solid #e0e0e0; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+            <button onclick="nivinAction('cita')" style="padding: 8px 12px; background: #e8f5e9; border: 1px solid #388E3C; border-radius: 15px; color: #2E7D32; font-size: 12px; cursor: pointer; font-weight: 600;">📅 Solicitar Cita</button>
+            <button onclick="nivinAction('queja')" style="padding: 8px 12px; background: #ffebee; border: 1px solid #f44336; border-radius: 15px; color: #c62828; font-size: 12px; cursor: pointer; font-weight: 600;">📝 Poner Queja</button>
+            <button onclick="nivinAction('doctores')" style="padding: 8px 12px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 15px; color: #e65100; font-size: 12px; cursor: pointer; font-weight: 600;">👨‍⚕️ Ver Doctores</button>
+            <button onclick="nivinAction('info')" style="padding: 8px 12px; background: #e3f2fd; border: 1px solid #2196f3; border-radius: 15px; color: #1976d2; font-size: 12px; cursor: pointer; font-weight: 600;">ℹ️ Información</button>
+        </div>
+        
+        <!-- Nueva Conversación Button -->
+        <div style="padding: 8px 15px; background: #fafafa; border-top: 1px solid #e0e0e0; display: flex; justify-content: center;">
+            <button onclick="clearNivinChat()" style="padding: 8px 16px; background: linear-gradient(135deg, #FF9800, #F57C00); border: none; border-radius: 15px; color: white; font-size: 13px; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(255,152,0,0.3); transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 16px;">🔄</span> Nueva Conversación
+            </button>
+        </div>
+        <!-- Input -->
+        <div style="padding: 15px; background: white; border-top: 1px solid #e0e0e0;">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="nivin-input" placeholder="Escribe tu mensaje..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 25px; outline: none; font-size: 14px;" onkeypress="if(event.key==='Enter') sendNivinMessage()">
+                <button onclick="sendNivinMessage()" style="background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">➤</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Centro Médico Universal</h3>
-                    <p>Castillo Rodríguez y Asociados</p>
-                    <p>Comprometidos con su salud desde 1995</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Calle Club Rotario No 58, Santo Domingo Este, Republica Dominicana 11501</p>
-                    <p><i class="fas fa-phone"></i> (809) 594-6161</p>
-                    <p><i class="fas fa-envelope"></i> info@centromedicouniversal.com</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Horarios</h3>
-                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                    <p>Sábados: 9:00 AM - 1:00 PM</p>
-                    <p>Domingos: Cerrado</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Síguenos</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=501448386617979" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://do.linkedin.com/company/grupouniversal" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://wa.me/18095946161" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <!-- Nivín Scripts -->
+    <script src="js/nivin-symptom-mapping.js"></script>
+    <script src="js/nivin-better-responses.js"></script>
+    <script src="js/gemini-integration.js?v=1759890905"></script>
+    <script src="js/nivin-chat-init.js?v=1759890905"></script>
+    <script src="js/open-nivin.js?v=1759890905"></script>
+    
+    <script>
+        // Nivín Functions
+        function closeNivinChat() {
+            const modal = document.getElementById('nivin-chat-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function clearNivinChat() {
+            const messagesDiv = document.getElementById('nivin-messages');
+            if (messagesDiv) {
+                messagesDiv.innerHTML = `
+                    <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #000 !important; font-size: 16px !important; line-height: 1.6; font-weight: 500 !important;">
+                        ¡Hola! Soy Nivín, tu asistente médico virtual de Centro Médico Universal. 👋<br><br>
+                        ¿En qué puedo ayudarte hoy?
                     </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Centro Médico Universal Castillo Rodríguez y Asociados. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+                `;
+            }
+            const input = document.getElementById('nivin-input');
+            if (input) {
+                input.value = '';
+            }
+        }
 
-    <a aria-label='Solicitar Cita' class='mobile-cta' href='/agendar'>
-        <i class="fas fa-calendar-check" aria-hidden="true"></i>
-        <span>Solicitar Cita</span>
-    </a>
-    <script src="js/main.min.js" defer></script>
-    <script src="js/gemini-integration.js?v=1.8"></script>
-    <script src="js/lazy-load.min.js" defer></script>
-    <script src="js/specialty-icons.min.js" defer></script>
-    <script src="js/render-doctors.js?v=20250913-1020"></script>
-    <script src="js/structured-data.min.js" defer></script>
-    <script src="js/pwa.min.js" defer></script>
-    <script src="js/draft-counter.js?v=3"></script>
+        function nivinAction(type) {
+            if (typeof openNivinChat === 'function') {
+                openNivinChat();
+            } else {
+                const modal = document.getElementById('nivin-chat-modal');
+                if (modal) modal.style.display = 'flex';
+            }
+            
+            setTimeout(() => {
+                const input = document.getElementById('nivin-input');
+                if (input) {
+                    if (type === 'cita') input.value = 'Necesito una cita';
+                    else if (type === 'queja') input.value = 'Quiero poner una queja';
+                    else if (type === "info") input.value = "Información sobre servicios";
+                    else if (type === "doctores") input.value = "Quiero ver los doctores disponibles";
+                    sendNivinMessage();
+                }
+            }, 200);
+        }
+
+        function sendNivinMessage() {
+            const input = document.getElementById('nivin-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            const messagesDiv = document.getElementById('nivin-messages');
+            
+            // User message
+            const userDiv = document.createElement('div');
+            userDiv.style.cssText = 'background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; padding: 12px 16px; border-radius: 18px; margin: 10px 0; margin-left: auto; max-width: 75%; text-align: right;';
+            userDiv.textContent = msg;
+            messagesDiv.appendChild(userDiv);
+            
+            input.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            // Bot response via Gemini if available
+            if (window.NivinAI && window.NivinAI.handleMessage) {
+                window.NivinAI.handleMessage(msg, messagesDiv);
+            } else {
+                // Fallback response
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.style.cssText = 'background: white; padding: 15px; border-radius: 15px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);';
+                    botDiv.innerHTML = 'Iniciando asistente virtual...';
+                    messagesDiv.appendChild(botDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }, 500);
+            }
+        }
+
+        // Make functions globally available
+        window.closeNivinChat = closeNivinChat;
+        window.clearNivinChat = clearNivinChat;
+        window.nivinAction = nivinAction;
+        window.sendNivinMessage = sendNivinMessage;
+    </script>
 </body>
 </html>

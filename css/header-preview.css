@@ -300,3 +300,32 @@ body {
   .btn-cta { padding: 6px 8px; font-size: 0.95rem; }
   .phone { font-size: 0.9rem; }
 }
+
+/* Brand logo styling */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-logo {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.brand-text h1 {
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.brand-text p {
+  font-size: 11px;
+  margin: 0;
+  opacity: 0.9;
+}

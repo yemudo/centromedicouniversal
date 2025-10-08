@@ -15,8 +15,8 @@
 // Configuration for Gemini Pro integration
 const AI_CONFIG = {
     apiKey: 'AIzaSyC1RfhxKu-4zYx3apc6zXZpnsGGBnYc5GA',
-    model: 'gemini-pro',
-    apiEndpoint: 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent',
+    model: 'gemini-2.5-flash',
+    apiEndpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
     maxOutputTokens: 800,
     temperature: 0.7,
     useOfflineMode: false,
@@ -257,7 +257,7 @@ function formatDateForAPI(dateString) {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
         // Try parsing Spanish date format
-        return parseSp anishDate(dateString);
+        return parseSpanishDate(dateString);
     }
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -338,6 +338,17 @@ function formatTimeForAPI(timeString) {
 // CHAT STATE MANAGEMENT
 // ========================================
 
+// Conversation history for natural flow
+const ConversationHistory = [];
+
+function addToHistory(role, text) {
+    ConversationHistory.push({ role, text });
+    // Keep only last 10 messages for context
+    if (ConversationHistory.length > 10) {
+        ConversationHistory.shift();
+    }
+}
+
 const ChatState = {
     mode: 'normal', // 'normal', 'scheduling', 'feedback', 'representative'
     step: 0,
@@ -350,12 +361,7 @@ const ChatState = {
         availableSlots: [],
         name: null,
         phone: null,
-        notes: '',
-        feedback: {
-            name: null,
-            phone: null,
-            complaint: null
-        }
+        notes: ''
     }
 };
 
@@ -374,12 +380,7 @@ function resetChatState() {
         availableSlots: [],
         name: null,
         phone: null,
-        notes: '',
-        feedback: {
-            name: null,
-            phone: null,
-            complaint: null
-        }
+        notes: ''
     };
 }
 
@@ -704,8 +705,8 @@ async function callGeminiAPI(userMessage, conversationHistory = []) {
 /**
  * Build intelligent prompt for Gemini
  */
-function buildPrompt(userMessage, history) {
-    const context = `Eres Nivín, el asistente virtual inteligente del Centro Médico Universal Castillo Rodríguez y Asociados en Santiago, República Dominicana.
+function buildPrompt(userMessage, history = ConversationHistory) {
+    const context = `Eres Nivín, el asistente virtual inteligente y conversacional del Centro Médico Universal Castillo Rodríguez y Asociados en Santiago, República Dominicana.
 
 INFORMACIÓN DEL CENTRO:
 - Dirección: Calle José Reyes #11, Santiago
@@ -717,22 +718,31 @@ INFORMACIÓN DEL CENTRO:
 
 ESPECIALIDADES DISPONIBLES: ${[...new Set(DOCTORS.map(d => d.specialty))].join(', ')}
 
-Tu trabajo es:
-1. Ayudar a agendar citas (pero NO intentes hacerlo manualmente - el sistema lo maneja)
-2. Responder preguntas sobre servicios, doctores, horarios
-3. Ser amable, profesional y conciso
-4. Usar español dominicano natural
+PERSONALIDAD Y ESTILO:
+- Eres amigable, profesional y MUY conversacional
+- Hablas español dominicano natural
+- NO uses formato de menús con viñetas repetitivamente
+- Ten conversaciones naturales y fluidas como un humano real
+- Haz preguntas de seguimiento relevantes
+- Sé empático y útil
+- RESPONDE EN MÁXIMO 2-3 ORACIONES por mensaje
 
-IMPORTANTE: Si el usuario quiere agendar una cita, simplemente confirma que vas a ayudarle. El sistema automático se encargará del proceso.
+TU OBJETIVO:
+- Si el usuario menciona síntomas, pregunta más detalles y recomienda especialidades
+- Si el usuario quiere agendar, pregunta qué doctor o especialidad necesita
+- Si el usuario hace preguntas, responde de forma conversacional
+- NUNCA repitas el mismo menú de opciones
 
-Pregunta del paciente: ${userMessage}`;
+IMPORTANTE: Responde como si estuvieras charlando con un amigo. Sé breve y natural.
+
+${history.length > 0 ? 'Conversación previa:\n' + history.map(h => `${h.role === 'user' ? 'Usuario' : 'Nivín'}: ${h.text}`).join('\n') + '\n\n' : ''}
+
+Usuario: ${userMessage}
+Nivín:`;
 
     return context;
 }
 
-/**
- * Offline fallback responses when API unavailable
- */
 function getOfflineResponse(message) {
     const msg = message.toLowerCase();
     
@@ -752,7 +762,7 @@ function getOfflineResponse(message) {
         return `Contamos con ${DOCTORS.length} especialistas en múltiples áreas. ¿Qué especialidad busca? Tenemos: Cardiología, Ginecología, Pediatría, Medicina Interna, Cirugía, y más.`;
     }
     
-    return 'Estoy aquí para ayudarle con:<br>• Agendar citas<br>• Información de doctores<br>• Horarios y ubicación<br>• Servicios disponibles<br><br>¿En qué puedo asistirle?';
+    return '¡Hola! 👋 Soy Nivín, tu asistente médico. ¿En qué puedo ayudarte hoy? Puedo ayudarte a agendar citas, buscar doctores, o responder tus preguntas sobre el centro médico.';
 }
 
 // ========================================
@@ -782,27 +792,90 @@ function shouldStartRepresentative(text) {
 // ========================================
 
 /**
+/**
  * Handle incoming user message and generate response
  */
 async function handleUserMessage(message, messagesContainer) {
+    // SPECIALTY SEARCH - Check FIRST, before other checks
+    const normalizedMsg = message.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    
+    // Common specialties mapping
+    const specialtyMap = {
+        'cardiolog': 'Cardiología',
+        'ginecolog': 'Ginecología',
+        'pediatr': 'Pediatría',
+        'medicina interna': 'Medicina Interna',
+        'cirug': 'Cirugía',
+        'traumatolog': 'Traumatología',
+        'urol': 'Urología',
+        'oftalm': 'Oftalmología',
+        'dermat': 'Dermatología',
+        'psiquiatr': 'Psiquiatría',
+        'neurol': 'Neurología',
+        'endocrin': 'Endocrinología'
+    };
+    
+    // Check if message matches a specialty
+    for (const [key, specialtyName] of Object.entries(specialtyMap)) {
+        if (normalizedMsg.includes(key)) {
+            // Find doctors with this specialty
+            const matchingDoctors = DOCTORS.filter(doc => 
+                doc.specialty.toLowerCase().includes(specialtyName.toLowerCase())
+            );
+            
+            if (matchingDoctors.length > 0) {
+                const aiSay = (text) => {
+                    const m = document.createElement('div');
+                    m.className = 'ai-message';
+                    m.innerHTML = formatResponseText(text);
+                    messagesContainer.appendChild(m);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                };
+                
+                let doctorList = `👨‍⚕️ **Doctores de ${specialtyName}:**\n\n`;
+                matchingDoctors.forEach((doc, idx) => {
+                    doctorList += `${idx + 1}. **${doc.name}**\n   ${doc.specialty}\n\n`;
+                });
+                doctorList += '\n¿Desea agendar una cita con alguno de estos doctores?';
+                
+                aiSay(doctorList);
+                
+                // Add quick action buttons
+                const quickReply = document.createElement('div');
+                quickReply.className = 'quick-replies';
+                quickReply.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;padding:10px;';
+                
+                const citaBtn = document.createElement('button');
+                citaBtn.textContent = '📅 Agendar Cita';
+                citaBtn.className = 'quick-reply';
+                citaBtn.onclick = () => {
+                    ChatState.mode = 'scheduling';
+                    ChatState.step = 0;
+                    handleUserMessage('Quiero agendar una cita', messagesContainer);
+                };
+                
+                quickReply.appendChild(citaBtn);
+                messagesContainer.appendChild(quickReply);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                return true;
+            }
+        }
+    }
+
+
     // Check if we're in scheduling mode
     if (ChatState.mode === 'scheduling') {
         return await handleSchedulingFlow(message, messagesContainer);
     }
     
-    // Check if we're in feedback mode
-    if (ChatState.mode === 'feedback') {
-        return await handleFeedbackFlow(message, messagesContainer);
-    }
-    
-    // Check for scheduling intent
     if (shouldStartScheduling(message)) {
         return await handleSchedulingFlow(message, messagesContainer);
     }
     
     // Check for feedback intent
     if (shouldStartFeedback(message)) {
-        return await handleFeedbackFlow(message, messagesContainer);
+        return handleFeedbackFlow(message, messagesContainer);
     }
     
     // Check for representative
@@ -826,8 +899,13 @@ async function handleUserMessage(message, messagesContainer) {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     
     const response = await callGeminiAPI(message);
+    
+    // Track conversation history
+    addToHistory("user", message);
+    addToHistory("assistant", response);
     loading.remove();
     aiSay(response);
+
     
     return true;
 }
@@ -836,11 +914,7 @@ async function handleUserMessage(message, messagesContainer) {
 // FEEDBACK & REPRESENTATIVE HANDLERS
 // ========================================
 
-/**
- * Handle feedback/complaint collection flow
- * Steps: intro → name → phone → complaint text → submit
- */
-async function handleFeedbackFlow(message, messagesContainer) {
+function handleFeedbackFlow(message, messagesContainer) {
     const aiSay = (text) => {
         const m = document.createElement('div');
         m.className = 'ai-message';
@@ -849,113 +923,172 @@ async function handleFeedbackFlow(message, messagesContainer) {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
     
-    // Activate feedback mode
-    if (ChatState.mode !== 'feedback') {
-        ChatState.mode = 'feedback';
-        ChatState.step = 0;
-        // Initialize feedback data
-        if (!ChatState.data.feedback) {
-            ChatState.data.feedback = {
-                name: null,
-                phone: null,
-                complaint: null
-            };
-        }
-    }
-    
-    // STEP 0: Introduction and ask for name
-    if (ChatState.step === 0) {
-        aiSay('Valoramos mucho su opinión y tomaremos su queja muy en serio. ');
-        aiSay('¿A nombre de quién es la queja? (O escriba "anónimo" si prefiere no dar su nombre)');
-        ChatState.step = 1;
-        return true;
-    }
-    
-    // STEP 1: Collect name
-    if (ChatState.step === 1) {
-        const name = message.trim();
-        if (name.toLowerCase() === 'anónimo' || name.toLowerCase() === 'anonimo') {
-            ChatState.data.feedback.name = 'Anónimo';
-        } else {
-            ChatState.data.feedback.name = name;
-        }
-        aiSay(`Gracias${ChatState.data.feedback.name !== 'Anónimo' ? ', ' + ChatState.data.feedback.name : ''}.`);
-        aiSay('Por favor, proporcione un número de teléfono de contacto:');
-        ChatState.step = 2;
-        return true;
-    }
-    
-    // STEP 2: Collect phone
-    if (ChatState.step === 2) {
-        ChatState.data.feedback.phone = message.trim();
-        aiSay('Perfecto. Ahora por favor describa su queja o comentario en detalle:');
-        ChatState.step = 3;
-        return true;
-    }
-    
-    // STEP 3: Collect complaint and submit
-    if (ChatState.step === 3) {
-        ChatState.data.feedback.complaint = message.trim();
-        
-        // Show loading while submitting
-        const loading = document.createElement('div');
-        loading.className = 'ai-message typing';
-        loading.innerHTML = '<span></span><span></span><span></span>';
-        messagesContainer.appendChild(loading);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        
-        // Prepare complaint data for submission
-        const complaintData = {
-            name: ChatState.data.feedback.name,
-            phone: ChatState.data.feedback.phone,
-            message: ChatState.data.feedback.complaint,
-            timestamp: new Date().toISOString()
+    // Initialize feedback state if not already started
+    if (!ChatState.feedbackMode) {
+        ChatState.feedbackMode = true;
+        ChatState.feedbackStep = 0;
+        ChatState.feedbackData = {
+            type: '',
+            name: '',
+            email: '',
+            phone: '',
+            message: ''
         };
+    }
+    
+    // Step 0: Ask for feedback type
+    if (ChatState.feedbackStep === 0) {
+        aiSay('Entiendo que desea enviar un comentario. Por favor seleccione el tipo:');
         
-        // Submit complaint (if complaint-handler.js is loaded)
-        if (typeof submitComplaint === 'function') {
-            try {
-                const result = await submitComplaint(complaintData);
-                loading.remove();
+        const quickReply = document.createElement('div');
+        quickReply.className = 'quick-replies';
+        quickReply.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;padding:10px;';
+        
+        const types = [
+            { label: '😞 Queja', value: 'Queja' },
+            { label: '💡 Sugerencia', value: 'Sugerencia' },
+            { label: '👍 Felicitación', value: 'Felicitación' },
+            { label: '💬 Comentario', value: 'Comentario' }
+        ];
+        
+        types.forEach(type => {
+            const btn = document.createElement('button');
+            btn.textContent = type.label;
+            btn.className = 'quick-reply';
+            btn.onclick = () => {
+                ChatState.feedbackData.type = type.value;
+                ChatState.feedbackStep = 1;
                 
-                aiSay('✅ <b>Su queja ha sido registrada exitosamente.</b>');
-                aiSay(`📋 <b>Resumen de su queja:</b><br>
-👤 Nombre: ${complaintData.name}<br>
-📞 Teléfono: ${complaintData.phone}<br>
-📝 Queja: ${complaintData.message.substring(0, 100)}${complaintData.message.length > 100 ? '...' : ''}`);
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'user-message';
+                userMsg.textContent = type.label;
+                messagesContainer.appendChild(userMsg);
                 
-                if (result.whatsapp || result.email) {
-                    aiSay('📨 Hemos notificado a nuestro equipo de atención al cliente. Nos pondremos en contacto con usted en breve.');
-                }
-                
-            } catch (error) {
-                loading.remove();
-                console.error('Error submitting complaint:', error);
-                aiSay('✅ Su queja ha sido registrada. Nuestro equipo la revisará pronto.');
-            }
-        } else {
-            loading.remove();
-            aiSay('✅ <b>Su queja ha sido registrada exitosamente.</b>');
-            aiSay('📨 Nuestro equipo de atención al cliente la revisará y nos pondremos en contacto con usted pronto.');
+                handleFeedbackFlow('', messagesContainer);
+            };
+            quickReply.appendChild(btn);
+        });
+        
+        messagesContainer.appendChild(quickReply);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        return true;
+    }
+    
+    // Step 1: Ask for name
+    if (ChatState.feedbackStep === 1) {
+        aiSay('Por favor indique su nombre completo:');
+        ChatState.feedbackStep = 2;
+        return true;
+    }
+    
+    // Step 2: Save name, ask for phone
+    if (ChatState.feedbackStep === 2) {
+        if (message.trim().length < 3) {
+            aiSay('Por favor ingrese un nombre válido:');
+            return true;
+        }
+        ChatState.feedbackData.name = message.trim();
+        aiSay(`Gracias ${ChatState.feedbackData.name}. ¿Cuál es su número de teléfono?`);
+        ChatState.feedbackStep = 3;
+        return true;
+    }
+    
+    // Step 3: Save phone, ask for email
+    if (ChatState.feedbackStep === 3) {
+        if (message.trim().length < 8) {
+            aiSay('Por favor ingrese un número de teléfono válido:');
+            return true;
+        }
+        ChatState.feedbackData.phone = message.trim();
+        aiSay('¿Cuál es su correo electrónico? (Opcional - puede escribir "ninguno" si no desea proporcionarlo)');
+        ChatState.feedbackStep = 4;
+        return true;
+    }
+    
+    // Step 4: Save email, ask for message
+    if (ChatState.feedbackStep === 4) {
+        const email = message.trim().toLowerCase();
+        if (email !== 'ninguno' && email !== 'no' && email !== 'skip') {
+            ChatState.feedbackData.email = message.trim();
+        }
+        aiSay(`Perfecto. Ahora por favor escriba su ${ChatState.feedbackData.type.toLowerCase()} de forma detallada:`);
+        ChatState.feedbackStep = 5;
+        return true;
+    }
+    
+    // Step 5: Save message and submit
+    if (ChatState.feedbackStep === 5) {
+        if (message.trim().length < 10) {
+            aiSay('Por favor proporcione más detalles (mínimo 10 caracteres):');
+            return true;
         }
         
-        aiSay('Muchas gracias por su retroalimentación. Es muy importante para nosotros mejorar nuestros servicios.');
-        aiSay('📞 Si necesita atención inmediata, puede llamarnos al <a href="tel:+18095946161">(809) 594-6161</a>');
+        ChatState.feedbackData.message = message.trim();
         
-        // Reset state
-        resetChatState();
+        // Send feedback to director
+        sendFeedbackToDirector(ChatState.feedbackData);
         
-        // Show quick replies for next actions
-        addQuickReplies(messagesContainer, [
-            { label: 'Agendar una cita', value: 'Quiero agendar una cita' },
-            { label: 'Ver doctores', value: 'Quiero ver los doctores' },
-            { label: 'Contacto', value: 'Información de contacto' }
-        ]);
+        aiSay(`✅ **${ChatState.feedbackData.type} Recibida**
+
+Gracias por su retroalimentación. Hemos enviado su ${ChatState.feedbackData.type.toLowerCase()} directamente al Director del Centro Médico Universal.
+
+📧 Recibirá una respuesta en un plazo máximo de 48 horas.
+
+¿Hay algo más en lo que pueda ayudarle?`);
+        
+        // Reset feedback state
+        ChatState.feedbackMode = false;
+        ChatState.feedbackStep = 0;
+        ChatState.feedbackData = {};
         
         return true;
     }
     
-    return false;
+    return true;
+}
+
+/**
+ * Send feedback to director's email
+ */
+async function sendFeedbackToDirector(feedbackData) {
+    const emailBody = `
+NUEVA ${feedbackData.type.toUpperCase()} - Centro Médico Universal
+
+Tipo: ${feedbackData.type}
+Nombre: ${feedbackData.name}
+Teléfono: ${feedbackData.phone}
+Email: ${feedbackData.email || 'No proporcionado'}
+
+Mensaje:
+${feedbackData.message}
+
+---
+Enviado desde Nivín AI - ${new Date().toLocaleString('es-DO')}
+    `.trim();
+    
+    try {
+        // Send to your backend API or email service
+        const response = await fetch('/.netlify/functions/send-feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                type: feedbackData.type,
+                name: feedbackData.name,
+                phone: feedbackData.phone,
+                email: feedbackData.email,
+                message: feedbackData.message,
+                timestamp: new Date().toISOString()
+            })
+        });
+        
+        if (!response.ok) {
+            console.warn('Failed to send feedback to server:', response.status);
+        }
+    } catch (error) {
+        console.error('Error sending feedback:', error);
+        // Don't show error to user - feedback is saved in chat history
+    }
 }
 
 function handleRepresentativeRequest(message, messagesContainer) {
@@ -1093,7 +1226,7 @@ function addChatStyles() {
         }
         
         .ai-message {
-            background-color: #f0f0f0;
+            color: #000 !important; font-size: 16px !important; font-weight: 500 !important; background-color: #f0f0f0;
             align-self: flex-start;
         }
         
@@ -1121,11 +1254,14 @@ if (document.readyState === 'loading') {
 // Make handler available globally
 window.NivinAI = {
     handleMessage: handleUserMessage,
+    sendMessage: sendMessage,
     resetState: resetChatState,
     checkAvailability: checkAvailableSlots,
     bookAppointment: bookAppointment,
     doctors: DOCTORS
 };
 
+// Make sendMessage available globally for backward compatibility
+window.sendMessage = sendMessage;
 console.log('✅ Nivín AI con integración de scheduling cargado correctamente');
 console.log(`📊 ${DOCTORS.length} doctores disponibles en el sistema`);
