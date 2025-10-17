@@ -1,0 +1,259 @@
+/**
+ * NIVÍN EMR - STANDARDIZED TYPOGRAPHY & COLOR SYSTEM
+ * Version: 1.0.0
+ * Last Updated: October 17, 2025
+ * 
+ * This file ensures consistent typography and branding across all Nivín EMR pages
+ * Fonts: Inter (via Fontsource) + System Font Stack fallback
+ * Base: 16px for optimal readability and accessibility
+ * Colors: Nivín Ocean Blue Palette
+ */
+
+/* ============================================
+   FONT IMPORTS - Fontsource Inter
+   ============================================ */
+@import url('/css/fonts-inter/400.css');  /* Regular */
+@import url('/css/fonts-inter/500.css');  /* Medium */
+@import url('/css/fonts-inter/600.css');  /* Semi-Bold */
+@import url('/css/fonts-inter/700.css');  /* Bold */
+@import url('/css/fonts-inter/800.css');  /* Extra-Bold */
+
+/* ============================================
+   NIVÍN EMR COLOR PALETTE (Ocean Blue)
+   ============================================ */
+:root {
+    /* Primary Nivín Colors */
+    --nivin-ocean-dark: #05324d;
+    --nivin-ocean-base: #0a5660;
+    --nivin-ocean-medium: #0f7d7e;
+    --nivin-ocean-light: #1aa5a6;
+    --nivin-cyan-bright: #00ffd6;
+    --nivin-cyan-glow: #8cf1ff;
+    --nivin-accent-lime: #e6ff7d;
+    
+    /* Semantic Colors */
+    --nivin-text-primary: #ffffff;
+    --nivin-text-secondary: rgba(255, 255, 255, 0.85);
+    --nivin-text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* UI Elements */
+    --nivin-glass-bg: rgba(255, 255, 255, 0.1);
+    --nivin-glass-border: rgba(255, 255, 255, 0.15);
+    --nivin-shadow: rgba(0, 0, 0, 0.3);
+    
+    /* Status Colors */
+    --nivin-success: #66ffa6;
+    --nivin-warning: #fdd835;
+    --nivin-error: #ff6666;
+    --nivin-info: #00d4ff;
+}
+
+/* ============================================
+   TYPOGRAPHY SYSTEM
+   ============================================ */
+
+/* Base Typography Reset */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body Base Styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--nivin-text-primary);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+    color: var(--nivin-text-primary);
+}
+
+h1 {
+    font-size: 2.5rem;      /* 40px */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 2rem;        /* 32px */
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;      /* 24px */
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.25rem;     /* 20px */
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 1.125rem;    /* 18px */
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 1rem;        /* 16px */
+    font-weight: 600;
+}
+
+/* Paragraph & Text Elements */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1em;
+    color: var(--nivin-text-secondary);
+}
+
+small {
+    font-size: 0.875rem;    /* 14px */
+}
+
+strong, b {
+    font-weight: 600;
+}
+
+/* Links */
+a {
+    color: var(--nivin-cyan-bright);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--nivin-accent-lime);
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+input, textarea, select, button {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--nivin-text-primary);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+button {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================
+   NIVÍN EMR UI COMPONENTS
+   ============================================ */
+
+/* Glass-morphism Cards */
+.nivin-card {
+    background: var(--nivin-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--nivin-glass-border);
+    border-radius: 16px;
+}
+
+/* Buttons */
+.nivin-btn-primary {
+    background: linear-gradient(135deg, var(--nivin-cyan-bright), var(--nivin-ocean-light));
+    color: var(--nivin-ocean-dark);
+    font-weight: 700;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nivin-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 255, 214, 0.4);
+}
+
+/* Badges */
+.nivin-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--nivin-ocean-medium), var(--nivin-ocean-light));
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================ */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+    
+    h1 { font-size: 2rem; }      /* 32px */
+    h2 { font-size: 1.75rem; }   /* 28px */
+    h3 { font-size: 1.5rem; }    /* 24px */
+    h4 { font-size: 1.25rem; }   /* 20px */
+    h5 { font-size: 1.125rem; }  /* 18px */
+    h6 { font-size: 1rem; }      /* 16px */
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    h1 { font-size: 1.75rem; }   /* 28px */
+    h2 { font-size: 1.5rem; }    /* 24px */
+    h3 { font-size: 1.25rem; }   /* 20px */
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Focus States */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+a:focus {
+    outline: 2px solid var(--nivin-cyan-bright);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
