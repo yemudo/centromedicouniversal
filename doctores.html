@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros Doctores - Centro Médico Universal</title>
-    <link rel="icon" href="/nivin-emr/assets/logos/cmu-logo.png" type="image/png">
+    <link rel="icon" href="images/logo/cmu-3d-clean-final2.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* STANDARD NAVIGATION HEADER STYLES */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
         
         .header-preview {
             background: white;
@@ -42,7 +42,7 @@
         }
 
         .brand-text h1 {
-            font-size: 1.2rem;
+            font-size: 18px;
             color: #2E7D32;
             font-weight: 700;
             margin: 0;
@@ -87,7 +87,7 @@
         .phone {
             color: #2E7D32;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 15px;
             text-decoration: none;
         }
 
@@ -109,13 +109,15 @@
 
         .mobile-menu {
             display: none;
-            font-size: 1.5rem;
+            font-size: 18px;
             cursor: pointer;
             color: #2E7D32;
         }
 
         /* PAGE SPECIFIC STYLES */
-        body { 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6; 
             background: #f5f5f5; 
             min-height: 100vh; 
             padding: 0;
@@ -140,11 +142,6 @@
             width: 150px;
             height: 150px;
             margin: 0 auto 20px;
-            background: white;
-            border-radius: 50%;
-            padding: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            border: 3px solid #1B5E20;
         }
         
         .logo img { width: 100%; height: 100%; object-fit: contain; }
@@ -157,6 +154,7 @@
         }
         
         .search-input {
+            font-family: inherit;
             width: 100%;
             padding: 15px 20px;
             font-size: 16px;
@@ -220,7 +218,7 @@
         }
         
         .specialty-title {
-            font-size: 24px;
+            font-size: 18px;
             color: #388E3C;
             margin-bottom: 20px;
             padding-bottom: 15px;
@@ -239,6 +237,10 @@
             border-radius: 12px;
             padding: 20px;
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+            height: 100%;
         }
         
         .doctor-card:hover {
@@ -252,6 +254,9 @@
             font-weight: bold;
             color: #333;
             margin-bottom: 8px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
         }
         
         .doctor-specialty {
@@ -267,6 +272,35 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            flex-grow: 1;
+        }
+        
+        .doctor-appointment-btn {
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #388E3C, #2E7D32);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(56, 142, 60, 0.3);
+        }
+        
+        .doctor-appointment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 142, 60, 0.45);
+        }
+        
+        .doctor-appointment-btn:active {
+            transform: translateY(0);
         }
         
         .back-button {
@@ -289,6 +323,13 @@
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(56,142,60,0.4);
         }
+        
+        /* 3D Logo Animations */
+        @keyframes float3d{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        @keyframes spin3d{to{transform:rotateY(45deg)}}
+        .float3d{animation:float3d 6s ease-in-out infinite;}
+        .spin3d{animation:spin3d 35s linear infinite;}
+        @media (prefers-reduced-motion: reduce){.float3d,.spin3d{animation:none !important;}}
         
         /* Mobile Responsive */
         @media (max-width: 968px) {
@@ -318,7 +359,7 @@
             }
             
             .brand-text h1 {
-                font-size: 1rem;
+                font-size: 16px;
             }
             
             .brand-text p {
@@ -347,7 +388,7 @@
             }
             
             .phone {
-                font-size: 0.9rem;
+                font-size: 14px;
             }
             
             .btn.outline {
@@ -362,10 +403,11 @@
     <header class="header-preview">
         <div class="header-wrap">
             <div class="brand">
-                <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" 
+                <img src="images/logo/cmu-3d-clean-final2.png?v=6" 
                      alt="CMU Logo" 
-                     class="brand-logo"
-                     onerror="this.src='/images/centro_medico_logo_circular.png'">
+                     class="brand-logo float3d spin3d"
+                     style="width: 65px; height: 65px; object-fit: contain;"
+                     onerror="this.src='images/logo/cmu-logo-new.png'">
                 <div class="brand-text">
                     <h1>Centro Médico Universal</h1>
                     <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
@@ -397,7 +439,7 @@
     <div class="page-content">
         <div class="header">
             <div class="logo">
-                <img src="/nivin-emr/assets/logos/cmu-logo.png" alt="Centro Médico Universal">
+                <img src="images/logo/cmu-3d-clean-final2.png?v=6" alt="Centro Médico Universal" class="float3d spin3d" style="width: 80px; height: 80px; object-fit: contain;" onerror="this.src='images/logo/cmu-logo-new.png'">
             </div>
             <h2>Nuestros Doctores</h2>
             <p>Equipo médico de excelencia</p>
@@ -457,10 +499,41 @@
                 b[o.specialty].push(o)
             });
             const s=Object.keys(b).sort();
-            c.innerHTML=s.map(sp=>`<div class="specialty-section" data-specialty="${sp}"><h2 class="specialty-title">${sp}</h2><div class="doctors-grid">${b[sp].map(o=>`<div class="doctor-card" data-name="${o.name}"><div class="doctor-name">${o.name}</div><div class="doctor-specialty">${o.specialty}</div><div class="doctor-schedule">🕐 Lun-Vie: 8:00 AM - 5:00 PM</div></div>`).join('')}</div></div>`).join('')
+            c.innerHTML=s.map(sp=>`<div class="specialty-section" data-specialty="${sp}"><h2 class="specialty-title">${sp}</h2><div class="doctors-grid">${b[sp].map(o=>`<div class="doctor-card" data-name="${o.name}"><div class="doctor-name">${o.name}</div><div class="doctor-specialty">${o.specialty}</div><div class="doctor-schedule">🕐 Lun-Vie: 8:00 AM - 5:00 PM</div><button class="doctor-appointment-btn" onclick="scheduleAppointment('${o.name}', '${o.specialty}')"><i class="fas fa-calendar-check"></i> Agendar Cita</button></div>`).join('')}</div></div>`).join('')
         }
         
         renderDoctors(DOCTORS);
+        
+        // Function to handle appointment scheduling
+        function scheduleAppointment(doctorName, specialty) {
+            // Create appointment message
+            const message = `Hola Nivín, necesito agendar una cita con ${doctorName} (${specialty}). ¿Cuándo tiene disponibilidad?`;
+            
+            // Show Nivín chat modal
+            const modal = document.getElementById('nivin-chat-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                
+                // Wait for modal to be visible, then send message
+                setTimeout(() => {
+                    // Find the CORRECT Nivín chat input field by ID
+                    const chatInput = document.getElementById('nivin-input');
+                    
+                    if (chatInput) {
+                        // Set the input value
+                        chatInput.value = message;
+                        chatInput.focus();
+                        
+                        // Call the existing sendNivinMessage function
+                        setTimeout(() => {
+                            if (typeof sendNivinMessage === 'function') {
+                                sendNivinMessage();
+                            }
+                        }, 300);
+                    }
+                }, 500);
+            }
+        }
         
         document.getElementById('searchInput').addEventListener('input',function(){
             const s=this.value.toLowerCase().trim();
@@ -499,11 +572,11 @@
                 <p style="margin: 3px 0 0 0; padding: 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 400;">Centro Médico Universal</p>
             </div>
             <!-- Close Button -->
-            <button onclick="closeNivinChat()" style="background: rgba(255,255,255,0.15); border: none; color: white; font-size: 24px; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">×</button>
+            <button onclick="closeNivinChat()" style="background: rgba(255,255,255,0.15); border: none; color: white; font-size: 18px; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">×</button>
         </div>
         
         <!-- Messages -->
-        <div id="nivin-messages" style="flex: 1; display: block; overflow-y: auto; min-height: 300px; padding: 20px; background: #f5f5f5; font-family: Arial, sans-serif;">
+        <div id="nivin-messages" style="flex: 1; display: block; overflow-y: auto; min-height: 300px; padding: 20px; background: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
             <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #000 !important; font-size: 16px !important; line-height: 1.6; font-weight: 500 !important;">
                 ¡Hola! Soy Nivín, tu asistente médico virtual de Centro Médico Universal. 👋<br><br>
                 ¿En qué puedo ayudarte hoy?
@@ -528,7 +601,7 @@
         <div style="padding: 15px; background: white; border-top: 1px solid #e0e0e0;">
             <div style="display: flex; gap: 10px;">
                 <input type="text" id="nivin-input" placeholder="Escribe tu mensaje..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 25px; outline: none; font-size: 14px;" onkeypress="if(event.key==='Enter') sendNivinMessage()">
-                <button onclick="sendNivinMessage()" style="background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">➤</button>
+                <button onclick="sendNivinMessage()" style="background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center;">➤</button>
             </div>
         </div>
     </div>
@@ -536,7 +609,7 @@
     <!-- Nivín Scripts -->
     <script src="js/nivin-symptom-mapping.js"></script>
     <script src="js/nivin-better-responses.js"></script>
-    <script src="js/gemini-integration.js?v=1759890905"></script>
+    <script src="js/gemini-integration.js?v=1760649200"></script>
     <script src="js/nivin-chat-init.js?v=1759890905"></script>
     <script src="js/open-nivin.js?v=1759890905"></script>
     

@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios - Centro Médico Universal Castillo Rodríguez y Asociados</title>
-    <link rel="stylesheet" href="css/styles.css?v=1759890905-1045">
-    <link rel="stylesheet" href="css/header-preview.css?v=1759890905-1045">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.min.css" >
+    <link rel="stylesheet" href="css/styles.css?v=1760652000">
+    <link rel="stylesheet" href="css/header-preview.css?v=1760652000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" >
     <meta name="description" content="Servicios médicos ofrecidos por Centro Médico Universal Castillo Rodríguez y Asociados">
     <style>
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
+        /* FORCE ECW-STYLE FONTS ON EVERYTHING */
+        * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+        h1, h2, h3, h4, h5, h6 { color: #2E7D32 !important; }
+        .section-header h2 { color: #2E7D32 !important; }
         .hero h1, .hero h2 { color: white !important; }
         section.hero h1, section.hero h2 { color: white !important; }
         .service-detail {
@@ -79,13 +81,20 @@
             text-align: center;
             margin-bottom: 3rem;
         }
+        
+        /* 3D Logo Animations */
+        @keyframes float3d{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        @keyframes spin3d{to{transform:rotateY(45deg)}}
+        .float3d{animation:float3d 6s ease-in-out infinite;}
+        .spin3d{animation:spin3d 35s linear infinite;}
+        @media (prefers-reduced-motion: reduce){.float3d,.spin3d{animation:none !important;}}
     </style>
 </head>
 <body>
     <header class="header-preview">
       <div class="header-wrap">
         <div class="brand">
-<img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" alt="CMU Logo" class="brand-logo" onerror="this.src='/images/centro_medico_logo_circular.png'">
+<img src="images/logo/cmu-3d-fixed.png?v=1" alt="CMU Logo" class="brand-logo float3d spin3d" style="width: 65px; height: 65px; object-fit: contain;" onerror="this.src='/images/centro_medico_logo_circular.png'">
           <div class="brand-text">
             <h1>Centro Médico Universal</h1>
             <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
@@ -129,7 +138,7 @@
   <img src="images/services/consultation.jpg" loading="lazy" data-  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Emergencia 24 Horas" loading="lazy">
 </picture>
                 </div>
-                <h3 style="color: #388E3C !important; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Emergencia 24 Horas</h3>
+                <h3 style="color: #388E3C !important; font-size: 18px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Emergencia 24 Horas</h3>
                 <p>Nuestro servicio de emergencias está disponible las 24 horas del día, los 7 días de la semana, para atender cualquier urgencia médica que pueda presentarse. Contamos con personal médico altamente calificado y equipamiento de última generación para brindar una atención rápida y eficiente.</p>
                 <div class="service-features">
                     <ul>
@@ -149,7 +158,7 @@
   <img src="images/services/diagnostics.jpg" loading="lazy" data-  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Diagnóstico por Imágenes" loading="lazy">
 </picture>
                 </div>
-                <h3 style="color: #388E3C !important; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Diagnóstico por Imágenes</h3>
+                <h3 style="color: #388E3C !important; font-size: 18px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Diagnóstico por Imágenes</h3>
                 <p>Ofrecemos servicios completos de diagnóstico por imágenes con equipos de última generación y profesionales especializados para garantizar diagnósticos precisos y oportunos.</p>
                 <a class='btn secondary' href='/diagnostico-imagenes'>Ver más detalles</a>
                 <div class="service-features">
@@ -170,7 +179,7 @@
   <img src="images/services/cardiology.jpg" loading="lazy" data-  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Eco-Cardiología" loading="lazy">
 </picture>
                 </div>
-                <h3 style="color: #388E3C !important; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Eco-Cardiología</h3>
+                <h3 style="color: #388E3C !important; font-size: 18px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Eco-Cardiología</h3>
                 <p>Nuestro departamento de Eco-Cardiología cuenta con cardiólogos especializados y equipos de alta tecnología para el diagnóstico y evaluación precisa de la salud cardiovascular de nuestros pacientes.</p>
                 <div class="service-features">
                     <ul>
@@ -190,7 +199,7 @@
   <img src="images/services/laboratory.jpg" loading="lazy" data-  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Laboratorio Clínico" loading="lazy">
 </picture>
                 </div>
-                <h3 style="color: #388E3C !important; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Laboratorio Clínico</h3>
+                <h3 style="color: #388E3C !important; font-size: 18px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Laboratorio Clínico</h3>
                 <p>Nuestro laboratorio clínico ofrece una amplia gama de análisis y pruebas para el diagnóstico y seguimiento de diferentes patologías, con resultados precisos y en el menor tiempo posible.</p>
                 <div class="service-features">
                     <ul>
@@ -211,7 +220,7 @@
   <img src="images/services/pediatrics.jpg" loading="lazy" data-  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Sala de Recién Nacidos" loading="lazy">
 </picture>
                 </div>
-                <h3 style="color: #388E3C !important; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Sala de Recién Nacidos</h3>
+                <h3 style="color: #388E3C !important; font-size: 18px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Sala de Recién Nacidos</h3>
                 <p>Contamos con una sala especialmente diseñada para el cuidado y atención de recién nacidos, equipada con la última tecnología y personal especializado en neonatología.</p>
                 <div class="service-features">
                     <ul>
@@ -231,7 +240,7 @@
   <img src="images/services/intensive_care.jpg" loading="lazy" data-  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f0f0f0'/%3E%3C/svg%3E" alt="Cuidados Intensivos" loading="lazy">
 </picture>
                 </div>
-                <h3 style="color: #388E3C !important; font-size: 1.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Cuidados Intensivos</h3>
+                <h3 style="color: #388E3C !important; font-size: 18px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Cuidados Intensivos</h3>
                 <p>Nuestra Unidad de Cuidados Intensivos está equipada con la más avanzada tecnología y cuenta con médicos intensivistas y personal de enfermería altamente capacitado para el cuidado de pacientes en estado crítico.</p>
                 <div class="service-features">
                     <ul>
@@ -250,7 +259,7 @@
         <div class="container">
             <div class="appointment-content">
                 <div class="appointment-text">
-                    <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">¿Necesita alguno de nuestros servicios?</h2>
+                    <h2 style="color: #388E3C !important; font-size: 28px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">¿Necesita alguno de nuestros servicios?</h2>
                     <p>Complete el formulario y nos pondremos en contacto con usted para agendar su cita médica.</p>
                 </div>
                 <form class="appointment-form">
@@ -321,7 +330,11 @@
     </footer>
 
     <script src="js/main.min.js"  defer></script></script>
-    <script src="js/gemini-integration.js?v=1759890905.8"></script>
+    <script src="js/nivin-symptom-mapping.js"></script>
+    <script src="js/nivin-better-responses.js"></script>
+    <script src="js/gemini-integration.js?v=1760649200"></script>
+    <script src="js/nivin-chat-init.js?v=1759890905"></script>
+    <script src="js/open-nivin.js?v=1759890905"></script>
     <script src="js/lazy-load.min.js"  defer></script></script>
  </body>
 </html>

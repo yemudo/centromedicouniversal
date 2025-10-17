@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es"><!-- v1759524476 --><!-- v1759523803 -->
 <head>
-    <meta http-equiv=1759890905"Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv=1759890905"Pragma" content="no-cache">
-    <meta http-equiv=1759890905"Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv=1759890905"Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv=1759890905"Pragma" content="no-cache">
-    <meta http-equiv=1759890905"Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Centro Médico Universal Castillo Rodríguez y Asociados</title>
     
     <!-- Favicon -->
@@ -23,9 +23,7 @@
     <meta name="theme-color" content="#388E3C">
     <style>
         /* Apply clean font throughout site */
-        * {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-        }
+        * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
         
         /* Professional repeating typing effect - NO CURSOR */
         p.hero-subtitle.typing-effect {
@@ -52,6 +50,15 @@
         .section-header h2 { color: #388E3C !important; }
         .hero h1, .hero h2 { color: white !important; }
         section.hero h1, section.hero h2 { color: white !important; }
+        
+        /* 3D Logo Animations */
+        @keyframes float3d{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        @keyframes spin3d{to{transform:rotateY(45deg)}}
+        @keyframes spin3dReverse{to{transform:rotateY(-45deg)}}
+        .float3d{animation:float3d 6s ease-in-out infinite;}
+        .spin3d{animation:spin3d 35s linear infinite;}
+        .reverse-spin{animation:spin3dReverse 35s linear infinite;}
+        @media (prefers-reduced-motion: reduce){.float3d,.spin3d,.reverse-spin{animation:none !important;}}
         
         /* Hero Logo Styles */
         .hero-logo-container {
@@ -211,6 +218,70 @@
             opacity: 0;
         }
         
+        .priority-wall {
+            position: relative;
+            display: inline-block;
+            padding: 38px 64px;
+            border-radius: 28px;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 65%),
+                repeating-linear-gradient(
+                    0deg,
+                    #51754b,
+                    #51754b 28px,
+                    #496943 28px,
+                    #496943 56px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    #5f8359,
+                    #5f8359 58px,
+                    #476843 58px,
+                    #476843 116px
+                );
+            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.28);
+        }
+
+        .priority-wall::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            mix-blend-mode: overlay;
+        }
+
+        .hero-priority {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 54px;
+            border-radius: 38px;
+            background: linear-gradient(#fffef5, #f0d185);
+            color: #b8860b;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.6px;
+            border: 3px solid #d4af37;
+            box-shadow:
+                0 18px 28px rgba(0, 0, 0, 0.22),
+                inset 0 4px 0 rgba(255, 255, 255, 0.85),
+                inset 0 -6px 0 rgba(212, 175, 55, 0.35);
+            transform: perspective(650px) translateZ(30px);
+        }
+
+        .hero-priority::after {
+            content: "";
+            position: absolute;
+            inset: 10px -22px -30px;
+            border-radius: 45px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.22), transparent 60%);
+            filter: blur(6px);
+            opacity: 0.55;
+            z-index: -1;
+        }
+
         /* Button hover glow effect */
         .hero-button {
             transition: all 0.3s ease;
@@ -265,7 +336,232 @@
         .carousel-banner {
             animation: bannerFadeSlide 0.6s ease-out;
         }
-        
+
+        /* Immersive hero technology stage */
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero__container,
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tech-backdrop {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-tech-backdrop::before {
+            content: "";
+            position: absolute;
+            width: min(720px, 90vw);
+            height: min(720px, 90vw);
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.22), transparent 65%), radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.25), transparent 70%), rgba(15, 72, 40, 0.55);
+            box-shadow:
+                0 0 120px rgba(0, 0, 0, 0.35),
+                inset 0 0 80px rgba(17, 96, 57, 0.6);
+            filter: blur(0.5px);
+            animation: haloPulse 8s ease-in-out infinite;
+        }
+
+        .hero-tech-halo {
+            position: absolute;
+            width: min(520px, 78vw);
+            height: min(520px, 78vw);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow:
+                0 0 60px rgba(212, 175, 55, 0.4),
+                inset 0 0 40px rgba(255, 255, 255, 0.18);
+            opacity: 0.85;
+            animation: orbPulse 10s ease-in-out infinite;
+        }
+
+        .hero-tech-pod {
+            position: absolute;
+            width: 190px;
+            padding: 18px 20px;
+            border-radius: 22px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow:
+                0 18px 35px rgba(0, 0, 0, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            color: white;
+            backdrop-filter: blur(12px);
+            transform: translateZ(0);
+            transform-style: preserve-3d;
+            animation: techFloat 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero-tech-pod i {
+            font-size: 1.9rem;
+            color: #ffd65a;
+            margin-bottom: 12px;
+            text-shadow: 0 0 12px rgba(255, 214, 90, 0.6);
+        }
+
+        .hero-tech-pod .pod-title {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-tech-pod .pod-text {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.8rem;
+            opacity: 0.82;
+            line-height: 1.4;
+        }
+
+        .hero-tech-pod--assistant {
+            top: 18%;
+            right: 8%;
+            animation-delay: 0s;
+        }
+
+        .hero-tech-pod--emr {
+            bottom: 16%;
+            right: 12%;
+            animation-delay: 1.2s;
+        }
+
+        .hero-tech-pod--insights {
+            top: 22%;
+            left: 10%;
+            animation-delay: 2.4s;
+        }
+
+        .hero-tech-orbit {
+            position: absolute;
+            width: min(620px, 85vw);
+            height: min(620px, 85vw);
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.25);
+            animation: orbitSpin 26s linear infinite;
+            opacity: 0.55;
+        }
+
+        .hero-tech-orbit::after {
+            content: "";
+            position: absolute;
+            top: 18%;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd54f, #ffb300);
+            box-shadow: 0 0 12px rgba(255, 214, 79, 0.8);
+        }
+
+        .nivin-3d-stack {
+            text-align: center;
+            margin: 10px auto 24px;
+        }
+
+        .nivin-3d-title {
+            display: inline-block;
+            font-size: clamp(2.3rem, 4vw, 3.4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: #f5f5f5;
+            text-shadow:
+                0 1px 0 #1b5e20,
+                0 2px 0 #164a19,
+                0 3px 0 #113812,
+                0 4px 0 #0d2d0e,
+                0 5px 0 rgba(0, 0, 0, 0.55),
+                0 12px 15px rgba(0, 0, 0, 0.55);
+            transform: perspective(900px) rotateX(14deg) translateZ(35px);
+            animation: titleShine 5.5s ease-in-out infinite;
+        }
+
+        .nivin-3d-sub {
+            display: block;
+            margin-top: 12px;
+            font-size: clamp(0.82rem, 1.8vw, 1rem);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.82);
+            text-transform: uppercase;
+        }
+
+        @keyframes haloPulse {
+            0%, 100% {
+                transform: scale(0.96) rotate(0deg);
+                opacity: 0.85;
+            }
+            50% {
+                transform: scale(1.04) rotate(2deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes orbPulse {
+            0%, 100% {
+                transform: scale(0.94);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes techFloat {
+            0%, 100% {
+                transform: translateY(0) translateZ(0) rotateX(0deg);
+            }
+            50% {
+                transform: translateY(-14px) translateZ(15px) rotateX(3deg);
+            }
+        }
+
+        @keyframes orbitSpin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes titleShine {
+            0%, 100% {
+                text-shadow:
+                    0 1px 0 #1b5e20,
+                    0 2px 0 #164a19,
+                    0 3px 0 #113812,
+                    0 4px 0 #0d2d0e,
+                    0 5px 0 rgba(0, 0, 0, 0.55),
+                    0 12px 15px rgba(0, 0, 0, 0.55);
+            }
+            50% {
+                text-shadow:
+                    0 1px 0 #d4af37,
+                    0 2px 0 #b68c28,
+                    0 3px 0 #876819,
+                    0 4px 0 rgba(0, 0, 0, 0.45),
+                    0 8px 20px rgba(212, 175, 55, 0.55),
+                    0 18px 28px rgba(0, 0, 0, 0.6);
+            }
+        }
+
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .hero-logo-container {
@@ -274,6 +570,30 @@
             
             .hero-buttons a {
                 animation-duration: 0.5s !important;
+            }
+
+            .hero-tech-pod {
+                width: 160px;
+                padding: 16px;
+            }
+
+            .hero-tech-pod--assistant {
+                top: 12%;
+                right: 6%;
+            }
+
+            .hero-tech-pod--emr {
+                bottom: 10%;
+                right: 8%;
+            }
+
+            .hero-tech-pod--insights {
+                top: 16%;
+                left: 6%;
+            }
+
+            .hero-tech-backdrop::before {
+                opacity: 0.7;
             }
         }
         
@@ -378,7 +698,7 @@
             padding: 12px 20px;
             border-radius: 25px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             white-space: nowrap;
             box-shadow: 0 4px 20px rgba(56, 142, 60, 0.4);
             animation: floatLabelSlide 0.5s ease-out 1s forwards, floatLabelPulse 2s ease-in-out 1.5s infinite;
@@ -477,7 +797,7 @@
             }
             
             .dual-hero-logo-container div[style*="font-size: 3rem"] {
-                font-size: 2rem !important;
+                font-size: 18px !important;
             }
             
             /* Keep Nivín badge visible on all screens */
@@ -518,13 +838,13 @@
         <!-- Notification Badge -->
         <div class="notification-badge">!</div>
         <!-- Nivín Logo -->
-        <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/nivin-full-logo-white.svg?v=1759890905" alt="Nivín" style="width: 60px; height: auto;">
+        <img src="images/assistant/nivin-assistant.png?v=2" alt="Nivín Assistant" style="width: 75px; height: auto; object-fit: contain;" class="float3d spin3d" onerror="this.src='https://centromedicouniversal.com/nivin-emr/assets/logos/nivin-full-logo-white.svg?v=1759890905'">
     </div>
 </div>
     <header class="header-preview">
       <div class="header-wrap">
         <div class="brand">
-<img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" alt="CMU Logo" class="brand-logo">
+<img src="images/logo/cmu-3d-clean-final2.png?v=6" alt="CMU Logo" class="brand-logo float3d spin3d" style="width: 65px; height: 65px; object-fit: contain;">
           <div class="brand-text">
             <h1>Centro Médico Universal</h1>
             <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
@@ -554,39 +874,86 @@
 
     <section class="hero hero--green" style="background: linear-gradient(135deg, #2E7D32 0%, #388E3C 25%, #69BBA8 50%, rgba(212, 175, 55, 0.5) 75%, #69BBA8 100%); position: relative;">
     <div class="hero__overlay" style="background: linear-gradient(45deg, rgba(212, 175, 55, 0.15), transparent); backdrop-filter: brightness(0.95);"></div>
+    <div class="hero-tech-backdrop">
+        <div class="hero-tech-halo"></div>
+        <div class="hero-tech-orbit"></div>
+        <div class="hero-tech-pod hero-tech-pod--assistant">
+            <i class="fas fa-stethoscope"></i>
+            <span class="pod-title">Nivín Medical Assistant</span>
+            <span class="pod-text">Escucha, redacta y resume visitas clínicas en segundos.</span>
+        </div>
+        <div class="hero-tech-pod hero-tech-pod--emr">
+            <i class="fas fa-laptop-medical"></i>
+            <span class="pod-title">Nivín EMR Suite</span>
+            <span class="pod-text">Agenda inteligente, historias clínicas y firma digital unificadas.</span>
+        </div>
+        <div class="hero-tech-pod hero-tech-pod--insights">
+            <i class="fas fa-brain"></i>
+            <span class="pod-title">Insights en Tiempo Real</span>
+            <span class="pod-text">Alertas predictivas, KPIs clínicos y cumplimiento HIPAA.</span>
+        </div>
+    </div>
     <div class="container hero__container">
         <div class="hero-content" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-            <!-- Dual Logo Container -->
-            <div class="dual-hero-logo-container" style="display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 20px; flex-wrap: wrap;">
-                <!-- CMU Logo (Circular) -->
-                <div style="position: relative;">
-                    <picture>
-                      <source srcset="images/logo/cmu-logo-new.png" type="image/png">
-                      <img src="images/logo/cmu-logo-new.png" 
-                           class="hero-logo"
-                           alt="Centro Médico Universal"
-                           loading="lazy"
-                           style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #D4AF37; box-shadow: 0 15px 40px rgba(0,0,0,0.3); background: white; padding: 10px;"
-                           onerror="this.style.display='none';">
-                    </picture>
+            <!-- Dual Logo Container with 3D Animation -->
+            <div class="dual-hero-logo-container" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <!-- CMU Logo (3D Rendered with Animation) -->
+                <div class="float3d" style="position: relative;">
+                    <div class="spin3d">
+                        <img src="images/logo/cmu-3d-clean-final2.png?v=6" 
+                             class="hero-logo"
+                             alt="Centro Médico Universal"
+                             loading="lazy"
+                             style="width: 200px; height: 200px; object-fit: contain;"
+                             onerror="this.src='images/logo/cmu-logo-circular.png';">
+                    </div>
                 </div>
                 
-                <!-- Elegant Separator -->
-                <div style="width: 2px; height: 120px; background: linear-gradient(180deg, transparent 0%, #D4AF37 20%, #D4AF37 80%, transparent 100%); display: none;"></div>
-                <div style="font-size: 3rem; color: #D4AF37; opacity: 0.6; font-weight: 100; display: block;">+</div>
+                <!-- Elegant Separator with 3D Effect -->
+                <div style="
+                    font-size: 3rem; 
+                    color: #2E7D32; 
+                    opacity: 1; 
+                    font-weight: 900; 
+                    display: block;
+                    text-shadow:
+                        3px 3px 0px #1B5E20,
+                        6px 6px 0px #0B3D16,
+                        9px 9px 0px rgba(0,0,0,0.35),
+                        12px 12px 15px rgba(0,0,0,0.55);
+                    transform: perspective(800px) rotateX(25deg) rotateY(-25deg) translateZ(20px);
+                    animation: plus3DFloat 2.5s ease-in-out infinite;
+                    filter: drop-shadow(0 8px 16px rgba(46, 125, 50, 0.4));
+                " onmouseover="this.style.transform='perspective(800px) rotateX(15deg) rotateY(-15deg) translateZ(30px) scale(1.1)'; this.style.filter='drop-shadow(0 12px 24px rgba(46, 125, 50, 0.6))';" onmouseout="this.style.transform='perspective(800px) rotateX(25deg) rotateY(-25deg) translateZ(20px) scale(1)'; this.style.filter='drop-shadow(0 8px 16px rgba(46, 125, 50, 0.4))';">+</div>
                 
-                <!-- Nivín Logo -->
-                <div style="position: relative;">
-                    <img src="/nivin-emr/assets/logos/nivin-full-logo-blue.svg" 
-                         alt="Nivín EMR - Sistema Médico Inteligente"
-                         loading="lazy"
-                         style="width: 180px; height: auto; filter: drop-shadow(0 15px 40px rgba(0,0,0,0.3));"
-                         onerror="this.style.display='none';">
-
+                <style>
+                @keyframes plus3DFloat {
+                    0%, 100% {
+                        transform: perspective(800px) rotateX(25deg) rotateY(-25deg) translateZ(20px) translateY(0px);
+                    }
+                    50% {
+                        transform: perspective(800px) rotateX(25deg) rotateY(-25deg) translateZ(20px) translateY(-8px) scale(1.05);
+                    }
+                }
+                </style>
+                
+                <!-- Nivín Logo (3D Rendered with Animation) -->
+                <div class="float3d" style="position: relative;">
+                    <div class="spin3d reverse-spin">
+                        <img src="images/logo/nivin-3d-rendered.png" 
+                             alt="Nivín EMR - Sistema Médico Inteligente"
+                             loading="lazy"
+                             style="width: 200px; height: 200px; object-fit: contain;"
+                             onerror="this.src='/nivin-emr/assets/logos/nivin-full-logo-blue.svg';">
+                    </div>
                 </div>
             </div>
-            <div style="display: inline-block; background: white; border-radius: 50px; padding: 12px 40px; margin: 20px auto 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 3px solid #D4AF37; text-align: center;">
-                <span style="font-size: 1.35rem !important; line-height: 1.2; margin: 0; font-weight: 800; letter-spacing: -0.5px; color: #D4AF37; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">SU SALUD ES NUESTRA PRIORIDAD</span>
+            <div class="nivin-3d-stack">
+                <span class="nivin-3d-title">NIVÍN EMR SY</span>
+                <span class="nivin-3d-sub">Tecnología clínica + asistente médico impulsado por IA</span>
+            </div>
+            <div class="priority-wall" style="margin: 22px auto 34px;">
+                <span class="hero-priority">SU SALUD ES NUESTRA PRIORIDAD</span>
             </div>
             <p class="hero-subtitle typing-effect"><span>Brindamos atención médica de excelencia con profesionales especializados</span></p>
             <div class="hero-buttons">
@@ -603,16 +970,16 @@
         <div class="container">
             <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 0.5rem; color: white; font-weight: 500; font-size: 0.85rem;">
-                    <i class="fas fa-stethoscope" style="font-size: 1rem; color: #D4AF37;"></i>
+                    <i class="fas fa-stethoscope" style="font-size: 16px; color: #D4AF37;"></i>
                     <span class="mobile-hide-text">Atención Médica 24/7</span>
                     <span class="mobile-show-text" style="display: none;">24/7</span>
                 </div>
-                <a href="tel:+18095946161" style="display: flex; align-items: center; gap: 0.5rem; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; background: rgba(212,175,55,0.2); padding: 0.5rem 1rem; border-radius: 15px; border: 1px solid rgba(212,175,55,0.3); transition: all 0.3s ease; backdrop-filter: blur(10px);">
-                    <i class="fas fa-phone" style="font-size: 0.9rem; color: #D4AF37;"></i>
+                <a href="tel:+18095946161" style="display: flex; align-items: center; gap: 0.5rem; color: white; text-decoration: none; font-weight: 600; font-size: 16px; background: rgba(212,175,55,0.2); padding: 0.5rem 1rem; border-radius: 15px; border: 1px solid rgba(212,175,55,0.3); transition: all 0.3s ease; backdrop-filter: blur(10px);">
+                    <i class="fas fa-phone" style="font-size: 14px; color: #D4AF37;"></i>
                     <span>(809) 594-6161</span>
                 </a>
                 <div style="display: flex; align-items: center; gap: 0.5rem; color: white; font-weight: 500; font-size: 0.85rem;">
-                    <i class="fas fa-calendar-check" style="font-size: 1rem; color: #D4AF37;"></i>
+                    <i class="fas fa-calendar-check" style="font-size: 16px; color: #D4AF37;"></i>
                     <span class="mobile-hide-text">Citas Online Disponibles</span>
                     <span class="mobile-show-text" style="display: none;">Citas</span>
                 </div>
@@ -638,8 +1005,8 @@
                         <p style="margin-top: 0.5rem; color: #388E3C; font-weight: 600;">Dr. Manuel A. Castillo</p>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #388E3C; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Cicatrices Invisibles</h3>
-                        <p style="color: #D4AF37; font-size: 1rem; margin: 0 0 0.8rem 0; font-weight: 600;">Abuso sexual y vaginismo</p>
+                        <h3 style="color: #388E3C; font-size: 18px; margin: 0 0 0.4rem 0;">Cicatrices Invisibles</h3>
+                        <p style="color: #D4AF37; font-size: 16px; margin: 0 0 0.8rem 0; font-weight: 600;">Abuso sexual y vaginismo</p>
                         <p style="color: #666; line-height: 1.6; margin: 0 0 1.5rem 0;">Una investigación profunda sobre el impacto del abuso sexual y el vaginismo, resultado de más de 25 años de experiencia.</p>
                         <a href="https://www.cuestalibros.com/5056294176" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600;">📚 Comprar Libro</a>
                     </div>
@@ -653,8 +1020,8 @@
                         <i class="fas fa-user-md" style="font-size: 2.2rem; color: #2E7D32;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #2E7D32; font-size: 1.5rem; margin: 0 0 0.4rem 0;">95 Especialistas Médicos</h3>
-                        <p style="color: #4CAF50; font-size: 1rem; margin: 0 0 0.8rem 0;">El equipo médico más completo</p>
+                        <h3 style="color: #2E7D32; font-size: 18px; margin: 0 0 0.4rem 0;">95 Especialistas Médicos</h3>
+                        <p style="color: #4CAF50; font-size: 16px; margin: 0 0 0.8rem 0;">El equipo médico más completo</p>
                         <p style="color: #666;">Contamos con especialistas certificados en todas las áreas médicas para brindarte la mejor atención.</p>
                     </div>
                 </div>
@@ -667,8 +1034,8 @@
                         <i class="fas fa-robot" style="font-size: 2.2rem; color: #1976D2;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #1976D2; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Tecnología Digital Avanzada</h3>
-                        <p style="color: #2196F3; font-size: 1rem; margin: 0 0 0.8rem 0;">Sistema inteligente Nivín</p>
+                        <h3 style="color: #1976D2; font-size: 18px; margin: 0 0 0.4rem 0;">Tecnología Digital Avanzada</h3>
+                        <p style="color: #2196F3; font-size: 16px; margin: 0 0 0.8rem 0;">Sistema inteligente Nivín</p>
                         <p style="color: #666;">Agenda citas, consulta doctores y resuelve dudas con nuestro asistente virtual 24/7.</p>
                     </div>
                 </div>
@@ -681,8 +1048,8 @@
                         <i class="fas fa-award" style="font-size: 2.2rem; color: #F57C00;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #F57C00; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Acreditación Internacional</h3>
-                        <p style="color: #FF9800; font-size: 1rem; margin: 0 0 0.8rem 0;">Certificados de calidad</p>
+                        <h3 style="color: #F57C00; font-size: 18px; margin: 0 0 0.4rem 0;">Acreditación Internacional</h3>
+                        <p style="color: #FF9800; font-size: 16px; margin: 0 0 0.8rem 0;">Certificados de calidad</p>
                         <p style="color: #666;">Cumplimos con los más altos estándares internacionales de calidad y seguridad.</p>
                     </div>
                 </div>
@@ -695,8 +1062,8 @@
                         <i class="fas fa-hospital" style="font-size: 2.2rem; color: #6A1B9A;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #6A1B9A; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Instalaciones Modernas</h3>
-                        <p style="color: #9C27B0; font-size: 1rem; margin: 0 0 0.8rem 0;">Áreas renovadas con tecnología</p>
+                        <h3 style="color: #6A1B9A; font-size: 18px; margin: 0 0 0.4rem 0;">Instalaciones Modernas</h3>
+                        <p style="color: #9C27B0; font-size: 16px; margin: 0 0 0.8rem 0;">Áreas renovadas con tecnología</p>
                         <p style="color: #666;">Espacios diseñados para tu comodidad con equipos de última generación.</p>
                     </div>
                 </div>
@@ -709,8 +1076,8 @@
                         <i class="fas fa-ambulance" style="font-size: 2.2rem; color: #C62828;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #C62828; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Emergencias 24/7</h3>
-                        <p style="color: #F44336; font-size: 1rem; margin: 0 0 0.8rem 0;">Atención de urgencias disponible</p>
+                        <h3 style="color: #C62828; font-size: 18px; margin: 0 0 0.4rem 0;">Emergencias 24/7</h3>
+                        <p style="color: #F44336; font-size: 16px; margin: 0 0 0.8rem 0;">Atención de urgencias disponible</p>
                         <p style="color: #666;">Servicio de emergencias las 24 horas con personal especializado siempre disponible.</p>
                     </div>
                 </div>
@@ -723,8 +1090,8 @@
                         <i class="fas fa-credit-card" style="font-size: 2.2rem; color: #00838F;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #00838F; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Seguros Aceptados</h3>
-                        <p style="color: #00BCD4; font-size: 1rem; margin: 0 0 0.8rem 0;">Convenios con principales aseguradoras</p>
+                        <h3 style="color: #00838F; font-size: 18px; margin: 0 0 0.4rem 0;">Seguros Aceptados</h3>
+                        <p style="color: #00BCD4; font-size: 16px; margin: 0 0 0.8rem 0;">Convenios con principales aseguradoras</p>
                         <p style="color: #666;">Aceptamos todos los seguros médicos principales de la República Dominicana.</p>
                     </div>
                 </div>
@@ -737,8 +1104,8 @@
                         <i class="fas fa-heart" style="font-size: 2.2rem; color: #AD1457;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #AD1457; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Compromiso con la Comunidad</h3>
-                        <p style="color: #E91E63; font-size: 1rem; margin: 0 0 0.8rem 0;">Sirviendo a la región</p>
+                        <h3 style="color: #AD1457; font-size: 18px; margin: 0 0 0.4rem 0;">Compromiso con la Comunidad</h3>
+                        <p style="color: #E91E63; font-size: 16px; margin: 0 0 0.8rem 0;">Sirviendo a la región</p>
                         <p style="color: #666;">Más de 25 años cuidando la salud de las familias dominicanas.</p>
                     </div>
                 </div>
@@ -752,7 +1119,7 @@
                     </div>
                     <div style="flex: 1;">
                         <h3 style="color: #00695C; font-size: 1.8rem; margin: 0 0 0.5rem 0;">"Excelente atención médica"</h3>
-                        <p style="color: #69BBA8; font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;">Aleida Pereyra</p>
+                        <p style="color: #69BBA8; font-size: 15px; margin: 0 0 1rem 0; font-weight: 600;">Aleida Pereyra</p>
                         <p style="color: #666; font-style: italic;">El Dr. Castillo es un excelente profesional. Me ayudó con mi tratamiento y siempre estuvo disponible.</p>
                     </div>
                 </div>
@@ -766,7 +1133,7 @@
                     </div>
                     <div style="flex: 1;">
                         <h3 style="color: #6A1B9A; font-size: 1.8rem; margin: 0 0 0.5rem 0;">"Personal muy profesional"</h3>
-                        <p style="color: #AB47BC; font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;">Jazmin Martinez</p>
+                        <p style="color: #AB47BC; font-size: 15px; margin: 0 0 1rem 0; font-weight: 600;">Jazmin Martinez</p>
                         <p style="color: #666; font-style: italic;">Me encanta la atención que recibo aquí. Todo el personal es amable y profesional.</p>
                     </div>
                 </div>
@@ -780,7 +1147,7 @@
                     </div>
                     <div style="flex: 1;">
                         <h3 style="color: #D84315; font-size: 1.8rem; margin: 0 0 0.5rem 0;">"Lo recomiendo ampliamente"</h3>
-                        <p style="color: #FF7043; font-size: 1.1rem; margin: 0 0 1rem 0; font-weight: 600;">Marlon Castillo</p>
+                        <p style="color: #FF7043; font-size: 15px; margin: 0 0 1rem 0; font-weight: 600;">Marlon Castillo</p>
                         <p style="color: #666; font-style: italic;">Gran experiencia con todos los doctores. Instalaciones modernas y buen trato.</p>
                     </div>
                 </div>
@@ -793,8 +1160,8 @@
                         <i class="fas fa-shield-alt" style="font-size: 2.2rem; color: #1565C0;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h3 style="color: #1565C0; font-size: 1.5rem; margin: 0 0 0.4rem 0;">Protocolos de Seguridad</h3>
-                        <p style="color: #42A5F5; font-size: 1rem; margin: 0 0 0.8rem 0;">Tu salud es nuestra prioridad</p>
+                        <h3 style="color: #1565C0; font-size: 18px; margin: 0 0 0.4rem 0;">Protocolos de Seguridad</h3>
+                        <p style="color: #42A5F5; font-size: 16px; margin: 0 0 0.8rem 0;">Tu salud es nuestra prioridad</p>
                         <p style="color: #666;">Cumplimos con todos los protocolos de bioseguridad para tu tranquilidad.</p>
                     </div>
                 </div>
@@ -858,7 +1225,7 @@
         <div class="container">
             <div style="text-align: center; margin-bottom: 1.5rem;">
                 <h2 style="font-size: 1.6rem; color: #388E3C; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; letter-spacing: -0.5px;">Seguros Médicos Aceptados</h2>
-                <p style="color: #666; font-size: 0.9rem;">Trabajamos con las principales aseguradoras del país</p>
+                <p style="color: #666; font-size: 14px;">Trabajamos con las principales aseguradoras del país</p>
             </div>
             <div class="insurance-carousel" style="position: relative; overflow: hidden; padding: 0.5rem 0;">
                 <div class="insurance-track" style="display: flex; animation: scroll 20s linear infinite;">
@@ -917,17 +1284,17 @@
         </div>
         <style>
             @keyframes scroll {
-            @keyframes fadeOut {
-                0% { opacity: 1; }
-                70% { opacity: 1; }
-                100% { opacity: 0; }
-            }
                 0% {
                     transform: translateX(0);
                 }
                 100% {
                     transform: translateX(-50%);
                 }
+            }
+            @keyframes fadeOut {
+                0% { opacity: 1; }
+                70% { opacity: 1; }
+                100% { opacity: 0; }
             }
             .insurance-carousel:hover .insurance-track {
                 animation-play-state: paused;
@@ -949,7 +1316,7 @@
             }
             
             .dual-hero-logo-container div[style*="font-size: 3rem"] {
-                font-size: 2rem !important;
+                font-size: 18px !important;
             }
             
             /* Keep Nivín badge visible on all screens */
@@ -974,7 +1341,7 @@
                 width: 120px !important;
             }
         }
-    </style>>
+    </style>
                 </div>
             </div>
         </div>
@@ -1013,26 +1380,26 @@
             <section class="doctors defer-visibility" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 4rem 0; margin: 3rem 0;">
                 <div class="container">
                     <div class="section-header">
-                        <h2 style="font-size: 2rem; color: #2E7D32; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; letter-spacing: -0.5px; text-align: center;">Equipo Directivo</h2>
-                        <p style="color: #69BBA8; font-weight: 500; text-align: center; font-size: 1.1rem;">Liderazgo comprometido con la excelencia en salud</p>
+                        <h2 style="font-size: 18px; color: #2E7D32; margin-bottom: 0.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; letter-spacing: -0.5px; text-align: center;">Equipo Directivo</h2>
+                        <p style="color: #69BBA8; font-weight: 500; text-align: center; font-size: 15px;">Liderazgo comprometido con la excelencia en salud</p>
                     </div>
                     <div class="doctors-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 800px; margin: 0 auto;">
                         <!-- Director Médico -->
                         <div class="doctor-card" style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(46,125,50,0.1); border: 2px solid #2E7D32; transition: transform 0.3s;">
                             <div class="avatar" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; border: 4px solid #2E7D32; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                                <img src="images/DoctorsPics/pedro-rafael.png?v=1759890905_0128" alt="Dr. Pedro Rafael Castillo Rodríguez" loading="lazy" decoding="async" onerror="this.src='images/logo/cmu-logo-new.png'; this.onerror=null; this.style.objectFit='contain'; this.style.padding='10px';" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="images/DoctorsPics/pedro-rafael.png?v=1759890905_0128" alt="Dr. Pedro Rafael Castillo Rodríguez" loading="lazy" decoding="async" onerror="this.src='images/logo/cmu-3d-login-badge.png'; this.onerror=null; this.style.objectFit='contain'; this.style.padding='10px'; this.style.transform='rotate(0deg)';" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <h3 style="color: #2E7D32; font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 700;">Dr. Pedro Rafael Castillo Rodríguez</h3>
-                            <p class="specialty" style="color: #D4AF37; font-weight: 600; font-size: 1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">Director Médico</p>
+                            <p class="specialty" style="color: #D4AF37; font-weight: 600; font-size: 16px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">Director Médico</p>
                             <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">Especialista en Gastroenterología con más de 20 años de experiencia en liderazgo médico y gestión hospitalaria.</p>
                         </div>
                         <!-- Director de Operaciones -->
                         <div class="doctor-card" style="background: white; border-radius: 15px; padding: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(46,125,50,0.1); border: 2px solid #2E7D32; transition: transform 0.3s;">
                             <div class="avatar" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; border: 4px solid #2E7D32; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
-                                <img src="images/logo/cmu-logo-new.png" alt="Dr. Juan Aníbal Castillo Rodríguez" loading="lazy" decoding="async" style="width: 80%; height: 80%; object-fit: contain;">
+                                <img src="images/logo/cmu-3d-login-badge.png" alt="Dr. Juan Aníbal Castillo Rodríguez" loading="lazy" decoding="async" style="width: 80%; height: 80%; object-fit: contain; transform: rotate(0deg);">
                             </div>
                             <h3 style="color: #2E7D32; font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 700;">Dr. Juan Aníbal Castillo Rodríguez</h3>
-                            <p class="specialty" style="color: #D4AF37; font-weight: 600; font-size: 1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">Director de Operaciones</p>
+                            <p class="specialty" style="color: #D4AF37; font-weight: 600; font-size: 16px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px;">Director de Operaciones</p>
                             <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">Responsable de la gestión operativa del centro médico. Especialista en Anestesiología con amplia experiencia en administración hospitalaria.</p>
                         </div>
                     </div>
@@ -1047,13 +1414,13 @@
             </div>
             <div class="doctors-grid">
                 <div class="doctor-card">
-                    <div class="avatar"><img src="images/DoctorsPics/vidalva-decena-medina.png?v=1759890905_0128" alt="Dra. Vidalva Decena Medina" loading="lazy" decoding="async" onerror="this.onerror=null; this.remove(); const e=document.createElement('div'); e.className='emoji'; e.textContent='👩‍⚕️'; this.parentNode.appendChild(e);"></div>
+                    <div class="avatar"><img src="images/DoctorsPics/vidalva-decena-medina.png?v=1759890905_0128" alt="Dra. Vidalva Decena Medina" loading="lazy" decoding="async" onerror="this.src='images/logo/cmu-3d-login-badge.png'; this.onerror=null; this.style.objectFit='contain'; this.style.padding='10px'; this.style.transform='rotate(0deg)';"></div>
                     <h3>Dra. Vidalva Decena Medina</h3>
                     <p class="specialty">Ginecología y Obstetricia</p>
                     <p>Especialista en ginecología dedicada a la atención integral de la salud femenina.</p>
                 </div>
                 <div class="doctor-card">
-                    <div class="avatar"><img src="images/DoctorsPics/manuel-antonio-castillo.png?v=1759890905_0128" alt="Dr. Manuel Antonio Castillo Rodríguez" loading="lazy" decoding="async" onerror="this.onerror=null; this.remove(); const e=document.createElement('div'); e.className='emoji'; e.textContent='👨‍⚕️'; this.parentNode.appendChild(e);"></div>
+                    <div class="avatar"><img src="images/DoctorsPics/manuel-antonio-castillo.png?v=1759890905_0128" alt="Dr. Manuel Antonio Castillo Rodríguez" loading="lazy" decoding="async" onerror="this.src='images/logo/cmu-3d-login-badge.png'; this.onerror=null; this.style.objectFit='contain'; this.style.padding='10px'; this.style.transform='rotate(0deg)';"></div>
                     <h3>Dr. Manuel Antonio Castillo Rodríguez</h3>
                     <p class="specialty">Especialista en Salud Sexual</p>
                     <p>Especialista dominicano con más de 25 años de experiencia en ginecología, sexualidad humana y terapia de parejas. Autor de investigaciones sobre vaginismo y abuso sexual.</p>
@@ -1102,7 +1469,7 @@
     <script src="js/complaint-handler.js"></script>
     <script src="js/nivin-symptom-mapping.js"></script>
     <script src="js/nivin-better-responses.js"></script>
-    <script src="js/gemini-integration.js?v=1759890905"></script>
+    <script src="js/gemini-integration.js?v=1760649200"></script>
     <script src="js/nivin-chat-init.js?v=1759890905"></script>
     <script src="js/open-nivin.js?v=1759890905"></script>
     
@@ -1119,9 +1486,9 @@
     <div style="background: linear-gradient(135deg, #388E3C, #2E7D32); padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
         <div style="flex: 1;">
             <!-- Logo Row -->
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/nivin-full-logo-white.svg?v=1759890905" alt="Nivin Logo" style="height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
-                <img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" alt="CMU Logo" style="height: 50px; width: 50px; border-radius: 50%; background: white; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                <img src="images/logo/nivin-3d-rendered.png?v=1759890999" alt="Nivín 3D" style="height: 44px; width: auto; display:block; transform: rotate(0deg);">
+                <img src="images/logo/cmu-3d-login-badge.png?v=1759890999" alt="CMU" style="height: 48px; width: auto; display:block; transform: rotate(0deg);">
             </div>
             <!-- Title -->
             <h3 style="margin: 0; padding: 0; color: #FFFFFF !important; font-size: 18px; font-weight: 700; position: relative; z-index: 10; opacity: 1 !important; background: transparent;">Nivín - Asistente Médico</h3>
@@ -1129,11 +1496,11 @@
             <p style="margin: 3px 0 0 0; padding: 0; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 400;">Centro Médico Universal</p>
         </div>
         <!-- Close Button -->
-        <button onclick="closeNivinChat()" style="background: rgba(255,255,255,0.15); border: none; color: white; font-size: 24px; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">×</button>
+        <button onclick="closeNivinChat()" style="background: rgba(255,255,255,0.15); border: none; color: white; font-size: 18px; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">×</button>
     </div>
     
     <!-- Messages -->
-    <div id="nivin-messages" style="flex: 1; display: block; overflow-y: auto; min-height: 300px; padding: 20px; background: #f5f5f5; font-family: Arial, sans-serif;">
+    <div id="nivin-messages" style="flex: 1; display: block; overflow-y: auto; min-height: 300px; padding: 20px; background: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
         <div style="background: white; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color: #000 !important; font-size: 16px !important; line-height: 1.6; font-weight: 500 !important;">
             ¡Hola! Soy Nivín, tu asistente médico virtual de Centro Médico Universal. 👋<br><br>
             ¿En qué puedo ayudarte hoy?
@@ -1158,7 +1525,7 @@
     <div style="padding: 15px; background: white; border-top: 1px solid #e0e0e0;">
         <div style="display: flex; gap: 10px;">
             <input type="text" id="nivin-input" placeholder="Escribe tu mensaje..." style="flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 25px; outline: none; font-size: 14px;" onkeypress="if(event.key==='Enter') sendNivinMessage()">
-            <button onclick="sendNivinMessage()" style="background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">➤</button>
+            <button onclick="sendNivinMessage()" style="background: linear-gradient(135deg, #388E3C, #2E7D32); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center;">➤</button>
         </div>
     </div>
 </div>

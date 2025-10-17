@@ -2,28 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="theme-color" content="#388E3C">
+    <meta name="theme-color" content="#2E7D32">
     <style>
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
+        /* FORCE ECW-STYLE FONTS ON EVERYTHING */
+        * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+        h1, h2, h3, h4, h5, h6 { color: #2E7D32 !important; }
+        .section-header h2 { color: #2E7D32 !important; }
         .hero h1, .hero h2 { color: white !important; }
         section.hero h1, section.hero h2 { color: white !important; }
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Centro Médico Universal Castillo Rodríguez y Asociados</title>
-    <link rel="stylesheet" href="css/styles.css?v=1759890905-1045">
-    <link rel="stylesheet" href="css/header-preview.css?v=1759890905-1045">
+    <link rel="stylesheet" href="css/styles.css?v=1760652000">
+    <link rel="stylesheet" href="css/header-preview.css?v=1760652000">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.min.css" >
     <meta name="description" content="Contacto Centro Médico Universal Castillo Rodríguez y Asociados - Dirección, teléfono y formulario de contacto">
     <style>
-        h1, h2, h3, h4, h5, h6 { color: #388E3C !important; }
-        .section-header h2 { color: #388E3C !important; }
+        h1, h2, h3, h4, h5, h6 { color: #2E7D32 !important; }
+        .section-header h2 { color: #2E7D32 !important; }
         .hero h1, .hero h2 { color: white !important; }
         section.hero h1, section.hero h2 { color: white !important; }
         .page-title {
-            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(56, 178, 172, 0.8)), url('images/contact-bg.jpg');
+            background: linear-gradient(135deg, #2E7D32 0%, #388E3C 50%, #69BBA8 100%), url('images/contact-bg.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -61,7 +61,7 @@
         }
         
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 18px;
             color: var(--primary-color);
             margin-right: 1rem;
             min-width: 30px;
@@ -90,14 +90,16 @@
         .contact-form input,
         .contact-form textarea,
         .contact-form select {
+            font-family: inherit;
             width: 100%;
             padding: 12px;
             border-radius: 5px;
             border: 1px solid #ddd;
-            font-size: 1rem;
+            font-size: 16px;
         }
         
         .contact-form textarea {
+            font-family: inherit;
             min-height: 150px;
         }
         
@@ -126,7 +128,7 @@
         }
         
         .emergency-icon {
-            font-size: 2.5rem;
+            font-size: 28px;
             margin-right: 1.5rem;
         }
         
@@ -137,11 +139,11 @@
         
         .emergency-details p {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 15px;
         }
         
         .emergency-phone {
-            font-size: 1.5rem;
+            font-size: 18px;
             font-weight: bold;
         }
         
@@ -156,13 +158,20 @@
                 margin-bottom: 1rem;
             }
         }
+        
+        /* 3D Logo Animations */
+        @keyframes float3d{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        @keyframes spin3d{to{transform:rotateY(45deg)}}
+        .float3d{animation:float3d 6s ease-in-out infinite;}
+        .spin3d{animation:spin3d 35s linear infinite;}
+        @media (prefers-reduced-motion: reduce){.float3d,.spin3d{animation:none !important;}}
     </style>
 </head>
 <body>
     <header class="header-preview">
       <div class="header-wrap">
         <div class="brand">
-<img src="https://centromedicouniversal.com/nivin-emr/assets/logos/cmu-logo.png?v=1759890905" alt="CMU Logo" class="brand-logo" onerror="this.src='/images/centro_medico_logo_circular.png'">
+<img src="images/logo/cmu-3d-fixed.png?v=1" alt="CMU Logo" class="brand-logo float3d spin3d" style="width: 65px; height: 65px; object-fit: contain;" onerror="this.src='/images/centro_medico_logo_circular.png'">
           <div class="brand-text">
             <h1>Centro Médico Universal</h1>
             <p>CASTILLO RODRÍGUEZ Y ASOCIADOS</p>
@@ -288,8 +297,8 @@
             </div>
 
             <div style="text-align: center; margin-bottom: 3rem; padding: 0; border: none; background: none;">
-                <h2 style="color: #388E3C !important; font-size: 2.5rem; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Seguros Médicos Aceptados</h2>
-                <p style="color: #4a5568; font-size: 1.1rem; margin: 0; padding: 0; background: none; border: none;">Trabajamos con las principales aseguradoras del país para brindarle el mejor servicio</p>
+                <h2 style="color: #388E3C !important; font-size: 28px; margin-bottom: 1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: bold; text-decoration: none; background: transparent !important; border: none !important; outline: none !important; padding: 0 !important; margin-top: 0 !important; line-height: 1.2 !important; letter-spacing: normal !important; text-shadow: none !important; box-shadow: none !important;">Seguros Médicos Aceptados</h2>
+                <p style="color: #4a5568; font-size: 15px; margin: 0; padding: 0; background: none; border: none;">Trabajamos con las principales aseguradoras del país para brindarle el mejor servicio</p>
             </div>
 
             <div class="insurance-logos">
@@ -342,7 +351,11 @@
     </footer>
 
     <script src="js/main.min.js"  defer></script></script>
-    <script src="js/gemini-integration.js?v=1759890905.8"></script>
+    <script src="js/nivin-symptom-mapping.js"></script>
+    <script src="js/nivin-better-responses.js"></script>
+    <script src="js/gemini-integration.js?v=1760649200"></script>
+    <script src="js/nivin-chat-init.js?v=1759890905"></script>
+    <script src="js/open-nivin.js?v=1759890905"></script>
     <script src="js/lazy-load.min.js"  defer></script></script>
 </body>
 </html>
